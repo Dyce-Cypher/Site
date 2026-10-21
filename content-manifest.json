@@ -1,0 +1,95 @@
+{
+  "generatedAt": "",
+  "art": {
+    "label": "Art",
+    "folder": "Art",
+    "icon": "0.%20Site_Assets/1_art.png",
+    "categories": {
+      "sketch": {
+        "label": "Sketch",
+        "folder": "Art/Sketch",
+        "icon": "0.%20Site_Assets/1_1_Sketch.png",
+        "years": {
+          "2017": [
+            "Art/Sketch/2017/1151555758_Glitch.jpg",
+            "Art/Sketch/2017/1558008331_Glitch.jpg",
+            "Art/Sketch/2017/167161971_Glitch.jpg",
+            "Art/Sketch/2017/167161971_Glitch2.jpg",
+            "Art/Sketch/2017/20210130_171032.jpg",
+            "Art/Sketch/2017/20240315_133124.jpg",
+            "Art/Sketch/2017/627854859_Glitch.jpg"
+          ],
+          "2016": [
+            "Art/Sketch/2016/20210130_171032.jpg",
+            "Art/Sketch/2016/20240308_142934.jpg",
+            "Art/Sketch/2016/20240308_142940.jpg",
+            "Art/Sketch/2016/20240315_133043.jpg",
+            "Art/Sketch/2016/20240315_133113.jpg",
+            "Art/Sketch/2016/20240315_133119.jpg"
+          ],
+          "2015": [
+            "Art/Sketch/2015/20170526_154148.jpg",
+            "Art/Sketch/2015/20170616_161143.jpg",
+            "Art/Sketch/2015/20170616_161330.jpg",
+            "Art/Sketch/2015/20170616_161452.jpg",
+            "Art/Sketch/2015/20170806_130120.jpg",
+            "Art/Sketch/2015/20170806_130911.jpg"
+          ],
+          "2023": [
+            "Art/Sketch/2023/Still Life.jpg"
+          ],
+          "2014": [
+            "Art/Sketch/2014/111419.png",
+            "Art/Sketch/2014/20170124_180741.jpg",
+            "Art/Sketch/2014/20170525_135059.jpg",
+            "Art/Sketch/2014/53024.jpg",
+            "Art/Sketch/2014/76b55eb1-6e3c-4c33-bcbd-4babd16e7da2.png",
+            "Art/Sketch/2014/807e9cc8-5b13-4afc-8b82-9812354afe8d.png"
+          ]
+        }
+      },
+      "3d": {
+        "label": "3D",
+        "folder": "Art/3D",
+        "icon": "0.%20Site_Assets/1_2_3d.png",
+        "years": {
+          "2020": [
+            "Art/3D/2020/Dent.png"
+          ]
+        }
+      },
+      "digital": {
+        "label": "Digital Art",
+        "folder": "Art/Digital",
+        "icon": "0.%20Site_Assets/1_3_digital_art.png",
+        "years": {}
+      }
+    }
+  },
+  "video": {
+    "label": "Video",
+    "folder": "Video",
+    "icon": "0.%20Site_Assets/2_video.png",
+    "years": {
+      "2021": [
+        "Video/2021/First Memory.avi"
+      ]
+    }
+  },
+  "music": {
+    "label": "Music",
+    "folder": "Music",
+    "icon": "0.%20Site_Assets/3_music.png",
+    "years": {
+      "2025": [
+        "Music/2025/Waking Hour.wav"
+      ]
+    }
+  },
+  "photography": {
+    "label": "Photography",
+    "folder": "Art/Photography",
+    "icon": "0.%20Site_Assets/4_photography.png",
+    "years": {}
+  }
+}

@@ -1,0 +1,496 @@
+<!doctype html>
+<!-- The page is intentionally buildless: this file and style.css are the complete site. -->
+<html lang="en">
+<head>
+  <!-- Basic document metadata and the stylesheet shared by every view. -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="A file-browser style art portfolio." />
+  <title>Alexander Ibarra — Archive</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- This layer receives the hovered artwork as a blurred page background. -->
+  <div id="hover-background" class="hover-background" aria-hidden="true"></div>
+
+  <!-- The main shell contains the persistent navigation and the changing archive content. -->
+  <main class="window-shell">
+    <!-- Sidebar: identity, medium navigation, Art subcategories, and About navigation. -->
+    <aside class="sidebar" aria-label="Portfolio navigation">
+      <a class="identity" href="#archive" data-page="archive" aria-label="View all works">
+        <img src="0.%20Site_Assets/0_site_logo.png" alt="Alexander Ibarra logo" />
+        <span class="identity-copy">
+          <span class="identity-name" role="button" tabindex="0" aria-label="Shuffle artist alias">Alexander Ibarra</span>
+          <span class="identity-alias-slot">
+            <span id="identity-alias" class="identity-alias" role="button" tabindex="0" aria-label="Shuffle artist alias"></span>
+          </span>
+        </span>
+      </a>
+
+      <!-- Main medium buttons switch the content displayed on the right. -->
+      <nav class="primary-nav" aria-label="Mediums">
+        <button class="nav-item is-active" type="button" data-page="art">
+          <img src="0.%20Site_Assets/1_art.png" alt="" />
+          <span>Art</span>
+          <span class="nav-arrow" aria-hidden="true">›</span>
+        </button>
+        <!-- Art branches into three folder-like subcategories. -->
+        <div class="art-subnav" aria-label="Art categories">
+          <button class="subnav-item is-active" type="button" data-category="sketch">
+            <img src="0.%20Site_Assets/1_1_Sketch.png" alt="" />
+            <span>Sketch</span>
+          </button>
+          <button class="subnav-item" type="button" data-category="3d">
+            <img src="0.%20Site_Assets/1_2_3d.png" alt="" />
+            <span>3D</span>
+          </button>
+          <button class="subnav-item" type="button" data-category="digital">
+            <img src="0.%20Site_Assets/1_3_digital_art.png" alt="" />
+            <span>Digital Art</span>
+          </button>
+        </div>
+        <button class="nav-item" type="button" data-page="video">
+          <img src="0.%20Site_Assets/2_video.png" alt="" />
+          <span>Video</span>
+        </button>
+        <button class="nav-item" type="button" data-page="music">
+          <img src="0.%20Site_Assets/3_music.png" alt="" />
+          <span>Music</span>
+        </button>
+        <button class="nav-item" type="button" data-page="photography">
+          <img src="0.%20Site_Assets/4_photography.png" alt="" />
+          <span>Photography</span>
+        </button>
+      </nav>
+
+      <!-- A divider separates the medium folders from the About page. -->
+      <div class="sidebar-rule"></div>
+
+      <button class="nav-item about-link" type="button" data-page="about">
+        <img src="0.%20Site_Assets/5_about.png" alt="" />
+        <span>About</span>
+      </button>
+
+      <p class="sidebar-note">Archive of work<br />organized by medium and year.</p>
+    </aside>
+
+    <!-- Right-hand panel: its heading and body are updated by JavaScript. -->
+    <section class="content-panel">
+      <header class="content-header">
+        <div>
+          <p class="eyebrow">ARCHIVE / <span id="crumb-medium">ART</span></p>
+          <h1 id="page-title">Art</h1>
+        </div>
+        <p class="header-meta" id="item-count">0 works</p>
+      </header>
+
+      <!-- JavaScript inserts year groups and file cards into this empty container. -->
+      <div id="portfolio-view" class="portfolio-view" aria-live="polite"></div>
+
+      <!-- The About view is hidden on archive pages and shown only when About is selected. -->
+      <section id="about-view" class="about-view" hidden>
+        <div class="about-image-wrap">
+          <!-- Replace this fallback with an artist portrait in 0. Site_Assets when ready. -->
+          <img src="0.%20Site_Assets/0_site_logo.png" alt="Placeholder for artist portrait" />
+          <span>artist portrait / replace me</span>
+        </div>
+        <div class="about-copy">
+          <p class="eyebrow">ABOUT / ALEXANDER IBARRA</p>
+          <h2>Making room for many ways of seeing.</h2>
+          <p class="lead">I work across image, moving image, and sound. This archive is a living index of those experiments.</p>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at sem sed arcu fermentum posuere. Donec vitae justo at nunc sollicitudin porttitor. Praesent euismod, nisl sed bibendum consequat, neque arcu malesuada erat, vitae porttitor libero justo vel arcu.</p>
+          <p>Curabitur finibus, leo a tincidunt pulvinar, erat nibh tempor ipsum, non consequat mauris lacus sit amet urna. Suspendisse potenti. Mauris in lectus id libero volutpat blandit. More words about process, place, collaboration, and attention will live here soon.</p>
+          <p class="about-signoff">— Alexander Ibarra</p>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <!-- In-page viewer used when a recognized image file is clicked. -->
+  <dialog id="image-viewer" class="image-viewer">
+    <button id="image-viewer-close" class="image-viewer-close" type="button" aria-label="Close image viewer">×</button>
+    <div class="image-viewer-frame">
+      <img id="image-viewer-image" src="" alt="" />
+    </div>
+  </dialog>
+
+  <script>
+    // The generated manifest is loaded from the folders on disk before rendering.
+    let portfolio = null;
+
+    // Cache the DOM elements that JavaScript updates during navigation.
+    const portfolioView = document.querySelector('#portfolio-view');
+    const aboutView = document.querySelector('#about-view');
+    const pageTitle = document.querySelector('#page-title');
+    const crumbMedium = document.querySelector('#crumb-medium');
+    const itemCount = document.querySelector('#item-count');
+    const navItems = [...document.querySelectorAll('[data-page]')];
+    const artSubnav = document.querySelector('.art-subnav');
+    const subnavItems = [...document.querySelectorAll('[data-category]')];
+    const hoverBackground = document.querySelector('#hover-background');
+    const imageViewer = document.querySelector('#image-viewer');
+    const imageViewerImage = document.querySelector('#image-viewer-image');
+    const imageViewerClose = document.querySelector('#image-viewer-close');
+    const identityName = document.querySelector('.identity-name');
+    const identityAliasSlot = document.querySelector('.identity-alias-slot');
+    const identityAlias = document.querySelector('#identity-alias');
+    let activeArtCategory = 'sketch';
+    let aliasSpinTimer = null;
+
+    // Add or remove aliases here. Names are shuffled without repeats until the list resets.
+    const identityAliases = [
+      'Von Gearlowe',
+      'Alastair R. Dent',
+      'Vector Spade',
+      'Dyce Cypher',
+      'Scottsmith'
+    ];
+    let availableAliases = [...identityAliases];
+
+    // Draw one random name and remove it from the current shuffle cycle.
+    function getNextAlias() {
+      if (!availableAliases.length) availableAliases = [...identityAliases];
+      const aliasIndex = Math.floor(Math.random() * availableAliases.length);
+      return availableAliases.splice(aliasIndex, 1)[0];
+    }
+
+    identityAlias.textContent = getNextAlias();
+
+    // Replace the current alias with a directional fade transition.
+    function transitionAlias(nextAlias) {
+      const outgoingAlias = identityAlias.cloneNode(true);
+      outgoingAlias.removeAttribute('id');
+      outgoingAlias.removeAttribute('role');
+      outgoingAlias.removeAttribute('tabindex');
+      outgoingAlias.className = 'identity-alias alias-ghost';
+      identityAliasSlot.appendChild(outgoingAlias);
+      identityAlias.textContent = nextAlias;
+      identityAlias.classList.remove('alias-in');
+      void identityAlias.offsetWidth;
+      identityAlias.classList.add('alias-in');
+      window.setTimeout(() => outgoingAlias.remove(), 220);
+    }
+
+    // Rapidly cycle aliases, then stop on a random name like a slot machine.
+    function spinIdentityAlias() {
+      if (aliasSpinTimer) window.clearTimeout(aliasSpinTimer);
+      identityAlias.classList.add('is-spinning');
+      const spinDuration = 1600;
+      const spinStarted = Date.now();
+
+      function shuffleStep() {
+        transitionAlias(getNextAlias());
+        const progress = Math.min((Date.now() - spinStarted) / spinDuration, 1);
+
+        if (progress >= 1) {
+          aliasSpinTimer = null;
+          identityAlias.classList.remove('is-spinning');
+          return;
+        }
+
+        // Increase the delay over time so the shuffle gradually settles to zero speed.
+        const nextDelay = 45 + (progress ** 2) * 330;
+        aliasSpinTimer = window.setTimeout(shuffleStep, nextDelay);
+      }
+
+      shuffleStep();
+    }
+
+    // Clicking or keyboard-activating the artist name starts the alias shuffle.
+    identityName.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      spinIdentityAlias();
+    });
+    identityName.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        spinIdentityAlias();
+      }
+    });
+    identityAlias.addEventListener('click', (event) => {
+      event.preventDefault();
+      event.stopPropagation();
+      spinIdentityAlias();
+    });
+    identityAlias.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter' || event.key === ' ') {
+        event.preventDefault();
+        spinIdentityAlias();
+      }
+    });
+
+    // Convert folder paths into browser-safe URLs and derive file metadata.
+    const fileUrl = (path) => path.split('/').map(encodeURIComponent).join('/');
+    const fileName = (path) => decodeURIComponent(path.split('/').pop());
+    const extension = (path) => fileName(path).split('.').pop().toLowerCase();
+    const isImage = (path) => ['jpg', 'jpeg', 'png', 'gif', 'webp', 'avif'].includes(extension(path));
+    const isAudio = (path) => ['mp3', 'wav', 'ogg', 'm4a', 'flac'].includes(extension(path));
+    const isVideo = (path) => ['mp4', 'webm', 'mov', 'avi'].includes(extension(path));
+
+    // Format audio duration in a compact minutes-and-seconds display.
+    function formatDuration(seconds) {
+      if (!Number.isFinite(seconds)) return '--:--';
+      const minutes = Math.floor(seconds / 60);
+      const remainingSeconds = Math.floor(seconds % 60).toString().padStart(2, '0');
+      return `${minutes}:${remainingSeconds}`;
+    }
+
+    // Show the current artwork behind the page while its thumbnail is hovered or focused.
+    function showHoverBackground(path) {
+      hoverBackground.style.backgroundImage = `url("${fileUrl(path)}")`;
+      hoverBackground.classList.add('is-visible');
+    }
+
+    // Hide the background layer after the pointer or keyboard focus leaves the artwork.
+    function hideHoverBackground() {
+      hoverBackground.classList.remove('is-visible');
+    }
+
+    // Estimate the image's most common visible color using a small quantized canvas sample.
+    function getDominantColor(image) {
+      try {
+        const canvas = document.createElement('canvas');
+        const context = canvas.getContext('2d', { willReadFrequently: true });
+        const size = 40;
+        canvas.width = size;
+        canvas.height = size;
+        context.drawImage(image, 0, 0, size, size);
+        const pixels = context.getImageData(0, 0, size, size).data;
+        const colors = new Map();
+
+        for (let index = 0; index < pixels.length; index += 4) {
+          const alpha = pixels[index + 3];
+          if (alpha < 32) continue;
+          const red = Math.round(pixels[index] / 32) * 32;
+          const green = Math.round(pixels[index + 1] / 32) * 32;
+          const blue = Math.round(pixels[index + 2] / 32) * 32;
+          const key = `${red},${green},${blue}`;
+          colors.set(key, (colors.get(key) || 0) + 1);
+        }
+
+        const [color] = [...colors.entries()].sort((a, b) => b[1] - a[1])[0] || ['184,154,93'];
+        return `rgb(${color})`;
+      } catch (error) {
+        console.warn('Unable to sample image color:', error);
+        return 'var(--gold)';
+      }
+    }
+
+    // Open an image in the page and use its dominant color for the frame border.
+    function openImageViewer(path, name, thumbnail) {
+      imageViewerImage.alt = name;
+      imageViewerImage.classList.remove('is-loaded');
+      imageViewerImage.onload = () => {
+        const sourceImage = imageViewerImage.naturalWidth ? imageViewerImage : thumbnail;
+        imageViewer.style.setProperty('--image-border-color', getDominantColor(sourceImage));
+        imageViewerImage.classList.add('is-loaded');
+      };
+      imageViewerImage.src = fileUrl(path);
+      imageViewer.showModal();
+    }
+
+    // Fade the viewer out before closing the native dialog.
+    function closeImageViewer() {
+      if (imageViewer.classList.contains('is-closing')) return;
+      imageViewer.classList.add('is-closing');
+      window.setTimeout(() => {
+        imageViewer.close();
+        imageViewer.classList.remove('is-closing');
+      }, 280);
+    }
+
+    // Close the viewer through the button, backdrop, or Escape key.
+    imageViewerClose.addEventListener('click', closeImageViewer);
+    imageViewer.addEventListener('click', (event) => {
+      if (event.target === imageViewer) closeImageViewer();
+    });
+    imageViewer.addEventListener('cancel', (event) => {
+      event.preventDefault();
+      closeImageViewer();
+    });
+
+    // Art categories are populated from the generated manifest after it loads.
+    let artCategories = {};
+
+    // Build one visual card for an image, audio file, video file, or generic file.
+    function renderFile(path, index) {
+      const name = fileName(path);
+      const card = document.createElement('article');
+      card.className = 'file-card';
+      card.style.setProperty('--delay', `${index * 35}ms`);
+
+      if (isImage(path)) {
+        card.innerHTML = `<a href="${fileUrl(path)}" target="_blank" rel="noreferrer"><img src="${fileUrl(path)}" alt="${name}" loading="lazy" /></a>`;
+        const previewLink = card.querySelector('a');
+        const previewImage = previewLink.querySelector('img');
+        previewLink.addEventListener('click', (event) => {
+          event.preventDefault();
+          openImageViewer(path, name, previewImage);
+        });
+        previewLink.addEventListener('mouseenter', () => showHoverBackground(path));
+        previewLink.addEventListener('mouseleave', hideHoverBackground);
+        previewLink.addEventListener('focus', () => showHoverBackground(path));
+        previewLink.addEventListener('blur', hideHoverBackground);
+      } else if (isAudio(path)) {
+        // Audio metadata is loaded without downloading the full track up front.
+        const audioDuration = document.createElement('div');
+        audioDuration.className = 'audio-duration';
+        audioDuration.innerHTML = '<span>duration</span><span>--:--</span>';
+        card.innerHTML = `<div class="file-placeholder audio-placeholder"><span class="file-glyph">♫</span><span>audio file</span></div><audio controls preload="none" src="${fileUrl(path)}"></audio>`;
+        const audio = card.querySelector('audio');
+        const audioPlaceholder = card.querySelector('.audio-placeholder');
+        const audioPlay = document.createElement('button');
+        audioPlay.className = 'audio-play';
+        audioPlay.type = 'button';
+        audioPlay.textContent = '▶';
+        audioPlay.setAttribute('aria-label', `Play ${name}`);
+        audioPlaceholder.appendChild(audioPlay);
+        audioPlay.addEventListener('click', (event) => {
+          event.stopPropagation();
+          if (audio.paused) audio.play(); else audio.pause();
+        });
+        audio.addEventListener('play', () => {
+          audioPlay.textContent = 'Ⅱ';
+          audioPlay.setAttribute('aria-label', `Pause ${name}`);
+        });
+        audio.addEventListener('pause', () => {
+          audioPlay.textContent = '▶';
+          audioPlay.setAttribute('aria-label', `Play ${name}`);
+        });
+        audio.addEventListener('ended', () => audioPlay.textContent = '▶');
+        audio.preload = 'metadata';
+        audio.addEventListener('loadedmetadata', () => {
+          audioDuration.lastElementChild.textContent = formatDuration(audio.duration);
+        });
+        card.appendChild(audioDuration);
+      } else if (isVideo(path)) {
+        card.innerHTML = `<div class="file-placeholder video-placeholder"><span class="file-glyph">▶</span><span>video file</span></div><a class="file-open" href="${fileUrl(path)}" target="_blank" rel="noreferrer">Open file ↗</a>`;
+      } else {
+        card.innerHTML = `<div class="file-placeholder"><span class="file-glyph">□</span><span>file</span></div><a class="file-open" href="${fileUrl(path)}" target="_blank" rel="noreferrer">Open file ↗</a>`;
+      }
+
+      card.insertAdjacentHTML('beforeend', `<footer><span title="${name}">${name}</span><span>${String(index + 1).padStart(2, '0')}</span></footer>`);
+      return card;
+    }
+
+    // Render one medium/category, grouped by year and preserving file order.
+    function showMedium(key, category = activeArtCategory) {
+      const medium = key === 'art' ? artCategories[category] : portfolio[key];
+      const entries = Object.entries(medium.years).filter(([, files]) => files.length);
+      const total = entries.reduce((sum, [, files]) => sum + files.length, 0);
+      pageTitle.textContent = key === 'art' ? `Art / ${medium.label}` : medium.label;
+      crumbMedium.textContent = key === 'art' ? `ART / ${medium.label.toUpperCase()}` : medium.label.toUpperCase();
+      itemCount.textContent = `${total} ${total === 1 ? 'work' : 'works'}`;
+      aboutView.hidden = true;
+      portfolioView.hidden = false;
+      artSubnav.hidden = key !== 'art';
+      subnavItems.forEach((item) => item.classList.toggle('is-active', item.dataset.category === category));
+      portfolioView.innerHTML = '';
+
+      if (!entries.length) {
+        portfolioView.innerHTML = `<div class="empty-state"><span class="empty-icon">□</span><p>This folder is ready for work.</p><small>Add files to <strong>${medium.folder}/YEAR/</strong> to populate this view.</small></div>`;
+        return;
+      }
+
+      entries.sort(([a], [b]) => Number(b) - Number(a)).forEach(([year, files]) => {
+        const group = document.createElement('section');
+        group.className = 'year-group';
+        group.innerHTML = `<div class="year-heading"><h2>${year}</h2><span>${files.length} ${files.length === 1 ? 'file' : 'files'}</span></div><div class="file-grid"></div>`;
+        const grid = group.querySelector('.file-grid');
+        files.forEach((path, index) => grid.appendChild(renderFile(path, index)));
+        portfolioView.appendChild(group);
+      });
+    }
+
+    // Replace the archive with the dedicated About content.
+    function showAbout() {
+      pageTitle.textContent = 'About';
+      crumbMedium.textContent = 'ABOUT';
+      itemCount.textContent = 'artist statement';
+      portfolioView.hidden = true;
+      aboutView.hidden = false;
+      artSubnav.hidden = true;
+    }
+
+    // Combine every medium into one year-indexed archive for the logo home link.
+    function showArchive() {
+      const worksByYear = {};
+      const sources = [
+        ...Object.values(portfolio.art.categories),
+        portfolio.video,
+        portfolio.music,
+        portfolio.photography
+      ];
+
+      sources.forEach((source) => {
+        Object.entries(source.years).forEach(([year, files]) => {
+          worksByYear[year] = [...(worksByYear[year] || []), ...files];
+        });
+      });
+
+      const entries = Object.entries(worksByYear).sort(([a], [b]) => Number(b) - Number(a));
+      const total = entries.reduce((sum, [, files]) => sum + files.length, 0);
+      pageTitle.textContent = 'All Works';
+      crumbMedium.textContent = 'ARCHIVE';
+      itemCount.textContent = `${total} ${total === 1 ? 'work' : 'works'}`;
+      portfolioView.hidden = false;
+      aboutView.hidden = true;
+      artSubnav.hidden = true;
+      portfolioView.innerHTML = '';
+
+      entries.forEach(([year, files]) => {
+        const group = document.createElement('section');
+        group.className = 'year-group';
+        group.innerHTML = `<div class="year-heading"><h2>${year}</h2><span>${files.length} ${files.length === 1 ? 'file' : 'files'}</span></div><div class="file-grid"></div>`;
+        const grid = group.querySelector('.file-grid');
+        files.forEach((path, index) => grid.appendChild(renderFile(path, index)));
+        portfolioView.appendChild(group);
+      });
+    }
+
+    // Keep the active button state and URL hash synchronized with the current view.
+    function navigate(key) {
+      if (!portfolio) return;
+      navItems.forEach((item) => item.classList.toggle('is-active', item.dataset.page === key));
+      if (key === 'about') showAbout();
+      else if (key === 'archive') showArchive();
+      else showMedium(key, key === 'art' ? activeArtCategory : undefined);
+      history.replaceState(null, '', `#${key}`);
+    }
+
+    // Attach click handlers to main navigation and Art category buttons.
+    navItems.forEach((item) => item.addEventListener('click', () => navigate(item.dataset.page)));
+    subnavItems.forEach((item) => item.addEventListener('click', () => {
+      activeArtCategory = item.dataset.category;
+      navigate('art');
+    }));
+    // Show a setup message if the manifest cannot be loaded from a local server.
+    function showManifestError() {
+      portfolioView.hidden = false;
+      artSubnav.hidden = true;
+      pageTitle.textContent = 'Archive unavailable';
+      crumbMedium.textContent = 'SETUP REQUIRED';
+      itemCount.textContent = '';
+      portfolioView.innerHTML = `<div class="empty-state"><span class="empty-icon">!</span><p>Run the manifest generator, then open this site through a local web server.</p><small>Example: <strong>node generate-manifest.js</strong></small></div>`;
+    }
+
+    // Fetch the generated folder index and render the initial view.
+    async function loadManifest() {
+      try {
+        const response = await fetch('content-manifest.json', { cache: 'no-store' });
+        if (!response.ok) throw new Error(`Manifest request failed: ${response.status}`);
+        portfolio = await response.json();
+        artCategories = portfolio.art.categories;
+        const initial = location.hash.slice(1);
+        navigate(initial === 'about' || initial === 'archive' || portfolio[initial] ? initial : 'art');
+      } catch (error) {
+        console.error(error);
+        showManifestError();
+      }
+    }
+
+    loadManifest();
+  </script>
+</body>
+</html>

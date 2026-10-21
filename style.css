@@ -1,0 +1,261 @@
+/* Global design tokens: colors, spacing, and the sidebar width. */
+:root {
+  --paper: #f4f1e9;
+  --paper-deep: #e8e3d8;
+  --ink: #242522;
+  --muted: #87877f;
+  --line: #c8c5bb;
+  --gold: #b89a5d;
+  --sidebar: 248px;
+}
+
+/* Make sizing predictable for every element. */
+* { box-sizing: border-box; }
+
+/* JavaScript toggles the hidden attribute when changing views. */
+[hidden] { display: none !important; }
+
+/* The outer page background sits behind the slightly transparent portfolio shell. */
+html { min-width: 320px; background: #ddd9cf; }
+
+/* Set the paper-like page background and default typography. */
+body {
+  position: relative;
+  min-height: 100vh;
+  margin: 0;
+  padding: 28px;
+  color: var(--ink);
+  background:
+    radial-gradient(circle at 12% 20%, rgba(255,255,255,.42), transparent 32rem),
+    linear-gradient(115deg, #e4e1d8, #cfcbc1 55%, #e6e2d9);
+  font-family: Georgia, 'Times New Roman', serif;
+}
+
+/* The fixed layer sits behind the transparent shell and turns the hovered image into atmosphere. */
+.hover-background {
+  position: fixed;
+  z-index: 0;
+  inset: -42px;
+  pointer-events: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  filter: blur(34px);
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity .35s ease, background-image .2s ease;
+}
+
+.hover-background.is-visible { opacity: .3; }
+
+/* In-page image viewer and its dominant-color border. */
+.image-viewer {
+  width: fit-content;
+  max-width: 90vw;
+  max-height: 90vh;
+  padding: 0;
+  border: 0;
+  overflow: visible;
+  background: transparent;
+  color: var(--ink);
+}
+
+.image-viewer::backdrop { background: rgba(36, 37, 34, .48); backdrop-filter: blur(8px); }
+.image-viewer-frame { display: inline-block; max-width: 90vw; max-height: 90vh; border: 10px solid var(--image-border-color, var(--gold)); background: #ebe8df; }
+.image-viewer-frame { animation: viewerFrameFade .28s ease both; }
+.image-viewer-frame img { display: block; width: auto; height: auto; max-width: calc(90vw - 20px); max-height: calc(90vh - 20px); object-fit: contain; opacity: 0; transition: opacity .36s ease; }
+.image-viewer-frame img.is-loaded { opacity: 1; }
+.image-viewer-close { position: absolute; top: -38px; right: -38px; z-index: 1; width: 32px; height: 32px; border: 0; border-radius: 50%; background: transparent; cursor: pointer; color: #fff; font-size: 25px; line-height: 27px; animation: viewerCloseFade .28s .08s ease both; }
+.image-viewer.is-closing .image-viewer-frame { animation: viewerFrameFadeOut .28s ease both; }
+.image-viewer.is-closing .image-viewer-close { animation: viewerCloseFadeOut .28s ease both; }
+
+@keyframes viewerFrameFade { from { opacity: 0; transform: scale(.98); } to { opacity: 1; transform: scale(1); } }
+@keyframes viewerCloseFade { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes viewerFrameFadeOut { from { opacity: 1; transform: scale(1); } to { opacity: 0; transform: scale(.98); } }
+@keyframes viewerCloseFadeOut { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-4px); } }
+@keyframes aliasIn { from { opacity: 0; transform: translateX(-8px) rotate(180deg); } to { opacity: 1; transform: rotate(180deg); } }
+@keyframes aliasOut { from { opacity: 1; transform: rotate(180deg); } to { opacity: 0; transform: translateX(8px) rotate(180deg); } }
+
+/* Keep controls visually consistent with the surrounding typography. */
+button, a { color: inherit; }
+button { font: inherit; }
+
+/* The foreground shell holds the fixed sidebar and flexible content area. */
+.window-shell {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: var(--sidebar) minmax(0, 1fr);
+  width: min(1480px, 100%);
+  min-height: calc(100vh - 56px);
+  margin: 0 auto;
+  overflow: hidden;
+  background: transparent;
+}
+
+/* Sidebar styling and its vertical divider. */
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  padding: 30px 24px 26px;
+  border-right: 1px solid var(--line);
+  background: rgba(231, 228, 218, .62);
+}
+
+/* Artist mark and name at the top of the sidebar. */
+.identity {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 34px;
+  text-decoration: none;
+  font-size: 16px;
+  font-style: italic;
+  letter-spacing: .02em;
+}
+
+.identity-name {
+  position: relative;
+  display: inline-block;
+  flex-shrink: 0;
+  padding-bottom: 8px;
+  white-space: nowrap;
+}
+
+.identity-copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.identity-alias {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  font: inherit;
+  letter-spacing: .02em;
+  text-align: center;
+  transform: rotate(180deg);
+  transform-origin: center;
+  white-space: nowrap;
+}
+
+.identity-alias-slot { position: relative; display: block; width: 100%; min-height: 1.2em; margin-top: 4px; }
+.identity-alias.is-spinning { opacity: .62; filter: blur(.3px); }
+.identity-alias.alias-in { animation: aliasIn .22s ease both; }
+.identity-alias.alias-ghost { pointer-events: none; animation: aliasOut .18s ease forwards; }
+
+.identity-name::after {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 1px;
+  background: var(--ink);
+  content: '';
+}
+
+.identity img { width: 80px; height: 80px; object-fit: contain; }
+
+/* Main navigation and indented Art subcategory controls. */
+.primary-nav { display: grid; gap: 9px; }
+.art-subnav { display: grid; gap: 3px; margin: -3px 0 5px 28px; }
+.subnav-item { display: flex; align-items: center; gap: 9px; padding: 5px 7px; border: 0; border-radius: 5px; background: transparent; cursor: pointer; color: var(--muted); text-align: left; font-size: 14px; }
+.subnav-item:hover, .subnav-item:focus-visible { background: rgba(255,255,255,.55); color: var(--ink); outline: none; }
+.subnav-item.is-active { color: var(--ink); background: rgba(255,255,255,.56); }
+.subnav-item img { width: 20px; height: 20px; object-fit: contain; }
+
+/* Main folder button appearance and interaction behavior. */
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 8px 7px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font-size: 18px;
+  transition: background .2s ease, transform .2s ease;
+}
+
+.nav-item:hover, .nav-item:focus-visible { background: rgba(255,255,255,.6); outline: none; }
+.nav-item:active { transform: translateX(2px); }
+.nav-item.is-active { background: rgba(255,255,255,.74); box-shadow: inset 0 0 0 1px rgba(200,197,187,.7); }
+.nav-item img { width: 29px; height: 29px; object-fit: contain; }
+.nav-arrow { margin-left: auto; color: var(--gold); font-size: 26px; line-height: 1; }
+.sidebar-rule { width: 100%; height: 1px; margin: 25px 0 13px; background: var(--line); }
+.about-link { margin-top: 1px; }
+.sidebar-note { margin: auto 7px 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
+
+/* Right-hand archive area, headings, year groups, and file cards. */
+.content-panel { min-width: 0; padding: 42px 5.2% 60px; }
+.content-header { display: flex; align-items: end; justify-content: space-between; gap: 20px; padding-bottom: 24px; border-bottom: 1px solid var(--line); }
+.eyebrow { margin: 0 0 10px; color: var(--muted); font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: .15em; }
+h1, h2, p { margin-top: 0; }
+h1 { margin-bottom: 0; font-size: clamp(35px, 4vw, 56px); font-weight: 400; letter-spacing: -.04em; }
+.header-meta { margin: 0 0 6px; color: var(--muted); font-family: 'Courier New', monospace; font-size: 11px; }
+.portfolio-view { padding-top: 34px; }
+.year-group + .year-group { margin-top: 48px; }
+.year-heading { display: flex; align-items: baseline; gap: 15px; margin-bottom: 17px; padding-bottom: 8px; border-bottom: 1px solid var(--line); }
+.year-heading h2 { margin: 0; font-size: 25px; font-weight: 400; letter-spacing: -.02em; }
+.year-heading span { color: var(--muted); font-family: 'Courier New', monospace; font-size: 10px; }
+.file-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(145px, 1fr)); gap: 24px 18px; }
+.file-card { min-width: 0; animation: rise .45s both; animation-delay: var(--delay); }
+.file-card > a:first-child, .file-placeholder { display: flex; align-items: center; justify-content: center; aspect-ratio: 1.05 / 1; overflow: hidden; border: 1px solid #aca99f; background: linear-gradient(145deg, #d7d4ca, #efede6); }
+.file-card > a:first-child { transition: border-color .2s ease, transform .2s ease; }
+.file-card > a:first-child:hover { border-color: var(--gold); transform: scale(1.03); }
+.file-card > a:first-child img { width: 100%; height: 100%; object-fit: cover; }
+.file-placeholder { flex-direction: column; gap: 8px; color: var(--muted); font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
+.file-glyph { color: var(--gold); font-family: Georgia, serif; font-size: 36px; line-height: 1; }
+.file-card footer { display: flex; justify-content: space-between; gap: 8px; padding-top: 9px; font-family: 'Courier New', monospace; font-size: 10px; }
+.file-card footer span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.file-card footer span:last-child { color: var(--muted); }
+.file-open { display: inline-block; margin-top: 8px; color: var(--muted); font-family: 'Courier New', monospace; font-size: 10px; text-decoration: none; }
+.file-open:hover { color: var(--ink); }
+audio { display: none; }
+.audio-placeholder { position: relative; }
+.audio-play { position: absolute; inset: 0; display: grid; place-items: center; width: 100%; height: 100%; border: 0; background: rgba(244, 241, 233, .08); cursor: pointer; color: var(--gold); font-size: 72px; line-height: 1; opacity: 0; text-shadow: 0 2px 8px rgba(36, 37, 34, .4); transform: scale(.92); transition: opacity .2s ease, transform .2s ease, background .2s ease; }
+.audio-play:hover, .audio-play:focus-visible { background: rgba(244, 241, 233, .18); }
+.file-card:hover .audio-play, .audio-play:focus-visible { opacity: 1; transform: scale(1); outline: none; }
+.audio-duration { display: flex; justify-content: space-between; margin-top: 5px; color: var(--muted); font-family: 'Courier New', monospace; font-size: 10px; }
+.empty-state { display: grid; place-items: center; min-height: 280px; padding: 40px; border: 1px dashed var(--line); text-align: center; }
+.empty-icon { color: var(--gold); font-size: 42px; }
+.empty-state p { margin: 18px 0 7px; font-size: 22px; }
+.empty-state small { color: var(--muted); font-family: 'Courier New', monospace; font-size: 11px; }
+
+/* About page layout and typography. */
+.about-view { display: grid; grid-template-columns: minmax(230px, .7fr) 1.3fr; gap: clamp(30px, 7vw, 100px); padding-top: 48px; }
+.about-image-wrap { position: relative; align-self: start; border: 1px solid var(--line); background: var(--paper-deep); }
+.about-image-wrap img { display: block; width: 100%; aspect-ratio: 1 / 1.15; object-fit: contain; padding: 35px; opacity: .72; }
+.about-image-wrap span { display: block; padding: 10px; border-top: 1px solid var(--line); color: var(--muted); font-family: 'Courier New', monospace; font-size: 10px; text-align: center; }
+.about-copy { max-width: 610px; }
+.about-copy h2 { max-width: 540px; margin-bottom: 24px; font-size: clamp(30px, 4vw, 50px); font-weight: 400; line-height: .98; letter-spacing: -.04em; }
+.about-copy p { color: #55554e; font-size: 16px; line-height: 1.7; }
+.about-copy .lead { color: var(--ink); font-size: 20px; line-height: 1.4; }
+.about-signoff { margin-top: 32px; font-style: italic; }
+
+/* Small entrance animation used as file cards are inserted. */
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Stack the shell and simplify navigation on narrow screens. */
+@media (max-width: 700px) {
+  body { padding: 10px; }
+  .window-shell { display: block; min-height: calc(100vh - 20px); }
+  .sidebar { border-right: 0; border-bottom: 1px solid var(--line); padding: 18px; }
+  .identity { padding-bottom: 17px; }
+  .primary-nav { grid-template-columns: repeat(4, 1fr); }
+  .art-subnav { grid-column: 1 / -1; grid-template-columns: repeat(3, 1fr); margin: -2px 0 2px; }
+  .subnav-item { justify-content: center; padding: 5px 2px; font-size: 12px; }
+  .nav-item { justify-content: center; padding: 7px 4px; font-size: 14px; }
+  .nav-item img { width: 24px; height: 24px; }
+  .nav-arrow, .sidebar-rule, .about-link { display: none; }
+  .sidebar-note { display: none; }
+  .content-panel { padding: 28px 18px 40px; }
+  .content-header { padding-bottom: 18px; }
+  .file-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px 12px; }
+  .about-view { grid-template-columns: 1fr; padding-top: 28px; }
+}
