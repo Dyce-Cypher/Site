@@ -41,13 +41,41 @@ body {
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  filter: blur(34px);
+  filter: blur(8px);
   opacity: 0;
   transform: scale(1.08);
   transition: opacity .35s ease, background-image .2s ease;
 }
 
 .hover-background.is-visible { opacity: .3; }
+
+/* Music mode softens the archive while the active track's record turns on the edge. */
+.window-shell { transition: filter .35s ease; }
+body.is-music-playing .window-shell { filter: blur(5px); }
+.music-overlay { position: fixed; inset: 0; z-index: 3; pointer-events: none; visibility: hidden; opacity: 0; transition: opacity .35s ease, visibility .35s ease; }
+.music-overlay.is-visible { visibility: visible; opacity: 1; }
+.music-controls { position: fixed; left: 24px; right: calc(min(48vh, 48vw) + 24px); bottom: 22px; z-index: 5; display: flex; align-items: center; gap: 14px; min-height: 50px; padding: 8px 12px; color: #fff; opacity: 0; visibility: hidden; pointer-events: none; transition: opacity .35s ease, visibility .35s ease; }
+body.is-music-playing .music-controls { opacity: 1; visibility: visible; pointer-events: auto; }
+.music-control-play { display: grid; place-items: center; width: 34px; height: 34px; padding: 0; border: 0; background: transparent; color: #fff; cursor: pointer; font: inherit; font-size: 22px; line-height: 1; text-shadow: 0 1px 5px rgba(0, 0, 0, .6); }
+.music-control-play:disabled { opacity: .42; cursor: default; }
+.music-progress { display: flex; align-items: center; gap: 9px; min-width: 0; flex: 1; font: 11px/1 var(--mono); }
+.music-progress input, .music-volume input { accent-color: var(--gold); cursor: pointer; }
+.music-progress input { width: 100%; min-width: 80px; }
+.music-volume { display: flex; align-items: center; gap: 7px; font-size: 14px; }
+.music-volume input { width: 82px; }
+.music-overlay::before { content: ''; position: absolute; inset: 0; z-index: 0; background: rgba(0, 0, 0, .66); }
+.music-vinyl { position: absolute; top: 50%; right: calc(-1 * min(48vh, 48vw)); z-index: 1; width: min(96vh, 96vw); aspect-ratio: 1; border-radius: 50%; background: repeating-radial-gradient(circle, #101112 0 2px, #252729 3px 5px, #0c0d0e 6px 8px); box-shadow: -18px 20px 42px rgba(0, 0, 0, .38), inset 0 0 0 2px rgba(255, 255, 255, .08); transform: translateY(-50%); animation: vinylSpin 12s linear infinite; }
+.music-vinyl::before { content: ''; position: absolute; inset: 8%; border: 1px solid rgba(255, 255, 255, .12); border-radius: 50%; }
+.music-vinyl::after { content: ''; position: absolute; inset: 49%; border-radius: 50%; background: #080909; box-shadow: 0 0 0 2px rgba(255, 255, 255, .12); }
+.music-vinyl-label { position: absolute; inset: 35%; z-index: 1; overflow: hidden; border: 4px solid #111; border-radius: 50%; background: #b08a45; }
+.music-vinyl-label img { width: 100%; height: 100%; display: block; object-fit: cover; border-radius: 50%; }
+.music-tonearm { position: absolute; inset: 0; z-index: 2; pointer-events: none; opacity: 0; transform: translateY(115%) rotate(var(--tonearm-rotation, 0deg)); transform-origin: center center; transition: opacity .65s ease, transform .65s cubic-bezier(.2, .8, .2, 1); }
+.music-overlay.is-visible .music-tonearm { opacity: 1; transform: translateY(0) rotate(var(--tonearm-rotation, 0deg)); }
+.music-tonearm-shaft { position: absolute; left: calc(var(--tonearm-x, 42%) - min(1vw, 1vh)); top: var(--tonearm-y, 45%); width: clamp(10px, min(1.8vw, 1.8vh), 22px); height: min(84vh, 84vw); border: clamp(2px, min(.3vw, .3vh), 4px) solid #16191a; border-radius: 999px; background: linear-gradient(90deg, #151718 0 22%, #c2c5c3 45%, #3c4040 65%, #111); box-shadow: 5px 6px 14px rgba(0, 0, 0, .5); transform: rotate(-20deg); transform-origin: top center; }
+.music-headshell { position: absolute; top: calc(-1 * min(12.1vw, 12.1vh)); left: calc(50% + min(1.6vw, 1.6vh)); z-index: 4; display: grid; place-items: center; width: clamp(42px, min(7.5vw, 7.5vh), 100px); height: clamp(72px, min(12.8vw, 12.8vh), 170px); padding: 0; border: 0; border-radius: 4px 4px 15px 15px; background: linear-gradient(90deg, #17191a 0 20%, #5b5f60 24% 75%, #1a1c1d 80%); box-shadow: 5px 7px 14px rgba(0, 0, 0, .55); color: #f5f2e9; cursor: pointer; font-size: clamp(20px, min(3vw, 3vh), 40px); line-height: 1; pointer-events: auto; transform: translateX(-50%) rotate(8deg); }
+.music-headshell::after { content: ''; position: absolute; left: 50%; top: calc(100% - 1px); width: clamp(16px, min(2.5vw, 2.5vh), 34px); height: clamp(22px, min(3.4vw, 3.4vh), 46px); border: 0; border-radius: 0 0 7px 7px; background: #303434; box-shadow: inset 2px 0 0 rgba(255, 255, 255, .12), inset -3px 0 0 rgba(0, 0, 0, .35); transform: translateX(-50%); }
+.music-headshell:hover, .music-headshell:focus-visible { outline: 2px solid var(--gold); outline-offset: 4px; background: linear-gradient(90deg, #080909 0 20%, #737878 24% 75%, #0b0c0d 80%); }
+@keyframes vinylSpin { to { transform: translateY(-50%) rotate(360deg); } }
 
 /* In-page image viewer and its dominant-color border. */
 .image-viewer {
@@ -62,9 +90,9 @@ body {
 }
 
 .image-viewer::backdrop { background: rgba(36, 37, 34, .48); backdrop-filter: blur(8px); }
-.image-viewer-frame { display: inline-block; max-width: 90vw; max-height: 90vh; border: 10px solid var(--image-border-color, var(--gold)); background: #ebe8df; }
+.image-viewer-frame { display: inline-block; max-width: 90vw; max-height: 90vh; border: 0; background: transparent; }
 .image-viewer-frame { animation: viewerFrameFade .28s ease both; }
-.image-viewer-frame img { display: block; width: auto; height: auto; max-width: calc(90vw - 20px); max-height: calc(90vh - 20px); object-fit: contain; opacity: 0; transition: opacity .36s ease; }
+.image-viewer-frame img { display: block; width: auto; height: auto; max-width: 90vw; max-height: 90vh; object-fit: contain; opacity: 0; transition: opacity .36s ease; }
 .image-viewer-frame img.is-loaded { opacity: 1; }
 .image-viewer-close { position: absolute; top: -38px; right: -38px; z-index: 1; width: 32px; height: 32px; border: 0; border-radius: 50%; background: transparent; cursor: pointer; color: #fff; font-size: 25px; line-height: 27px; animation: viewerCloseFade .28s .08s ease both; }
 .image-viewer.is-closing .image-viewer-frame { animation: viewerFrameFadeOut .28s ease both; }
@@ -201,17 +229,20 @@ button { font: inherit; }
   min-width: 0;
   padding: clamp(42px, 4vw, 96px) clamp(3%, 5vw, 8%) clamp(60px, 5vw, 112px);
 }
-.content-header { display: flex; align-items: end; justify-content: space-between; gap: 20px; padding-bottom: clamp(24px, 2vw, 44px); border-bottom: 1px solid var(--line); }
+.content-header { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 20px; padding-bottom: clamp(24px, 2vw, 44px); border-bottom: 1px solid var(--line); }
+.content-header > div { grid-column: 2; text-align: center; }
+.content-header .header-meta { grid-column: 3; justify-self: end; }
 .eyebrow { margin: 0 0 10px; color: var(--muted); font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: .15em; }
 h1, h2, p { margin-top: 0; }
-h1 { margin-bottom: 0; font-size: clamp(35px, 4vw, 86px); font-weight: 400; letter-spacing: -.04em; }
+h1 { margin-bottom: 0; font-size: clamp(35px, 4vw, 86px); font-weight: 700; letter-spacing: -.04em; text-transform: capitalize; }
 .header-meta { margin: 0 0 6px; color: var(--muted); font-family: 'Courier New', monospace; font-size: 11px; }
 .portfolio-view { padding-top: clamp(34px, 3vw, 64px); }
 .year-group + .year-group { margin-top: clamp(48px, 4vw, 88px); }
+.sketch-group + .sketch-group { margin-top: clamp(34px, 3vw, 64px); padding-top: clamp(34px, 3vw, 64px); border-top: 1px solid var(--line); }
 .year-heading { display: flex; align-items: baseline; gap: 15px; margin-bottom: clamp(17px, 1.4vw, 30px); padding-bottom: 8px; border-bottom: 1px solid var(--line); }
 .year-heading h2 { margin: 0; font-size: clamp(25px, 1.8vw, 42px); font-weight: 400; letter-spacing: -.02em; }
 .year-heading span { color: var(--muted); font-family: 'Courier New', monospace; font-size: 10px; }
-.file-grid { display: grid; grid-template-columns: repeat(auto-fill, 240px); gap: clamp(24px, 2vw, 44px) clamp(18px, 1.5vw, 36px); }
+.file-grid { display: grid; grid-template-columns: repeat(auto-fill, 280px); justify-content: center; gap: clamp(24px, 2vw, 44px) clamp(18px, 1.5vw, 36px); }
 .file-card { min-width: 0; animation: rise .45s both; animation-delay: var(--delay); }
 .file-card > a:first-child, .file-placeholder { display: flex; align-items: center; justify-content: center; aspect-ratio: 1.05 / 1; overflow: hidden; border: 1px solid #aca99f; background: linear-gradient(145deg, #d7d4ca, #efede6); }
 .file-card > a:first-child { transition: border-color .2s ease, transform .2s ease; }
@@ -220,12 +251,16 @@ h1 { margin-bottom: 0; font-size: clamp(35px, 4vw, 86px); font-weight: 400; lett
 .file-placeholder { flex-direction: column; gap: 8px; color: var(--muted); font-family: 'Courier New', monospace; font-size: 10px; letter-spacing: .08em; text-transform: uppercase; }
 .file-glyph { color: var(--gold); font-family: Georgia, serif; font-size: 36px; line-height: 1; }
 .file-card footer { display: flex; justify-content: space-between; gap: 8px; padding-top: 9px; font-family: 'Courier New', monospace; font-size: clamp(10px, .7vw, 13px); }
-.file-card footer span:first-child { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-.file-card footer span:last-child { color: var(--muted); }
+.file-label { min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; opacity: 0; visibility: hidden; transition: opacity .2s ease, visibility .2s ease; }
+.file-card:hover .file-label, .file-card:focus-within .file-label { opacity: 1; visibility: visible; }
+.file-label em { color: var(--ink); font-family: Georgia, 'Times New Roman', serif; font-size: 1.08em; font-style: italic; }
+.file-card footer .file-year { color: #000; font-style: normal; }
+.file-card footer > span:last-child { color: var(--muted); }
 .file-open { display: inline-block; margin-top: 8px; color: var(--muted); font-family: 'Courier New', monospace; font-size: 10px; text-decoration: none; }
 .file-open:hover { color: var(--ink); }
 audio { display: none; }
 .audio-placeholder { position: relative; }
+.audio-thumbnail { width: 100%; height: 100%; object-fit: cover; }
 .audio-play { position: absolute; inset: 0; display: grid; place-items: center; width: 100%; height: 100%; border: 0; background: rgba(244, 241, 233, .08); cursor: pointer; color: var(--gold); font-size: 72px; line-height: 1; opacity: 0; text-shadow: 0 2px 8px rgba(36, 37, 34, .4); transform: scale(.92); transition: opacity .2s ease, transform .2s ease, background .2s ease; }
 .audio-play:hover, .audio-play:focus-visible { background: rgba(244, 241, 233, .18); }
 .file-card:hover .audio-play, .audio-play:focus-visible { opacity: 1; transform: scale(1); outline: none; }

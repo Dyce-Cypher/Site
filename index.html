@@ -37,7 +37,7 @@
         <!-- Art branches into three folder-like subcategories. -->
         <div class="art-subnav" aria-label="Art categories">
           <button class="subnav-item is-active" type="button" data-category="sketch">
-            <img src="0.%20Site_Assets/1_1_Sketch.png" alt="" />
+            <img src="0.%20Site_Assets/1_1_sketch.png" alt="" />
             <span>Sketch</span>
           </button>
           <button class="subnav-item" type="button" data-category="3d">
@@ -114,6 +114,30 @@
     </div>
   </dialog>
 
+  <div id="music-overlay" class="music-overlay">
+    <div class="music-vinyl" aria-hidden="true">
+      <div class="music-vinyl-label"><img id="music-artwork" src="" alt="" /></div>
+    </div>
+    <div class="music-tonearm">
+      <div class="music-tonearm-shaft">
+        <button id="music-pause" class="music-headshell" type="button" aria-label="Pause current song">X</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="music-controls" aria-label="Music controls">
+    <button id="music-control-play" class="music-control-play" type="button" aria-label="Play current song" disabled>▶</button>
+    <div class="music-progress">
+      <span id="music-time-current">0:00</span>
+      <input id="music-seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="Seek through current song" />
+      <span id="music-time-total">--:--</span>
+    </div>
+    <label class="music-volume">
+      <span aria-hidden="true">🔊</span>
+      <input id="music-volume" type="range" min="0" max="1" value="0.8" step="0.01" aria-label="Volume" />
+    </label>
+  </div>
+
   <script>
     // The generated manifest is loaded from the folders on disk before rendering.
     let portfolio = null;
@@ -131,6 +155,27 @@
     const imageViewer = document.querySelector('#image-viewer');
     const imageViewerImage = document.querySelector('#image-viewer-image');
     const imageViewerClose = document.querySelector('#image-viewer-close');
+    const musicOverlay = document.querySelector('#music-overlay');
+    const musicTonearm = document.querySelector('.music-tonearm');
+    const musicArtwork = document.querySelector('#music-artwork');
+    const musicPause = document.querySelector('#music-pause');
+    const musicControlPlay = document.querySelector('#music-control-play');
+    const musicSeek = document.querySelector('#music-seek');
+    const musicTimeCurrent = document.querySelector('#music-time-current');
+    const musicTimeTotal = document.querySelector('#music-time-total');
+    const musicVolume = document.querySelector('#music-volume');
+    let activeAudio = null;
+
+    // Stable tonearm placement. These values are independent of the selected song
+    // and can be adjusted without changing the vinyl or audio logic.
+    const TONEARM_LAYOUT = {
+      rimAngle: 210,
+      // Offsets are proportions of the vinyl radius, so placement scales with it.
+      shiftX: 0.38,
+      shiftY: -0.08,
+      rotation: 12
+    };
+
     const identityName = document.querySelector('.identity-name');
     const identityAliasSlot = document.querySelector('.identity-alias-slot');
     const identityAlias = document.querySelector('#identity-alias');
@@ -223,6 +268,7 @@
     // Convert folder paths into browser-safe URLs and derive file metadata.
     const fileUrl = (path) => path.split('/').map(encodeURIComponent).join('/');
     const fileName = (path) => decodeURIComponent(path.split('/').pop());
+    const displayName = (path) => fileName(path).replace(/\.[^.]+$/, '');
     const extension = (path) => fileName(path).split('.').pop().toLowerCase();
     const isImage = (path) => ['jpg', 'jpeg', 'png', 'gif', 'webp', 'avif'].includes(extension(path));
     const isAudio = (path) => ['mp3', 'wav', 'ogg', 'm4a', 'flac'].includes(extension(path));
@@ -235,6 +281,53 @@
       const remainingSeconds = Math.floor(seconds % 60).toString().padStart(2, '0');
       return `${minutes}:${remainingSeconds}`;
     }
+
+    function updateMusicOverlay() {
+      const playingAudio = [...document.querySelectorAll('audio')].find((audio) => !audio.paused && !audio.ended);
+      activeAudio = playingAudio || activeAudio;
+      document.body.classList.toggle('is-music-playing', Boolean(playingAudio));
+      musicOverlay.classList.toggle('is-visible', Boolean(playingAudio));
+      updateMusicControls();
+    }
+
+    function updateMusicControls() {
+      const audio = activeAudio;
+      const hasDuration = audio && Number.isFinite(audio.duration) && audio.duration > 0;
+      const isPlaying = audio && !audio.paused && !audio.ended;
+      musicControlPlay.disabled = !audio;
+      musicControlPlay.textContent = isPlaying ? 'Ⅱ' : '▶';
+      musicControlPlay.setAttribute('aria-label', isPlaying ? 'Pause current song' : 'Play current song');
+      musicSeek.disabled = !hasDuration;
+      musicSeek.value = hasDuration ? String((audio.currentTime / audio.duration) * 100) : '0';
+      musicTimeCurrent.textContent = audio ? formatDuration(audio.currentTime) : '0:00';
+      musicTimeTotal.textContent = hasDuration ? formatDuration(audio.duration) : '--:--';
+      if (audio) musicVolume.value = String(audio.volume);
+    }
+
+    // Anchor the tonearm to stable viewport geometry, independent of vinyl animation.
+    function positionTonearm() {
+      const diameter = Math.min(window.innerHeight * .96, window.innerWidth * .96);
+      const hiddenOffset = Math.min(window.innerHeight * .48, window.innerWidth * .48);
+      const centerX = window.innerWidth + hiddenOffset - diameter / 2;
+      const centerY = window.innerHeight / 2;
+      const radius = diameter / 2;
+      const angle = TONEARM_LAYOUT.rimAngle * Math.PI / 180;
+      const contactX = centerX + Math.cos(angle) * radius + radius * TONEARM_LAYOUT.shiftX;
+      const contactY = centerY + Math.sin(angle) * radius + radius * (.35 + TONEARM_LAYOUT.shiftY);
+      musicOverlay.style.setProperty('--tonearm-x', `${contactX}px`);
+      musicOverlay.style.setProperty('--tonearm-y', `${contactY}px`);
+      musicTonearm.style.setProperty('--tonearm-rotation', `${TONEARM_LAYOUT.rotation}deg`);
+    }
+
+    function showMusicOverlay(metadata, title) {
+      musicArtwork.src = metadata.thumbnail ? fileUrl(metadata.thumbnail) : '';
+      musicArtwork.alt = title;
+      musicOverlay.classList.add('is-visible');
+      document.body.classList.add('is-music-playing');
+    }
+
+    window.addEventListener('resize', positionTonearm);
+    positionTonearm();
 
     // Show the current artwork behind the page while its thumbnail is hovered or focused.
     function showHoverBackground(path) {
@@ -314,8 +407,10 @@
     let artCategories = {};
 
     // Build one visual card for an image, audio file, video file, or generic file.
-    function renderFile(path, index) {
+    function renderFile(path, index, year = '', metadata = {}) {
       const name = fileName(path);
+      const title = displayName(path);
+      const displayTitle = metadata.title || title;
       const card = document.createElement('article');
       card.className = 'file-card';
       card.style.setProperty('--delay', `${index * 35}ms`);
@@ -337,7 +432,10 @@
         const audioDuration = document.createElement('div');
         audioDuration.className = 'audio-duration';
         audioDuration.innerHTML = '<span>duration</span><span>--:--</span>';
-        card.innerHTML = `<div class="file-placeholder audio-placeholder"><span class="file-glyph">♫</span><span>audio file</span></div><audio controls preload="none" src="${fileUrl(path)}"></audio>`;
+        const audioArtwork = metadata.thumbnail
+          ? `<img class="audio-thumbnail" src="${fileUrl(metadata.thumbnail)}" alt="" />`
+          : '<span class="file-glyph">♫</span><span>audio file</span>';
+        card.innerHTML = `<div class="file-placeholder audio-placeholder">${audioArtwork}</div><audio controls preload="none" src="${fileUrl(path)}"></audio>`;
         const audio = card.querySelector('audio');
         const audioPlaceholder = card.querySelector('.audio-placeholder');
         const audioPlay = document.createElement('button');
@@ -351,18 +449,34 @@
           if (audio.paused) audio.play(); else audio.pause();
         });
         audio.addEventListener('play', () => {
-          audioPlay.textContent = 'Ⅱ';
+          document.querySelectorAll('audio').forEach((otherAudio) => {
+            if (otherAudio !== audio) otherAudio.pause();
+          });
+          activeAudio = audio;
+          showMusicOverlay(metadata, displayTitle);
+          audioPlay.textContent = 'X';
           audioPlay.setAttribute('aria-label', `Pause ${name}`);
+          updateMusicControls();
         });
         audio.addEventListener('pause', () => {
+          updateMusicOverlay();
           audioPlay.textContent = '▶';
           audioPlay.setAttribute('aria-label', `Play ${name}`);
+          updateMusicControls();
         });
-        audio.addEventListener('ended', () => audioPlay.textContent = '▶');
+        audio.addEventListener('ended', () => {
+          updateMusicOverlay();
+          audioPlay.textContent = '▶';
+          updateMusicControls();
+        });
         audio.preload = 'metadata';
         audio.addEventListener('loadedmetadata', () => {
           audioDuration.lastElementChild.textContent = formatDuration(audio.duration);
+          updateMusicControls();
         });
+        audio.addEventListener('timeupdate', updateMusicControls);
+        audio.addEventListener('durationchange', updateMusicControls);
+        audio.addEventListener('volumechange', updateMusicControls);
         card.appendChild(audioDuration);
       } else if (isVideo(path)) {
         card.innerHTML = `<div class="file-placeholder video-placeholder"><span class="file-glyph">▶</span><span>video file</span></div><a class="file-open" href="${fileUrl(path)}" target="_blank" rel="noreferrer">Open file ↗</a>`;
@@ -370,16 +484,40 @@
         card.innerHTML = `<div class="file-placeholder"><span class="file-glyph">□</span><span>file</span></div><a class="file-open" href="${fileUrl(path)}" target="_blank" rel="noreferrer">Open file ↗</a>`;
       }
 
-      card.insertAdjacentHTML('beforeend', `<footer><span title="${name}">${name}</span><span>${String(index + 1).padStart(2, '0')}</span></footer>`);
+      const yearLabel = year ? `<span class="file-year">, ${year}</span>` : '';
+      card.insertAdjacentHTML('beforeend', `<footer><span class="file-label" title="${displayTitle}"><em>${displayTitle}</em>${yearLabel}</span><span>${String(index + 1).padStart(2, '0')}</span></footer>`);
       return card;
     }
 
-    // Render one medium/category, grouped by year and preserving file order.
+    musicPause.addEventListener('click', (event) => {
+      event.stopPropagation();
+      if (activeAudio && !activeAudio.paused) activeAudio.pause();
+    });
+
+    musicControlPlay.addEventListener('click', () => {
+      if (!activeAudio) return;
+      if (activeAudio.paused) activeAudio.play();
+      else activeAudio.pause();
+    });
+
+    musicSeek.addEventListener('input', () => {
+      if (!activeAudio || !Number.isFinite(activeAudio.duration)) return;
+      activeAudio.currentTime = (Number(musicSeek.value) / 100) * activeAudio.duration;
+    });
+
+    musicVolume.addEventListener('input', () => {
+      const volume = Number(musicVolume.value);
+      document.querySelectorAll('audio').forEach((audio) => { audio.volume = volume; });
+      updateMusicControls();
+    });
+
+    // Render one medium/category. Sketch preserves its folder groups within one view.
     function showMedium(key, category = activeArtCategory) {
       const medium = key === 'art' ? artCategories[category] : portfolio[key];
-      const entries = Object.entries(medium.years).filter(([, files]) => files.length);
-      const total = entries.reduce((sum, [, files]) => sum + files.length, 0);
-      pageTitle.textContent = key === 'art' ? `Art / ${medium.label}` : medium.label;
+      const flatWorks = medium.works || [];
+      const entries = Object.entries(medium.years || {}).filter(([, files]) => files.length);
+      const total = flatWorks.length + entries.reduce((sum, [, files]) => sum + files.length, 0);
+      pageTitle.textContent = medium.label.toUpperCase();
       crumbMedium.textContent = key === 'art' ? `ART / ${medium.label.toUpperCase()}` : medium.label.toUpperCase();
       itemCount.textContent = `${total} ${total === 1 ? 'work' : 'works'}`;
       aboutView.hidden = true;
@@ -387,6 +525,26 @@
       artSubnav.hidden = key !== 'art';
       subnavItems.forEach((item) => item.classList.toggle('is-active', item.dataset.category === category));
       portfolioView.innerHTML = '';
+
+      if (medium.groups) {
+        medium.groups.forEach((groupData) => {
+          const group = document.createElement('section');
+          group.className = 'sketch-group';
+          group.innerHTML = `<div class="year-heading"><h2>${groupData.label}</h2></div><div class="file-grid"></div>`;
+          const grid = group.querySelector('.file-grid');
+          groupData.works.forEach((path, index) => grid.appendChild(renderFile(path, index, medium.workMetadata?.[path]?.year || '')));
+          portfolioView.appendChild(group);
+        });
+        return;
+      }
+
+      if (medium.works) {
+        const grid = document.createElement('div');
+        grid.className = 'file-grid';
+          flatWorks.forEach((path, index) => grid.appendChild(renderFile(path, index, medium.workMetadata?.[path]?.year || '', medium.workMetadata?.[path] || {})));
+        portfolioView.appendChild(grid);
+        return;
+      }
 
       if (!entries.length) {
         portfolioView.innerHTML = `<div class="empty-state"><span class="empty-icon">□</span><p>This folder is ready for work.</p><small>Add files to <strong>${medium.folder}/YEAR/</strong> to populate this view.</small></div>`;
@@ -398,14 +556,14 @@
         group.className = 'year-group';
         group.innerHTML = `<div class="year-heading"><h2>${year}</h2><span>${files.length} ${files.length === 1 ? 'file' : 'files'}</span></div><div class="file-grid"></div>`;
         const grid = group.querySelector('.file-grid');
-        files.forEach((path, index) => grid.appendChild(renderFile(path, index)));
+        files.forEach((path, index) => grid.appendChild(renderFile(path, index, year)));
         portfolioView.appendChild(group);
       });
     }
 
     // Replace the archive with the dedicated About content.
     function showAbout() {
-      pageTitle.textContent = 'About';
+      pageTitle.textContent = 'ABOUT';
       crumbMedium.textContent = 'ABOUT';
       itemCount.textContent = 'artist statement';
       portfolioView.hidden = true;
@@ -416,6 +574,8 @@
     // Combine every medium into one year-indexed archive for the logo home link.
     function showArchive() {
       const worksByYear = {};
+      const flatWorks = [];
+      const flatWorkMetadata = {};
       const sources = [
         ...Object.values(portfolio.art.categories),
         portfolio.video,
@@ -424,14 +584,18 @@
       ];
 
       sources.forEach((source) => {
-        Object.entries(source.years).forEach(([year, files]) => {
+        if (source.works) {
+          flatWorks.push(...source.works);
+          Object.assign(flatWorkMetadata, source.workMetadata || {});
+        }
+        Object.entries(source.years || {}).forEach(([year, files]) => {
           worksByYear[year] = [...(worksByYear[year] || []), ...files];
         });
       });
 
       const entries = Object.entries(worksByYear).sort(([a], [b]) => Number(b) - Number(a));
-      const total = entries.reduce((sum, [, files]) => sum + files.length, 0);
-      pageTitle.textContent = 'All Works';
+      const total = flatWorks.length + entries.reduce((sum, [, files]) => sum + files.length, 0);
+      pageTitle.textContent = 'ALL WORKS';
       crumbMedium.textContent = 'ARCHIVE';
       itemCount.textContent = `${total} ${total === 1 ? 'work' : 'works'}`;
       portfolioView.hidden = false;
@@ -444,9 +608,18 @@
         group.className = 'year-group';
         group.innerHTML = `<div class="year-heading"><h2>${year}</h2><span>${files.length} ${files.length === 1 ? 'file' : 'files'}</span></div><div class="file-grid"></div>`;
         const grid = group.querySelector('.file-grid');
-        files.forEach((path, index) => grid.appendChild(renderFile(path, index)));
+        files.forEach((path, index) => grid.appendChild(renderFile(path, index, year)));
         portfolioView.appendChild(group);
       });
+
+      if (flatWorks.length) {
+        const group = document.createElement('section');
+        group.className = 'year-group';
+        group.innerHTML = `<div class="year-heading"><h2>Sketch</h2><span>${flatWorks.length} ${flatWorks.length === 1 ? 'file' : 'files'}</span></div><div class="file-grid"></div>`;
+        const grid = group.querySelector('.file-grid');
+        flatWorks.forEach((path, index) => grid.appendChild(renderFile(path, index, flatWorkMetadata[path]?.year || '', flatWorkMetadata[path] || {})));
+        portfolioView.appendChild(group);
+      }
     }
 
     // Keep the active button state and URL hash synchronized with the current view.

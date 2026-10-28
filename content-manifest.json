@@ -1,95 +1,509 @@
-{
-  "generatedAt": "",
-  "art": {
-    "label": "Art",
-    "folder": "Art",
-    "icon": "0.%20Site_Assets/1_art.png",
-    "categories": {
-      "sketch": {
-        "label": "Sketch",
-        "folder": "Art/Sketch",
-        "icon": "0.%20Site_Assets/1_1_Sketch.png",
-        "years": {
-          "2017": [
-            "Art/Sketch/2017/1151555758_Glitch.jpg",
-            "Art/Sketch/2017/1558008331_Glitch.jpg",
-            "Art/Sketch/2017/167161971_Glitch.jpg",
-            "Art/Sketch/2017/167161971_Glitch2.jpg",
-            "Art/Sketch/2017/20210130_171032.jpg",
-            "Art/Sketch/2017/20240315_133124.jpg",
-            "Art/Sketch/2017/627854859_Glitch.jpg"
-          ],
-          "2016": [
-            "Art/Sketch/2016/20210130_171032.jpg",
-            "Art/Sketch/2016/20240308_142934.jpg",
-            "Art/Sketch/2016/20240308_142940.jpg",
-            "Art/Sketch/2016/20240315_133043.jpg",
-            "Art/Sketch/2016/20240315_133113.jpg",
-            "Art/Sketch/2016/20240315_133119.jpg"
-          ],
-          "2015": [
-            "Art/Sketch/2015/20170526_154148.jpg",
-            "Art/Sketch/2015/20170616_161143.jpg",
-            "Art/Sketch/2015/20170616_161330.jpg",
-            "Art/Sketch/2015/20170616_161452.jpg",
-            "Art/Sketch/2015/20170806_130120.jpg",
-            "Art/Sketch/2015/20170806_130911.jpg"
-          ],
-          "2023": [
-            "Art/Sketch/2023/Still Life.jpg"
-          ],
-          "2014": [
-            "Art/Sketch/2014/111419.png",
-            "Art/Sketch/2014/20170124_180741.jpg",
-            "Art/Sketch/2014/20170525_135059.jpg",
-            "Art/Sketch/2014/53024.jpg",
-            "Art/Sketch/2014/76b55eb1-6e3c-4c33-bcbd-4babd16e7da2.png",
-            "Art/Sketch/2014/807e9cc8-5b13-4afc-8b82-9812354afe8d.png"
-          ]
-        }
-      },
-      "3d": {
-        "label": "3D",
-        "folder": "Art/3D",
-        "icon": "0.%20Site_Assets/1_2_3d.png",
-        "years": {
-          "2020": [
-            "Art/3D/2020/Dent.png"
-          ]
-        }
-      },
-      "digital": {
-        "label": "Digital Art",
-        "folder": "Art/Digital",
-        "icon": "0.%20Site_Assets/1_3_digital_art.png",
-        "years": {}
-      }
-    }
-  },
-  "video": {
-    "label": "Video",
-    "folder": "Video",
-    "icon": "0.%20Site_Assets/2_video.png",
-    "years": {
-      "2021": [
-        "Video/2021/First Memory.avi"
-      ]
-    }
-  },
-  "music": {
-    "label": "Music",
-    "folder": "Music",
-    "icon": "0.%20Site_Assets/3_music.png",
-    "years": {
-      "2025": [
-        "Music/2025/Waking Hour.wav"
-      ]
-    }
-  },
-  "photography": {
-    "label": "Photography",
-    "folder": "Art/Photography",
-    "icon": "0.%20Site_Assets/4_photography.png",
-    "years": {}
-  }
+﻿{
+    "generatedAt":  "2026-10-28T07:30:26.606Z",
+    "art":  {
+                "label":  "Art",
+                "folder":  "Art",
+                "icon":  "0.%20Site_Assets/1_art.png",
+                "categories":  {
+                                   "sketch":  {
+                                                  "label":  "Sketch",
+                                                  "folder":  "Art/Sketch",
+                                                  "icon":  "0.%20Site_Assets/1_1_sketch.png",
+                                                  "works":  [
+                                                                "Art/Sketch/Post-It-Series/Abstracia.jpg",
+                                                                "Art/Sketch/Post-It-Series/Average Red Fruitioloid.jpg",
+                                                                "Art/Sketch/Post-It-Series/Bloom.jpg",
+                                                                "Art/Sketch/Post-It-Series/Crack Desert.jpg",
+                                                                "Art/Sketch/Post-It-Series/Dangerous Pink Fruitimer.jpg",
+                                                                "Art/Sketch/Post-It-Series/Devious Duck.jpg",
+                                                                "Art/Sketch/Post-It-Series/Ecstacy Forest.jpg",
+                                                                "Art/Sketch/Post-It-Series/First and Last.jpg",
+                                                                "Art/Sketch/Post-It-Series/Future Roads.jpg",
+                                                                "Art/Sketch/Post-It-Series/Heavenly Base.jpg",
+                                                                "Art/Sketch/Post-It-Series/High Stakes.jpg",
+                                                                "Art/Sketch/Post-It-Series/IMG_20210829_172223.jpg",
+                                                                "Art/Sketch/Post-It-Series/IMG_20210830_182818.jpg",
+                                                                "Art/Sketch/Post-It-Series/IMG_20221201_122848.jpg",
+                                                                "Art/Sketch/Post-It-Series/Maurice.jpg",
+                                                                "Art/Sketch/Post-It-Series/Mushroom Bog.jpg",
+                                                                "Art/Sketch/Post-It-Series/My Buddy Chanchito.jpg",
+                                                                "Art/Sketch/Post-It-Series/original_36565dc2-52e0-437f-b4ca-defe70c3c7ed_IMG_20210220_140854.jpg",
+                                                                "Art/Sketch/Post-It-Series/Peek Into Abstratia.jpg",
+                                                                "Art/Sketch/Post-It-Series/Ribbon Dragon.jpg",
+                                                                "Art/Sketch/Post-It-Series/Slightly Distressed Purbinoid.jpg",
+                                                                "Art/Sketch/Post-It-Series/Spherical Purple Fruitlets.jpg",
+                                                                "Art/Sketch/Post-It-Series/Stranger.jpg",
+                                                                "Art/Sketch/Post-It-Series/Surface Tension.jpg",
+                                                                "Art/Sketch/Post-It-Series/Throne of Glass.jpg",
+                                                                "Art/Sketch/Post-It-Series/Voyage of the Lunar Brigantine.jpg",
+                                                                "Art/Sketch/Post-It-Series/Weed Mountain.jpg",
+                                                                "Art/Sketch/Post-It-Series/Wide Yellow Fruitinite.jpg"
+                                                            ],
+                                                  "groups":  [
+                                                                 {
+                                                                     "label":  "Post-It-Series",
+                                                                     "folder":  "Art/Sketch/Post-It-Series",
+                                                                     "works":  [
+                                                                                   "Art/Sketch/Post-It-Series/High Stakes.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/Devious Duck.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/IMG_20221201_122848.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/Stranger.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/Maurice.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/Bloom.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/My Buddy Chanchito.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/IMG_20210830_182818.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/IMG_20210829_172223.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/Dangerous Pink Fruitimer.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/Spherical Purple Fruitlets.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/Slightly Distressed Purbinoid.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/Wide Yellow Fruitinite.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/Crack Desert.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/original_36565dc2-52e0-437f-b4ca-defe70c3c7ed_IMG_20210220_140854.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/Abstracia.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/Ecstacy Forest.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/Weed Mountain.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/Voyage of the Lunar Brigantine.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/Mushroom Bog.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/Throne of Glass.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/Ribbon Dragon.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/Future Roads.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/Heavenly Base.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/Peek Into Abstratia.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/First and Last.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/Surface Tension.jpg",
+                                                                                   "Art/Sketch/Post-It-Series/Average Red Fruitioloid.jpg"
+                                                                               ]
+                                                                 }
+                                                             ],
+                                                  "workMetadata":  {
+                                                                       "Art/Sketch/Post-It-Series/Abstracia.jpg":  {
+                                                                                                                       "date":  "2021-02-20T13:59:46",
+                                                                                                                       "year":  "2021"
+                                                                                                                   },
+                                                                       "Art/Sketch/Post-It-Series/Average Red Fruitioloid.jpg":  {
+                                                                                                                                     "date":  "2019-10-07T19:40:00",
+                                                                                                                                     "year":  "2019"
+                                                                                                                                 },
+                                                                       "Art/Sketch/Post-It-Series/Bloom.jpg":  {
+                                                                                                                   "date":  "2021-09-19T15:55:32",
+                                                                                                                   "year":  "2021"
+                                                                                                               },
+                                                                       "Art/Sketch/Post-It-Series/Crack Desert.jpg":  {
+                                                                                                                          "date":  "2021-04-01T18:20:42",
+                                                                                                                          "year":  "2021"
+                                                                                                                      },
+                                                                       "Art/Sketch/Post-It-Series/Dangerous Pink Fruitimer.jpg":  {
+                                                                                                                                      "date":  "2021-05-02T15:17:06",
+                                                                                                                                      "year":  "2021"
+                                                                                                                                  },
+                                                                       "Art/Sketch/Post-It-Series/Devious Duck.jpg":  {
+                                                                                                                          "date":  "2024-07-28T18:02:09",
+                                                                                                                          "year":  "2024"
+                                                                                                                      },
+                                                                       "Art/Sketch/Post-It-Series/Ecstacy Forest.jpg":  {
+                                                                                                                            "date":  "2021-02-16T17:18:54",
+                                                                                                                            "year":  "2021"
+                                                                                                                        },
+                                                                       "Art/Sketch/Post-It-Series/First and Last.jpg":  {
+                                                                                                                            "date":  "2020-11-24T17:52:35",
+                                                                                                                            "year":  "2020"
+                                                                                                                        },
+                                                                       "Art/Sketch/Post-It-Series/Future Roads.jpg":  {
+                                                                                                                          "date":  "2020-12-15T22:50:37",
+                                                                                                                          "year":  "2020"
+                                                                                                                      },
+                                                                       "Art/Sketch/Post-It-Series/Heavenly Base.jpg":  {
+                                                                                                                           "date":  "2020-12-15T22:50:12",
+                                                                                                                           "year":  "2020"
+                                                                                                                       },
+                                                                       "Art/Sketch/Post-It-Series/High Stakes.jpg":  {
+                                                                                                                         "date":  "2024-07-29T18:37:55",
+                                                                                                                         "year":  "2024"
+                                                                                                                     },
+                                                                       "Art/Sketch/Post-It-Series/IMG_20210829_172223.jpg":  {
+                                                                                                                                 "date":  "2021-08-29T17:22:23",
+                                                                                                                                 "year":  "2021"
+                                                                                                                             },
+                                                                       "Art/Sketch/Post-It-Series/IMG_20210830_182818.jpg":  {
+                                                                                                                                 "date":  "2021-08-30T18:28:18",
+                                                                                                                                 "year":  "2021"
+                                                                                                                             },
+                                                                       "Art/Sketch/Post-It-Series/IMG_20221201_122848.jpg":  {
+                                                                                                                                 "date":  "2022-12-01T12:28:49",
+                                                                                                                                 "year":  "2022"
+                                                                                                                             },
+                                                                       "Art/Sketch/Post-It-Series/Maurice.jpg":  {
+                                                                                                                     "date":  "2022-10-05T20:55:19",
+                                                                                                                     "year":  "2022"
+                                                                                                                 },
+                                                                       "Art/Sketch/Post-It-Series/Mushroom Bog.jpg":  {
+                                                                                                                          "date":  "2021-01-29T14:43:20",
+                                                                                                                          "year":  "2021"
+                                                                                                                      },
+                                                                       "Art/Sketch/Post-It-Series/My Buddy Chanchito.jpg":  {
+                                                                                                                                "date":  "2021-08-30T18:28:29",
+                                                                                                                                "year":  "2021"
+                                                                                                                            },
+                                                                       "Art/Sketch/Post-It-Series/original_36565dc2-52e0-437f-b4ca-defe70c3c7ed_IMG_20210220_140854.jpg":  {
+                                                                                                                                                                               "date":  "2021-02-20T14:08:55",
+                                                                                                                                                                               "year":  "2021"
+                                                                                                                                                                           },
+                                                                       "Art/Sketch/Post-It-Series/Peek Into Abstratia.jpg":  {
+                                                                                                                                 "date":  "2020-11-28T10:44:58",
+                                                                                                                                 "year":  "2020"
+                                                                                                                             },
+                                                                       "Art/Sketch/Post-It-Series/Ribbon Dragon.jpg":  {
+                                                                                                                           "date":  "2020-12-24T16:43:16",
+                                                                                                                           "year":  "2020"
+                                                                                                                       },
+                                                                       "Art/Sketch/Post-It-Series/Slightly Distressed Purbinoid.jpg":  {
+                                                                                                                                           "date":  "2021-04-29T18:00:46",
+                                                                                                                                           "year":  "2021"
+                                                                                                                                       },
+                                                                       "Art/Sketch/Post-It-Series/Spherical Purple Fruitlets.jpg":  {
+                                                                                                                                        "date":  "2021-04-30T15:44:20",
+                                                                                                                                        "year":  "2021"
+                                                                                                                                    },
+                                                                       "Art/Sketch/Post-It-Series/Stranger.jpg":  {
+                                                                                                                      "date":  "2022-11-10T13:26:36",
+                                                                                                                      "year":  "2022"
+                                                                                                                  },
+                                                                       "Art/Sketch/Post-It-Series/Surface Tension.jpg":  {
+                                                                                                                             "date":  "2020-11-15T17:08:01",
+                                                                                                                             "year":  "2020"
+                                                                                                                         },
+                                                                       "Art/Sketch/Post-It-Series/Throne of Glass.jpg":  {
+                                                                                                                             "date":  "2021-01-14T10:37:25",
+                                                                                                                             "year":  "2021"
+                                                                                                                         },
+                                                                       "Art/Sketch/Post-It-Series/Voyage of the Lunar Brigantine.jpg":  {
+                                                                                                                                            "date":  "2021-01-31T13:51:22",
+                                                                                                                                            "year":  "2021"
+                                                                                                                                        },
+                                                                       "Art/Sketch/Post-It-Series/Weed Mountain.jpg":  {
+                                                                                                                           "date":  "2021-02-05T18:28:42",
+                                                                                                                           "year":  "2021"
+                                                                                                                       },
+                                                                       "Art/Sketch/Post-It-Series/Wide Yellow Fruitinite.jpg":  {
+                                                                                                                                    "date":  "2021-04-29T16:50:19",
+                                                                                                                                    "year":  "2021"
+                                                                                                                                }
+                                                                   }
+                                              },
+                                   "3d":  {
+                                              "label":  "3D",
+                                              "folder":  "Art/3D",
+                                              "icon":  "0.%20Site_Assets/1_2_3d.png",
+                                              "years":  {
+                                                            "2020":  [
+                                                                         "Art/3D/2020/Dent.png"
+                                                                     ]
+                                                        }
+                                          },
+                                   "digital":  {
+                                                   "label":  "Digital Art",
+                                                   "folder":  "Art/Digital",
+                                                   "icon":  "0.%20Site_Assets/1_3_digital_art.png",
+                                                   "years":  {
+
+                                                             }
+                                               }
+                               }
+            },
+    "video":  {
+                  "label":  "Video",
+                  "folder":  "Video",
+                  "icon":  "0.%20Site_Assets/2_video.png",
+                  "years":  {
+                                "2021":  [
+                                             "Video/2021/First Memory.avi"
+                                         ]
+                            }
+              },
+    "music":  {
+                  "label":  "Music",
+                  "folder":  "Music",
+                  "icon":  "0.%20Site_Assets/3_music.png",
+                  "years":  {
+
+                            },
+                  "works":  [
+                                "Music/[1634692767] Dyce Cypher - Surreal Swing.mp3",
+                                "Music/[1600432326] Dyce Cypher - Revolving Ruins.mp3",
+                                "Music/[1506750496] Dyce Cypher - Biding Time.m4a",
+                                "Music/[1651011894] Dyce Cypher - Amber Nights.mp3",
+                                "Music/[1266102967] Dyce Cypher - Lonely Sparkle.m4a",
+                                "Music/[1256478004] Dyce Cypher - Far-out Phantasm.mp3",
+                                "Music/[1298586343] Dyce Cypher - Essence of Abstratia.mp3",
+                                "Music/[1114685659] Dyce Cypher - The Deal (unfinished).mp3",
+                                "Music/Giraffes in Space.mp3",
+                                "Music/[1090408732] Dyce Cypher - Dangerous Sounds.mp3",
+                                "Music/[1160175922] Dyce Cypher - Back Ally Blues.mp3",
+                                "Music/[863235409] Dyce Cypher - What plays when you look out into the distance.mp3",
+                                "Music/[814608934] Dyce Cypher - Reminisce.mp3",
+                                "Music/[814512130] Dyce Cypher - Lament Of The King v1.mp3",
+                                "Music/[819449353] Dyce Cypher - Intruders Tussle.mp3",
+                                "Music/[814517872] Dyce Cypher - Hardened Mettle v1.mp3",
+                                "Music/[848658136] Dyce Cypher - Grand Spectacle.mp3",
+                                "Music/[915015247] Dyce Cypher - G.O. City.mp3",
+                                "Music/[891983566] Dyce Cypher - Curiosity.mp3",
+                                "Music/[814515895] Dyce Cypher - All Hail Prince Sergio.mp3",
+                                "Music/[709623397] Dyce Cypher - Save The World.mp3",
+                                "Music/[732037615] Dyce Cypher - Aboard The Lunar Brigantine.mp3",
+                                "Music/[1278768223] Dyce Cypher - Lucid Thought.mp3",
+                                "Music/[1820311671] Dyce Cypher - You_ll Be Seeing Stars.mp3",
+                                "Music/[1742293095] Dyce Cypher - Beyond Zoned Out.mp3",
+                                "Music/[1742301891] Dyce Cypher - Astral Waves.mp3",
+                                "Music/[1132486297] Dyce Cypher - Michevous Rhinestone.mp3",
+                                "Music/[1777547325] Dyce Cypher - Minor Disagreement.mp3",
+                                "Music/Work Hard, Play More!.mp3",
+                                "Music/Wayward Machine!.mp3",
+                                "Music/Patience.mp3",
+                                "Music/Not Lost.mp3",
+                                "Music/Launch My Dog - Transferral.mp3",
+                                "Music/Launch My Dog -Setting The Frame.mp3",
+                                "Music/Launch My Dog - Heresy.mp3",
+                                "Music/Launch My Dog - Down Is Up V1.mp3",
+                                "Music/Launch My Dog - Better than Plain.mp3",
+                                "Music/Daydream Drifting.mp3"
+                            ],
+                  "workMetadata":  {
+                                       "Music/[709623397] Dyce Cypher - Save The World.mp3":  {
+                                                                                                  "title":  "Save The World",
+                                                                                                  "year":  "2019",
+                                                                                                  "date":  "2019",
+                                                                                                  "thumbnail":  "Site_Assets/Music/[709623397] Dyce Cypher - Save The World.jpg"
+                                                                                              },
+                                       "Music/[732037615] Dyce Cypher - Aboard The Lunar Brigantine.mp3":  {
+                                                                                                               "title":  "Aboard The Lunar Brigantine",
+                                                                                                               "year":  "2019",
+                                                                                                               "date":  "2019",
+                                                                                                               "thumbnail":  "Site_Assets/Music/[732037615] Dyce Cypher - Aboard The Lunar Brigantine.jpg"
+                                                                                                           },
+                                       "Music/[814512130] Dyce Cypher - Lament Of The King v1.mp3":  {
+                                                                                                         "title":  "Lament Of The King",
+                                                                                                         "year":  "2020",
+                                                                                                         "date":  "2020",
+                                                                                                         "thumbnail":  "Site_Assets/Music/[814512130] Dyce Cypher - Lament Of The King v1.jpg"
+                                                                                                     },
+                                       "Music/[814515895] Dyce Cypher - All Hail Prince Sergio.mp3":  {
+                                                                                                          "title":  "All Hail Prince Sergio",
+                                                                                                          "year":  "2020",
+                                                                                                          "date":  "2020",
+                                                                                                          "thumbnail":  "Site_Assets/Music/[814515895] Dyce Cypher - All Hail Prince Sergio.jpg"
+                                                                                                      },
+                                       "Music/[814517872] Dyce Cypher - Hardened Mettle v1.mp3":  {
+                                                                                                      "title":  "Hardened Mettle",
+                                                                                                      "year":  "2020",
+                                                                                                      "date":  "2020",
+                                                                                                      "thumbnail":  "Site_Assets/Music/[814517872] Dyce Cypher - Hardened Mettle v1.jpg"
+                                                                                                  },
+                                       "Music/[814608934] Dyce Cypher - Reminisce.mp3":  {
+                                                                                             "title":  "Reminisce",
+                                                                                             "year":  "2020",
+                                                                                             "date":  "2020",
+                                                                                             "thumbnail":  "Site_Assets/Music/[814608934] Dyce Cypher - Reminisce.jpg"
+                                                                                         },
+                                       "Music/[819449353] Dyce Cypher - Intruders Tussle.mp3":  {
+                                                                                                    "title":  "Intruders Tussle",
+                                                                                                    "year":  "2020",
+                                                                                                    "date":  "2020",
+                                                                                                    "thumbnail":  "Site_Assets/Music/[819449353] Dyce Cypher - Intruders Tussle.jpg"
+                                                                                                },
+                                       "Music/[848658136] Dyce Cypher - Grand Spectacle.mp3":  {
+                                                                                                   "title":  "Grand Spectacle",
+                                                                                                   "year":  "2020",
+                                                                                                   "date":  "2020",
+                                                                                                   "thumbnail":  "Site_Assets/Music/[848658136] Dyce Cypher - Grand Spectacle.jpg"
+                                                                                               },
+                                       "Music/[863235409] Dyce Cypher - What plays when you look out into the distance.mp3":  {
+                                                                                                                                  "title":  "What plays when you look out into the distance",
+                                                                                                                                  "year":  "2020",
+                                                                                                                                  "date":  "2020-07-23",
+                                                                                                                                  "thumbnail":  "Site_Assets/Music/[863235409] Dyce Cypher - What plays when you look out into the distance.jpg"
+                                                                                                                              },
+                                       "Music/[891983566] Dyce Cypher - Curiosity.mp3":  {
+                                                                                             "title":  "Curiosity",
+                                                                                             "year":  "2020",
+                                                                                             "date":  "2020",
+                                                                                             "thumbnail":  "Site_Assets/Music/[891983566] Dyce Cypher - Curiosity.jpg"
+                                                                                         },
+                                       "Music/[915015247] Dyce Cypher - G.O. City.mp3":  {
+                                                                                             "title":  "G.O. City",
+                                                                                             "year":  "2020",
+                                                                                             "date":  "2020",
+                                                                                             "thumbnail":  "Site_Assets/Music/[915015247] Dyce Cypher - G.O. City.jpg"
+                                                                                         },
+                                       "Music/[1090408732] Dyce Cypher - Dangerous Sounds.mp3":  {
+                                                                                                     "title":  "Dangerous Sounds",
+                                                                                                     "year":  "2021",
+                                                                                                     "date":  "2021",
+                                                                                                     "thumbnail":  "Site_Assets/Music/[1090408732] Dyce Cypher - Dangerous Sounds.jpg"
+                                                                                                 },
+                                       "Music/[1114685659] Dyce Cypher - The Deal (unfinished).mp3":  {
+                                                                                                          "title":  "The Deal",
+                                                                                                          "year":  "2021",
+                                                                                                          "date":  "2021",
+                                                                                                          "thumbnail":  "Site_Assets/Music/[1114685659] Dyce Cypher - The Deal (unfinished).jpg"
+                                                                                                      },
+                                       "Music/[1132486297] Dyce Cypher - Michevous Rhinestone.mp3":  {
+                                                                                                         "title":  "Theme of Checker : Michevous Rhinestone",
+                                                                                                         "year":  "",
+                                                                                                         "date":  "0000",
+                                                                                                         "thumbnail":  "Site_Assets/Music/[1132486297] Dyce Cypher - Michevous Rhinestone.jpg"
+                                                                                                     },
+                                       "Music/[1160175922] Dyce Cypher - Back Ally Blues.mp3":  {
+                                                                                                    "title":  "Back Ally Blues",
+                                                                                                    "year":  "2021",
+                                                                                                    "date":  "2021",
+                                                                                                    "thumbnail":  "Site_Assets/Music/[1160175922] Dyce Cypher - Back Ally Blues.jpg"
+                                                                                                },
+                                       "Music/[1256478004] Dyce Cypher - Far-out Phantasm.mp3":  {
+                                                                                                     "title":  "Far-out Phantasm",
+                                                                                                     "year":  "2022",
+                                                                                                     "date":  "2022",
+                                                                                                     "thumbnail":  "Site_Assets/Music/[1256478004] Dyce Cypher - Far-out Phantasm.jpg"
+                                                                                                 },
+                                       "Music/[1266102967] Dyce Cypher - Lonely Sparkle.m4a":  {
+                                                                                                   "title":  "Lonely Sparkle",
+                                                                                                   "year":  "2022",
+                                                                                                   "date":  "2022",
+                                                                                                   "thumbnail":  "Site_Assets/Music/[1266102967] Dyce Cypher - Lonely Sparkle.jpg"
+                                                                                               },
+                                       "Music/[1278768223] Dyce Cypher - Lucid Thought.mp3":  {
+                                                                                                  "title":  "Lucid Thought",
+                                                                                                  "year":  "",
+                                                                                                  "date":  "0000-05-31",
+                                                                                                  "thumbnail":  "Site_Assets/Music/[1278768223] Dyce Cypher - Lucid Thought.jpg"
+                                                                                              },
+                                       "Music/[1298586343] Dyce Cypher - Essence of Abstratia.mp3":  {
+                                                                                                         "title":  "Essence of Abstratia",
+                                                                                                         "year":  "2022",
+                                                                                                         "date":  "2022",
+                                                                                                         "thumbnail":  "Site_Assets/Music/[1298586343] Dyce Cypher - Essence of Abstratia.jpg"
+                                                                                                     },
+                                       "Music/[1506750496] Dyce Cypher - Biding Time.m4a":  {
+                                                                                                "title":  "Biding Time",
+                                                                                                "year":  "2023",
+                                                                                                "date":  "2023",
+                                                                                                "thumbnail":  "Site_Assets/Music/[1506750496] Dyce Cypher - Biding Time.jpg"
+                                                                                            },
+                                       "Music/[1600432326] Dyce Cypher - Revolving Ruins.mp3":  {
+                                                                                                    "title":  "Revolving Ruins",
+                                                                                                    "year":  "2023",
+                                                                                                    "date":  "2023",
+                                                                                                    "thumbnail":  "Site_Assets/Music/[1600432326] Dyce Cypher - Revolving Ruins.jpg"
+                                                                                                },
+                                       "Music/[1634692767] Dyce Cypher - Surreal Swing.mp3":  {
+                                                                                                  "title":  "Surreal Swing",
+                                                                                                  "year":  "2023",
+                                                                                                  "date":  "2023",
+                                                                                                  "thumbnail":  "Site_Assets/Music/[1634692767] Dyce Cypher - Surreal Swing.jpg"
+                                                                                              },
+                                       "Music/[1651011894] Dyce Cypher - Amber Nights.mp3":  {
+                                                                                                 "title":  "Amber Nights",
+                                                                                                 "year":  "2023",
+                                                                                                 "date":  "2023",
+                                                                                                 "thumbnail":  "Site_Assets/Music/[1651011894] Dyce Cypher - Amber Nights.jpg"
+                                                                                             },
+                                       "Music/[1742293095] Dyce Cypher - Beyond Zoned Out.mp3":  {
+                                                                                                     "title":  "Beyond Zoned Out",
+                                                                                                     "year":  "",
+                                                                                                     "date":  "0000-02-09",
+                                                                                                     "thumbnail":  "Site_Assets/Music/[1742293095] Dyce Cypher - Beyond Zoned Out.jpg"
+                                                                                                 },
+                                       "Music/[1742301891] Dyce Cypher - Astral Waves.mp3":  {
+                                                                                                 "title":  "Astral Waves",
+                                                                                                 "year":  "",
+                                                                                                 "date":  "0000-02-09",
+                                                                                                 "thumbnail":  "Site_Assets/Music/[1742301891] Dyce Cypher - Astral Waves.jpg"
+                                                                                             },
+                                       "Music/[1777547325] Dyce Cypher - Minor Disagreement.mp3":  {
+                                                                                                       "title":  "Minor Disagreement",
+                                                                                                       "year":  "",
+                                                                                                       "date":  "0000",
+                                                                                                       "thumbnail":  "Site_Assets/Music/[1777547325] Dyce Cypher - Minor Disagreement.jpg"
+                                                                                                   },
+                                       "Music/[1820311671] Dyce Cypher - You_ll Be Seeing Stars.mp3":  {
+                                                                                                           "title":  "You\u0027ll Be Seeing Stars",
+                                                                                                           "year":  "",
+                                                                                                           "date":  "0000-05-12",
+                                                                                                           "thumbnail":  "Site_Assets/Music/[1820311671] Dyce Cypher - You_ll Be Seeing Stars.jpg"
+                                                                                                       },
+                                       "Music/Daydream Drifting.mp3":  {
+                                                                           "title":  "Daydream Drifting",
+                                                                           "year":  "",
+                                                                           "date":  "",
+                                                                           "thumbnail":  "Site_Assets/Music/Daydream Drifting.jpg"
+                                                                       },
+                                       "Music/Giraffes in Space.mp3":  {
+                                                                           "title":  "Giraffes in Space (Acoustic)",
+                                                                           "year":  "2021",
+                                                                           "date":  "2021",
+                                                                           "thumbnail":  "Site_Assets/Music/Giraffes in Space.jpg"
+                                                                       },
+                                       "Music/Launch My Dog - Better than Plain.mp3":  {
+                                                                                           "title":  "Launch My Dog - Better than Plain",
+                                                                                           "year":  "",
+                                                                                           "date":  "",
+                                                                                           "thumbnail":  "Site_Assets/Music/Launch My Dog - Better than Plain.jpg"
+                                                                                       },
+                                       "Music/Launch My Dog - Down Is Up V1.mp3":  {
+                                                                                       "title":  "Launch My Dog - Down Is Up V1",
+                                                                                       "year":  "",
+                                                                                       "date":  "",
+                                                                                       "thumbnail":  "Site_Assets/Music/Launch My Dog - Down Is Up V1.jpg"
+                                                                                   },
+                                       "Music/Launch My Dog - Heresy.mp3":  {
+                                                                                "title":  "Launch My Dog - Heresy",
+                                                                                "year":  "",
+                                                                                "date":  "",
+                                                                                "thumbnail":  "Site_Assets/Music/Launch My Dog - Heresy.jpg"
+                                                                            },
+                                       "Music/Launch My Dog - Transferral.mp3":  {
+                                                                                     "title":  "Launch My Dog - Transferral",
+                                                                                     "year":  "",
+                                                                                     "date":  "",
+                                                                                     "thumbnail":  "Site_Assets/Music/Launch My Dog - Transferral.jpg"
+                                                                                 },
+                                       "Music/Launch My Dog -Setting The Frame.mp3":  {
+                                                                                          "title":  "Launch my Dog - Setting The Frame",
+                                                                                          "year":  "",
+                                                                                          "date":  "",
+                                                                                          "thumbnail":  "Site_Assets/Music/Launch My Dog -Setting The Frame.jpg"
+                                                                                      },
+                                       "Music/Not Lost.mp3":  {
+                                                                  "title":  "Not Lost",
+                                                                  "year":  "",
+                                                                  "date":  "",
+                                                                  "thumbnail":  "Site_Assets/Music/Not Lost.jpg"
+                                                              },
+                                       "Music/Patience.mp3":  {
+                                                                  "title":  "Patience",
+                                                                  "year":  "",
+                                                                  "date":  "",
+                                                                  "thumbnail":  "Site_Assets/Music/Patience.jpg"
+                                                              },
+                                       "Music/Wayward Machine!.mp3":  {
+                                                                          "title":  "Wayward Machine!",
+                                                                          "year":  "",
+                                                                          "date":  "",
+                                                                          "thumbnail":  "Site_Assets/Music/Wayward Machine!.jpg"
+                                                                      },
+                                       "Music/Work Hard, Play More!.mp3":  {
+                                                                               "title":  "Work Hard, Play More!",
+                                                                               "year":  "",
+                                                                               "date":  "",
+                                                                               "thumbnail":  "Site_Assets/Music/Work Hard, Play More!.jpg"
+                                                                           }
+                                   }
+              },
+    "photography":  {
+                        "label":  "Photography",
+                        "folder":  "Art/Photography",
+                        "icon":  "0.%20Site_Assets/4_photography.png",
+                        "years":  {
+
+                                  }
+                    }
 }
