@@ -172,12 +172,15 @@ button { font: inherit; }
   position: sticky;
   top: var(--page-gutter);
   align-self: start;
+  /* Keep the sidebar a single static surface. Its contents scale with the
+     viewport height instead of creating a nested scrollbar on short screens. */
   height: calc(100vh - (var(--page-gutter) * 2));
-  max-height: calc(100vh - (var(--page-gutter) * 2));
-  overflow-y: auto;
+  min-height: calc(100vh - (var(--page-gutter) * 2));
+  max-height: none;
+  overflow: visible;
   display: flex;
   flex-direction: column;
-  padding: clamp(30px, 3vw, 64px) clamp(24px, 2.2vw, 48px) clamp(26px, 2.6vw, 56px);
+  padding: clamp(14px, 3vh, 34px) clamp(24px, 2.2vw, 48px) clamp(14px, 2.6vh, 32px);
   border-right: 1px solid var(--line);
   background: rgba(231, 228, 218, .62);
 }
@@ -187,8 +190,8 @@ button { font: inherit; }
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: clamp(14px, 1.2vw, 24px);
-  padding-bottom: clamp(34px, 3vw, 64px);
+  gap: clamp(8px, 1.4vh, 18px);
+  padding-bottom: clamp(18px, 3vh, 34px);
   text-decoration: none;
   font-size: clamp(16px, 1.1vw, 24px);
   font-style: italic;
@@ -238,11 +241,11 @@ button { font: inherit; }
   content: '';
 }
 
-.identity img { width: clamp(170px, 11vw, 280px); height: clamp(170px, 11vw, 280px); object-fit: contain; }
+.identity img { width: clamp(112px, 19vh, 220px); height: clamp(112px, 19vh, 220px); object-fit: contain; }
 
 /* Main navigation and indented Art subcategory controls. */
-.primary-nav { display: grid; gap: clamp(9px, .7vw, 16px); }
-.art-subnav { display: grid; gap: clamp(8px, .8vw, 14px); margin: -3px 0 5px 28px; }
+.primary-nav { display: grid; gap: clamp(5px, .9vh, 12px); }
+.art-subnav { display: grid; gap: clamp(4px, .8vh, 10px); margin: -3px 0 5px 28px; }
 .subnav-item { display: flex; align-items: center; gap: 9px; padding: 5px 7px; border: 0; border-radius: 5px; background: transparent; cursor: pointer; color: var(--muted); text-align: left; font-size: 14px; }
 .subnav-item:hover, .subnav-item:focus-visible { background: rgba(255,255,255,.55); color: var(--ink); outline: none; }
 .subnav-item.is-active { color: var(--ink); background: rgba(255,255,255,.56); }
@@ -254,22 +257,22 @@ button { font: inherit; }
   align-items: center;
   gap: clamp(12px, .9vw, 20px);
   width: 100%;
-  padding: clamp(8px, .7vw, 16px) 7px;
+  padding: clamp(5px, .7vh, 10px) 7px;
   border: 0;
   border-radius: 6px;
   background: transparent;
   cursor: pointer;
   text-align: left;
-  font-size: clamp(18px, 1.25vw, 28px);
+  font-size: clamp(16px, 2.2vh, 24px);
   transition: background .2s ease, transform .2s ease;
 }
 
 .nav-item:hover, .nav-item:focus-visible { background: rgba(255,255,255,.6); outline: none; }
 .nav-item:active { transform: translateX(2px); }
 .nav-item.is-active { background: rgba(255,255,255,.74); box-shadow: inset 0 0 0 1px rgba(200,197,187,.7); }
-.nav-item img { width: clamp(29px, 2vw, 48px); height: clamp(29px, 2vw, 48px); object-fit: contain; }
+.nav-item img { width: clamp(24px, 4vh, 40px); height: clamp(24px, 4vh, 40px); object-fit: contain; }
 .nav-arrow { margin-left: auto; color: var(--gold); font-size: 26px; line-height: 1; }
-.sidebar-rule { flex: 0 0 1px; width: 100%; min-height: 1px; height: 1px; margin: 25px 0 13px; background: var(--line); }
+.sidebar-rule { flex: 0 0 1px; width: 100%; min-height: 1px; height: 1px; margin: clamp(12px, 2vh, 22px) 0 clamp(8px, 1.2vh, 13px); background: var(--line); }
 .about-link { margin-top: 1px; }
 .sidebar-note { margin: auto 7px 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
 
@@ -404,7 +407,7 @@ audio, .audio-duration { display: none; }
 @media (max-width: 700px) {
   body { padding: 10px; }
   .window-shell { display: block; min-height: calc(100vh - 20px); }
-  .sidebar { position: static; height: auto; max-height: none; overflow: visible; border-right: 0; border-bottom: 1px solid var(--line); padding: 18px; }
+  .sidebar { position: static; align-self: auto; height: auto; min-height: 0; max-height: none; overflow: visible; border-right: 0; border-bottom: 1px solid var(--line); padding: 18px; }
   .identity { padding-bottom: 17px; }
   .primary-nav { grid-template-columns: repeat(4, 1fr); }
   .art-subnav { grid-column: 1 / -1; grid-template-columns: repeat(3, 1fr); margin: -2px 0 2px; }
