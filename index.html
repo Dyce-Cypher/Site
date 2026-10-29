@@ -5,11 +5,17 @@
   <!-- Basic document metadata and the stylesheet shared by every view. -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="icon" type="image/png" href="0.%20Site_Assets/0_site_logo.png" />
   <meta name="description" content="A file-browser style art portfolio." />
-  <title>Alexander Ibarra — Archive</title>
+  <title>Alexander Ibarra - Archive</title>
   <link rel="stylesheet" href="style.css" />
+  <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 </head>
 <body>
+  <div id="site-loader" class="site-loader" aria-hidden="true">
+    <img class="site-loader-logo" src="0.%20Site_Assets/0_site_logo.png" alt="" />
+  </div>
+
   <!-- This layer receives the hovered artwork as a blurred page background. -->
   <div id="hover-background" class="hover-background" aria-hidden="true"></div>
 
@@ -71,7 +77,6 @@
         <span>About</span>
       </button>
 
-      <p class="sidebar-note">Archive of work<br />organized by medium and year.</p>
     </aside>
 
     <!-- Right-hand panel: its heading and body are updated by JavaScript. -->
@@ -80,9 +85,10 @@
         <div>
           <p class="eyebrow">ARCHIVE / <span id="crumb-medium">ART</span></p>
           <h1 id="page-title">Art</h1>
+          <p class="header-meta" id="item-count">0 works</p>
         </div>
-        <p class="header-meta" id="item-count">0 works</p>
       </header>
+      <p id="page-description" class="page-description" hidden></p>
 
       <!-- JavaScript inserts year groups and file cards into this empty container. -->
       <div id="portfolio-view" class="portfolio-view" aria-live="polite"></div>
@@ -90,17 +96,16 @@
       <!-- The About view is hidden on archive pages and shown only when About is selected. -->
       <section id="about-view" class="about-view" hidden>
         <div class="about-image-wrap">
-          <!-- Replace this fallback with an artist portrait in 0. Site_Assets when ready. -->
-          <img src="0.%20Site_Assets/0_site_logo.png" alt="Placeholder for artist portrait" />
-          <span>artist portrait / replace me</span>
+          <img src="0.%20Site_Assets/Alexander_Ibarra.png" alt="Alexander Ibarra" />
+          <span>Alexander Ibarra</span>
         </div>
         <div class="about-copy">
           <p class="eyebrow">ABOUT / ALEXANDER IBARRA</p>
-          <h2>Making room for many ways of seeing.</h2>
-          <p class="lead">I work across image, moving image, and sound. This archive is a living index of those experiments.</p>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer at sem sed arcu fermentum posuere. Donec vitae justo at nunc sollicitudin porttitor. Praesent euismod, nisl sed bibendum consequat, neque arcu malesuada erat, vitae porttitor libero justo vel arcu.</p>
-          <p>Curabitur finibus, leo a tincidunt pulvinar, erat nibh tempor ipsum, non consequat mauris lacus sit amet urna. Suspendisse potenti. Mauris in lectus id libero volutpat blandit. More words about process, place, collaboration, and attention will live here soon.</p>
-          <p class="about-signoff">— Alexander Ibarra</p>
+          <h2>Making Art that Inspires others to Create</h2>
+          <p class="lead">California born DMA artist Alexander Ibarra creates because he is able to and hopes you will too</p>
+          <p>I'm a fledging artist who wishes to utilize my technological background, growing up in the silicon valley, to create art that sheds light on the digital plane and how to best represent it, art as an expressive release with which anyone can achieve, and the realms beyond reality and how we might perceive them. My practice flourishes in the obscure and the abstract with opaque works that allow you to wonder and wander.</p>
+          <p>Narrative based works include topics of digital ownership rights and citizen privacy within an ever growing surveillance state. As a person who has been exposed to most forms of digital storage I am appalled by the lack of agency the consumer has had in the face of our media and hope to correct this wrong through exposure through the very digital media that may be harder to obtain in the future. I utilize primarily digital media but am well versed in other forms of artistic practice such as sketch art, photography, and videography</p>
+          <p>I grew up with the internet during a time most could only dream to go back to, I ought to use that connection to the best of my ability. Twisting reality as seen within photographs or interpreting them with obscure sketch drawings is my preferred method of expression yet am always learning new ways of translating the vision within my mind to reality.</p>
         </div>
       </section>
     </section>
@@ -111,6 +116,8 @@
     <button id="image-viewer-close" class="image-viewer-close" type="button" aria-label="Close image viewer">×</button>
     <div class="image-viewer-frame">
       <img id="image-viewer-image" src="" alt="" />
+      <div id="image-viewer-gallery" class="image-viewer-gallery" hidden></div>
+      <div class="image-viewer-developing" aria-hidden="true"></div>
     </div>
   </dialog>
 
@@ -120,7 +127,7 @@
     </div>
     <div class="music-tonearm">
       <div class="music-tonearm-shaft">
-        <button id="music-pause" class="music-headshell" type="button" aria-label="Pause current song">X</button>
+        <button id="music-pause" class="music-headshell" type="button" aria-label="Exit music player">X</button>
       </div>
     </div>
   </div>
@@ -145,7 +152,9 @@
     // Cache the DOM elements that JavaScript updates during navigation.
     const portfolioView = document.querySelector('#portfolio-view');
     const aboutView = document.querySelector('#about-view');
+    const aboutImage = document.querySelector('.about-image-wrap img');
     const pageTitle = document.querySelector('#page-title');
+    const pageDescription = document.querySelector('#page-description');
     const crumbMedium = document.querySelector('#crumb-medium');
     const itemCount = document.querySelector('#item-count');
     const navItems = [...document.querySelectorAll('[data-page]')];
@@ -154,17 +163,21 @@
     const hoverBackground = document.querySelector('#hover-background');
     const imageViewer = document.querySelector('#image-viewer');
     const imageViewerImage = document.querySelector('#image-viewer-image');
+    const imageViewerGallery = document.querySelector('#image-viewer-gallery');
     const imageViewerClose = document.querySelector('#image-viewer-close');
     const musicOverlay = document.querySelector('#music-overlay');
     const musicTonearm = document.querySelector('.music-tonearm');
     const musicArtwork = document.querySelector('#music-artwork');
     const musicPause = document.querySelector('#music-pause');
+    const windowShell = document.querySelector('.window-shell');
     const musicControlPlay = document.querySelector('#music-control-play');
     const musicSeek = document.querySelector('#music-seek');
     const musicTimeCurrent = document.querySelector('#music-time-current');
     const musicTimeTotal = document.querySelector('#music-time-total');
     const musicVolume = document.querySelector('#music-volume');
     let activeAudio = null;
+    let keepMusicOverlayOpen = false;
+    let activeDigitalLayout = null;
 
     // Stable tonearm placement. These values are independent of the selected song
     // and can be adjusted without changing the vinyl or audio logic.
@@ -179,6 +192,7 @@
     const identityName = document.querySelector('.identity-name');
     const identityAliasSlot = document.querySelector('.identity-alias-slot');
     const identityAlias = document.querySelector('#identity-alias');
+    const contentPanel = document.querySelector('.content-panel');
     let activeArtCategory = 'sketch';
     let aliasSpinTimer = null;
 
@@ -271,6 +285,7 @@
     const displayName = (path) => fileName(path).replace(/\.[^.]+$/, '');
     const extension = (path) => fileName(path).split('.').pop().toLowerCase();
     const isImage = (path) => ['jpg', 'jpeg', 'png', 'gif', 'webp', 'avif'].includes(extension(path));
+    const isModel = (path) => ['glb', 'gltf'].includes(extension(path));
     const isAudio = (path) => ['mp3', 'wav', 'ogg', 'm4a', 'flac'].includes(extension(path));
     const isVideo = (path) => ['mp4', 'webm', 'mov', 'avi'].includes(extension(path));
 
@@ -285,8 +300,11 @@
     function updateMusicOverlay() {
       const playingAudio = [...document.querySelectorAll('audio')].find((audio) => !audio.paused && !audio.ended);
       activeAudio = playingAudio || activeAudio;
-      document.body.classList.toggle('is-music-playing', Boolean(playingAudio));
-      musicOverlay.classList.toggle('is-visible', Boolean(playingAudio));
+      const keepOpen = keepMusicOverlayOpen && activeAudio && activeAudio.paused && !activeAudio.ended;
+      document.body.classList.toggle('is-music-playing', Boolean(playingAudio || keepOpen));
+      musicOverlay.classList.toggle('is-visible', Boolean(playingAudio || keepOpen));
+      musicOverlay.classList.toggle('is-paused', Boolean(keepOpen));
+      windowShell.inert = Boolean(playingAudio || keepOpen);
       updateMusicControls();
     }
 
@@ -322,8 +340,11 @@
     function showMusicOverlay(metadata, title) {
       musicArtwork.src = metadata.thumbnail ? fileUrl(metadata.thumbnail) : '';
       musicArtwork.alt = title;
+      keepMusicOverlayOpen = false;
       musicOverlay.classList.add('is-visible');
+      musicOverlay.classList.remove('is-paused');
       document.body.classList.add('is-music-playing');
+      windowShell.inert = true;
     }
 
     window.addEventListener('resize', positionTonearm);
@@ -372,15 +393,102 @@
 
     // Open an image in the page and use its dominant color for the frame border.
     function openImageViewer(path, name, thumbnail) {
+      const isPhotographyWork = /^Photography\//i.test(path);
+      imageViewer.classList.remove('is-digital-gallery');
+      imageViewerImage.hidden = false;
+      imageViewerGallery.hidden = true;
+      imageViewerGallery.innerHTML = '';
+      imageViewer.classList.toggle('is-photography', isPhotographyWork);
+      imageViewer.classList.remove('is-developing');
       imageViewerImage.alt = name;
       imageViewerImage.classList.remove('is-loaded');
       imageViewerImage.onload = () => {
         const sourceImage = imageViewerImage.naturalWidth ? imageViewerImage : thumbnail;
         imageViewer.style.setProperty('--image-border-color', getDominantColor(sourceImage));
         imageViewerImage.classList.add('is-loaded');
+        if (isPhotographyWork) {
+          // Begin the developing-print effect only after the photograph is ready.
+          void imageViewer.offsetWidth;
+          imageViewer.classList.add('is-developing');
+        }
       };
       imageViewerImage.src = fileUrl(path);
       imageViewer.showModal();
+    }
+
+    // Show every image belonging to a Digital Art project in one scrollable viewer.
+    function openDigitalViewer(paths, label) {
+      if (activeDigitalLayout) {
+        window.removeEventListener('resize', activeDigitalLayout);
+        activeDigitalLayout = null;
+      }
+      imageViewer.classList.remove('is-photography', 'is-developing');
+      imageViewer.classList.add('is-digital-gallery');
+      imageViewerImage.hidden = true;
+      imageViewerGallery.hidden = false;
+      imageViewerGallery.innerHTML = '';
+      imageViewerGallery.classList.remove('has-focus');
+      paths.forEach((path, index) => {
+        const image = document.createElement('img');
+        image.src = fileUrl(path);
+        image.alt = `${label}: ${fileName(path)}`;
+        image.loading = 'eager';
+        image.style.setProperty('--digital-delay', `${index * 55}ms`);
+        imageViewerGallery.appendChild(image);
+      });
+
+      const galleryImages = [...imageViewerGallery.querySelectorAll('img')];
+      let focusedIndex = -1;
+      const clamp = (value, minimum, maximum) => Math.max(minimum, Math.min(value, maximum));
+      const positionImages = () => {
+        const width = imageViewerGallery.clientWidth;
+        const height = imageViewerGallery.clientHeight;
+        if (!width || !height) return;
+        const count = galleryImages.length;
+        const thumbnailSize = clamp(520 / Math.sqrt(count), 130, 230);
+        const focusWidth = Math.min(width * .62, 720);
+        const focusHeight = Math.min(height * .78, 660);
+        const surroundingImages = galleryImages.filter((_, index) => index !== focusedIndex);
+
+        galleryImages.forEach((image, index) => {
+          image.classList.toggle('is-focused', index === focusedIndex);
+          image.classList.toggle('is-surrounding', index !== focusedIndex);
+          image.style.width = `${index === focusedIndex ? focusWidth : thumbnailSize}px`;
+          image.style.height = `${index === focusedIndex ? focusHeight : thumbnailSize}px`;
+          image.style.transform = '';
+        });
+
+        if (focusedIndex >= 0) {
+          const focusedImage = galleryImages[focusedIndex];
+          focusedImage.style.left = `${(width - focusWidth) / 2}px`;
+          focusedImage.style.top = `${(height - focusHeight) / 2}px`;
+        }
+
+        const radiusX = Math.max(thumbnailSize / 2, (width - thumbnailSize) / 2 - 12);
+        const radiusY = Math.max(thumbnailSize / 2, (height - thumbnailSize) / 2 - 12);
+        surroundingImages.forEach((image, surroundingIndex) => {
+          const angle = (-Math.PI / 2) + (surroundingIndex / surroundingImages.length) * Math.PI * 2;
+          const left = clamp(width / 2 + Math.cos(angle) * radiusX - thumbnailSize / 2, 0, width - thumbnailSize);
+          const top = clamp(height / 2 + Math.sin(angle) * radiusY - thumbnailSize / 2, 0, height - thumbnailSize);
+          image.style.left = `${left}px`;
+          image.style.top = `${top}px`;
+          image.style.transform = `rotate(${Math.sin(angle) * 5}deg)`;
+        });
+      };
+
+      galleryImages.forEach((image, index) => image.addEventListener('click', () => {
+        focusedIndex = focusedIndex === index ? -1 : index;
+        imageViewerGallery.classList.toggle('has-focus', focusedIndex >= 0);
+        positionImages();
+      }));
+      activeDigitalLayout = positionImages;
+      window.addEventListener('resize', activeDigitalLayout);
+      imageViewer.showModal();
+      window.requestAnimationFrame(positionImages);
+      imageViewer.classList.remove('is-digitizing');
+      void imageViewer.offsetWidth;
+      imageViewer.classList.add('is-digitizing');
+      window.setTimeout(() => imageViewer.classList.remove('is-digitizing'), 1200);
     }
 
     // Fade the viewer out before closing the native dialog.
@@ -390,13 +498,23 @@
       window.setTimeout(() => {
         imageViewer.close();
         imageViewer.classList.remove('is-closing');
+        imageViewer.classList.remove('is-digital-gallery');
+        if (activeDigitalLayout) {
+          window.removeEventListener('resize', activeDigitalLayout);
+          activeDigitalLayout = null;
+        }
+        imageViewerImage.hidden = false;
+        imageViewerGallery.hidden = true;
+        imageViewerGallery.innerHTML = '';
       }, 280);
     }
 
     // Close the viewer through the button, backdrop, or Escape key.
     imageViewerClose.addEventListener('click', closeImageViewer);
     imageViewer.addEventListener('click', (event) => {
-      if (event.target === imageViewer) closeImageViewer();
+      const clickedImage = event.target.closest?.('.image-viewer-gallery img');
+      const clickedOutsideDigitalImage = imageViewer.classList.contains('is-digital-gallery') && !clickedImage && event.target !== imageViewerClose;
+      if (event.target === imageViewer || clickedOutsideDigitalImage) closeImageViewer();
     });
     imageViewer.addEventListener('cancel', (event) => {
       event.preventDefault();
@@ -415,7 +533,10 @@
       card.className = 'file-card';
       card.style.setProperty('--delay', `${index * 35}ms`);
 
-      if (isImage(path)) {
+      if (isModel(path)) {
+        card.classList.add('model-card');
+        card.innerHTML = `<div class="model-preview-wrap"><model-viewer class="model-preview" src="${fileUrl(path)}" alt="Interactive 3D model: ${name}" camera-controls auto-rotate shadow-intensity="1" loading="lazy"></model-viewer></div>`;
+      } else if (isImage(path)) {
         card.innerHTML = `<a href="${fileUrl(path)}" target="_blank" rel="noreferrer"><img src="${fileUrl(path)}" alt="${name}" loading="lazy" /></a>`;
         const previewLink = card.querySelector('a');
         const previewImage = previewLink.querySelector('img');
@@ -472,6 +593,8 @@
         audio.preload = 'metadata';
         audio.addEventListener('loadedmetadata', () => {
           audioDuration.lastElementChild.textContent = formatDuration(audio.duration);
+          const durationLabel = card.querySelector('.file-duration');
+          if (durationLabel) durationLabel.textContent = ` · ${formatDuration(audio.duration)}`;
           updateMusicControls();
         });
         audio.addEventListener('timeupdate', updateMusicControls);
@@ -479,25 +602,219 @@
         audio.addEventListener('volumechange', updateMusicControls);
         card.appendChild(audioDuration);
       } else if (isVideo(path)) {
-        card.innerHTML = `<div class="file-placeholder video-placeholder"><span class="file-glyph">▶</span><span>video file</span></div><a class="file-open" href="${fileUrl(path)}" target="_blank" rel="noreferrer">Open file ↗</a>`;
+        card.classList.add('video-card');
+        const videoType = extension(path) === 'mov' ? 'video/quicktime' : extension(path) === 'avi' ? 'video/x-msvideo' : `video/${extension(path)}`;
+        card.innerHTML = `<div class="video-preview-wrap"><video class="file-video" autoplay muted loop playsinline preload="auto" aria-label="Play ${name}"><source src="${fileUrl(path)}" type="${videoType}" /></video><div class="video-controls"><button class="video-toggle" type="button" aria-label="Pause video" title="Pause">\u23f8</button><input class="video-seek" type="range" min="0" max="100" step="0.1" value="0" aria-label="Video timeline" /><input class="video-volume" type="range" min="0" max="1" step="0.01" value="0.8" aria-label="Volume" title="Volume" /><button class="video-fullscreen" type="button" aria-label="Enter fullscreen" title="Fullscreen">\u26f6</button></div></div>`;
+        const videoPreview = card.querySelector('.video-preview-wrap');
+        const video = card.querySelector('video');
+        const videoToggle = card.querySelector('.video-toggle');
+        const videoSeek = card.querySelector('.video-seek');
+        const videoVolume = card.querySelector('.video-volume');
+        const videoFullscreen = card.querySelector('.video-fullscreen');
+        let isVideoHovered = false;
+        const updateVideoControls = () => {
+          const progress = Number.isFinite(video.duration) && video.duration > 0 ? (video.currentTime / video.duration) * 100 : 0;
+          videoSeek.value = String(progress);
+          videoSeek.style.setProperty('--video-progress', `${progress}%`);
+          videoToggle.textContent = video.paused ? '\u25b6' : '\u23f8';
+          videoToggle.setAttribute('aria-label', video.paused ? 'Play video' : 'Pause video');
+          videoToggle.title = video.paused ? 'Play' : 'Pause';
+          videoVolume.value = String(video.muted ? 0 : video.volume);
+          videoVolume.style.setProperty('--video-volume', `${(video.muted ? 0 : video.volume) * 100}%`);
+        };
+        const pauseVideoPreview = () => {
+          isVideoHovered = true;
+          video.pause();
+          updateVideoControls();
+        };
+        const resumeVideoPreview = () => {
+          isVideoHovered = false;
+          video.muted = true;
+          video.play().catch(() => {});
+        };
+        videoPreview.addEventListener('mouseenter', pauseVideoPreview);
+        videoPreview.addEventListener('mouseleave', resumeVideoPreview);
+        videoToggle.addEventListener('click', (event) => {
+          event.stopPropagation();
+          if (video.paused) video.play().catch(() => {});
+          else video.pause();
+        });
+        videoSeek.addEventListener('input', (event) => {
+          event.stopPropagation();
+          if (Number.isFinite(video.duration) && video.duration > 0) {
+            video.currentTime = (Number(videoSeek.value) / 100) * video.duration;
+          }
+          updateVideoControls();
+        });
+        videoVolume.addEventListener('input', (event) => {
+          event.stopPropagation();
+          video.volume = Number(videoVolume.value);
+          video.muted = video.volume === 0;
+          updateVideoControls();
+        });
+        videoFullscreen.addEventListener('click', (event) => {
+          event.stopPropagation();
+          if (document.fullscreenElement === videoPreview) {
+            document.exitFullscreen?.();
+          } else {
+            videoPreview.requestFullscreen?.();
+          }
+        });
+        document.addEventListener('fullscreenchange', () => {
+          const isFullscreen = document.fullscreenElement === videoPreview;
+          videoFullscreen.textContent = isFullscreen ? '\u2715' : '\u26f6';
+          videoFullscreen.setAttribute('aria-label', isFullscreen ? 'Exit fullscreen' : 'Enter fullscreen');
+          videoFullscreen.title = isFullscreen ? 'Exit fullscreen' : 'Fullscreen';
+        });
+        video.addEventListener('play', updateVideoControls);
+        video.addEventListener('pause', updateVideoControls);
+        video.addEventListener('timeupdate', updateVideoControls);
+        video.addEventListener('loadedmetadata', () => {
+          if (!isVideoHovered) video.play().catch(() => {});
+          updateVideoControls();
+        });
       } else {
         card.innerHTML = `<div class="file-placeholder"><span class="file-glyph">□</span><span>file</span></div><a class="file-open" href="${fileUrl(path)}" target="_blank" rel="noreferrer">Open file ↗</a>`;
       }
 
       const yearLabel = year ? `<span class="file-year">, ${year}</span>` : '';
-      card.insertAdjacentHTML('beforeend', `<footer><span class="file-label" title="${displayTitle}"><em>${displayTitle}</em>${yearLabel}</span><span>${String(index + 1).padStart(2, '0')}</span></footer>`);
+      const durationLabel = isAudio(path) ? '<span class="file-duration">--:--</span>' : '';
+      card.insertAdjacentHTML('beforeend', `<footer><span class="file-label" title="${displayTitle}"><em>${displayTitle}</em>${yearLabel}</span>${durationLabel}<span>${String(index + 1).padStart(2, '0')}</span></footer>`);
+      return card;
+    }
+
+    // Render Dent project images in the same presentation-led layout as the source page.
+    function renderProjectImage(path) {
+      const link = document.createElement('a');
+      const name = fileName(path);
+      link.className = 'dent-project-image';
+      link.href = fileUrl(path);
+      link.setAttribute('aria-label', `Open ${displayName(path)}`);
+      link.innerHTML = `<img src="${fileUrl(path)}" alt="${name}" loading="lazy" />`;
+      const image = link.querySelector('img');
+      link.addEventListener('click', (event) => {
+        event.preventDefault();
+        openImageViewer(path, name, image);
+      });
+      return link;
+    }
+
+    function renderDentGallery(medium) {
+      const gallery = document.createElement('div');
+      gallery.className = 'dent-project-gallery';
+      const addSection = (title, paths, className) => {
+        if (!paths.length) return;
+        const section = document.createElement('section');
+        section.className = `dent-gallery-section ${className}`;
+        if (title) section.innerHTML = `<h2>${title}</h2>`;
+        const grid = document.createElement('div');
+        grid.className = 'dent-gallery-grid';
+        paths.forEach((path) => grid.appendChild(renderProjectImage(path)));
+        section.appendChild(grid);
+        gallery.appendChild(section);
+      };
+
+      if (medium.works?.length) {
+        const modelSection = document.createElement('section');
+        modelSection.className = 'dent-model-section';
+        modelSection.innerHTML = '<h2>Model</h2><div class="file-grid"></div>';
+        modelSection.querySelector('.file-grid').appendChild(renderFile(medium.works[0], 0));
+        gallery.appendChild(modelSection);
+      }
+
+      addSection('', medium.gallery.slice(0, 4), 'dent-gallery-strip');
+      addSection('Face Shapes', medium.gallery.slice(4, 16), 'dent-face-shapes');
+      if (medium.video) {
+        const actionSection = document.createElement('section');
+        actionSection.className = 'dent-gallery-section dent-in-action';
+        actionSection.innerHTML = `<h2>In Action</h2><video class="dent-project-video" controls preload="metadata"><source src="${fileUrl(medium.video)}" type="video/mp4" /></video>`;
+        gallery.appendChild(actionSection);
+      }
+
+      return gallery;
+    }
+
+    // Represent each Digital Art folder with one thumbnail that cycles through its images.
+    function renderDigitalWork(groupData, index, workMetadata = {}) {
+      const paths = groupData.works || [];
+      const card = document.createElement('article');
+      card.className = 'file-card digital-work-card';
+      card.style.setProperty('--delay', `${index * 35}ms`);
+      if (!paths.length) return card;
+
+      let currentIndex = 0;
+      const firstPath = paths[0];
+      const previewLink = document.createElement('a');
+      const previewImage = document.createElement('img');
+      previewLink.href = fileUrl(firstPath);
+      previewLink.target = '_blank';
+      previewLink.rel = 'noreferrer';
+      previewImage.src = fileUrl(firstPath);
+      previewImage.alt = groupData.label;
+      previewImage.loading = 'lazy';
+      previewLink.appendChild(previewImage);
+      card.appendChild(previewLink);
+
+      const updatePreview = (nextIndex) => {
+        currentIndex = nextIndex % paths.length;
+        const nextPath = paths[currentIndex];
+        previewImage.classList.add('is-changing');
+        window.setTimeout(() => {
+          if (!card.isConnected) return;
+          previewImage.onload = () => previewImage.classList.remove('is-changing');
+          previewImage.src = fileUrl(nextPath);
+          previewImage.alt = `${groupData.label}: ${fileName(nextPath)}`;
+          previewLink.href = fileUrl(nextPath);
+        }, 180);
+      };
+
+      if (paths.length > 1) {
+        // Larger projects cycle faster; smaller projects remain on each image longer.
+        const cycleDelay = Math.max(750, 3000 - (paths.length * 180));
+        const cycleTimer = window.setInterval(() => {
+          if (!card.isConnected) {
+            window.clearInterval(cycleTimer);
+            return;
+          }
+          updatePreview(currentIndex + 1);
+        }, cycleDelay);
+      }
+
+      previewLink.addEventListener('click', (event) => {
+        event.preventDefault();
+        openDigitalViewer(paths, groupData.label);
+      });
+      previewLink.addEventListener('mouseenter', () => showHoverBackground(paths[currentIndex]));
+      previewLink.addEventListener('mouseleave', hideHoverBackground);
+      previewLink.addEventListener('focus', () => showHoverBackground(paths[currentIndex]));
+      previewLink.addEventListener('blur', hideHoverBackground);
+
+      const datedPath = [...paths].sort((a, b) => (workMetadata[b]?.date || '').localeCompare(workMetadata[a]?.date || ''))[0];
+      const year = workMetadata[datedPath]?.year || '';
+      const yearLabel = year ? `<span class="file-year">, ${year}</span>` : '';
+      card.insertAdjacentHTML('beforeend', `<footer><span class="file-label" title="${groupData.label}"><em>${groupData.label}</em>${yearLabel}</span></footer>`);
       return card;
     }
 
     musicPause.addEventListener('click', (event) => {
       event.stopPropagation();
+      keepMusicOverlayOpen = false;
       if (activeAudio && !activeAudio.paused) activeAudio.pause();
+      musicOverlay.classList.remove('is-visible', 'is-paused');
+      document.body.classList.remove('is-music-playing');
+      windowShell.inert = false;
     });
 
     musicControlPlay.addEventListener('click', () => {
       if (!activeAudio) return;
-      if (activeAudio.paused) activeAudio.play();
-      else activeAudio.pause();
+      if (activeAudio.paused) {
+        keepMusicOverlayOpen = false;
+        activeAudio.play();
+      } else {
+        keepMusicOverlayOpen = true;
+        activeAudio.pause();
+        updateMusicOverlay();
+      }
     });
 
     musicSeek.addEventListener('input', () => {
@@ -514,19 +831,40 @@
     // Render one medium/category. Sketch preserves its folder groups within one view.
     function showMedium(key, category = activeArtCategory) {
       const medium = key === 'art' ? artCategories[category] : portfolio[key];
+      const isDentModel = key === 'art' && category === '3d';
       const flatWorks = medium.works || [];
       const entries = Object.entries(medium.years || {}).filter(([, files]) => files.length);
       const total = flatWorks.length + entries.reduce((sum, [, files]) => sum + files.length, 0);
-      pageTitle.textContent = medium.label.toUpperCase();
-      crumbMedium.textContent = key === 'art' ? `ART / ${medium.label.toUpperCase()}` : medium.label.toUpperCase();
-      itemCount.textContent = `${total} ${total === 1 ? 'work' : 'works'}`;
+      pageTitle.textContent = isDentModel ? 'DENT' : medium.label.toUpperCase();
+      crumbMedium.textContent = isDentModel ? 'ART / DENT' : key === 'art' ? `ART / ${medium.label.toUpperCase()}` : medium.label.toUpperCase();
+      itemCount.textContent = `No. ${total}`;
+      contentPanel.classList.toggle('is-model-page', isDentModel);
+      pageDescription.hidden = !isDentModel;
+      pageDescription.textContent = isDentModel
+        ? 'Model of Original Character Alistair R. Dent (Ar_Dent) for Vtubing Purposes\nModel Created and Rigged In Blender\nCharacter design by Me'
+        : '';
       aboutView.hidden = true;
       portfolioView.hidden = false;
       artSubnav.hidden = key !== 'art';
       subnavItems.forEach((item) => item.classList.toggle('is-active', item.dataset.category === category));
       portfolioView.innerHTML = '';
 
+      if (isDentModel && medium.gallery?.length) {
+        portfolioView.appendChild(renderDentGallery(medium));
+        return;
+      }
+
       if (medium.groups) {
+        const isDigital = key === 'art' && category === 'digital';
+        if (isDigital) {
+          const grid = document.createElement('div');
+          grid.className = 'file-grid digital-grid';
+          medium.groups.forEach((groupData, index) => {
+            grid.appendChild(renderDigitalWork(groupData, index, medium.workMetadata || {}));
+          });
+          portfolioView.appendChild(grid);
+          return;
+        }
         medium.groups.forEach((groupData) => {
           const group = document.createElement('section');
           group.className = 'sketch-group';
@@ -541,6 +879,7 @@
       if (medium.works) {
         const grid = document.createElement('div');
         grid.className = 'file-grid';
+        if (key === 'video') grid.classList.add('video-grid');
           flatWorks.forEach((path, index) => grid.appendChild(renderFile(path, index, medium.workMetadata?.[path]?.year || '', medium.workMetadata?.[path] || {})));
         portfolioView.appendChild(grid);
         return;
@@ -565,17 +904,53 @@
     function showAbout() {
       pageTitle.textContent = 'ABOUT';
       crumbMedium.textContent = 'ABOUT';
-      itemCount.textContent = 'artist statement';
+      itemCount.textContent = '';
+      contentPanel.classList.remove('is-model-page');
+      pageDescription.hidden = true;
       portfolioView.hidden = true;
       aboutView.hidden = false;
       artSubnav.hidden = true;
+      aboutImage.classList.remove('is-entering');
+      void aboutImage.offsetWidth;
+      aboutImage.classList.add('is-entering');
     }
 
-    // Combine every medium into one year-indexed archive for the logo home link.
+    // Keep the All Works shuffle stable across refreshes while incorporating file changes.
+    function getStableArchiveOrder(paths) {
+      const uniquePaths = [...new Set(paths)];
+      const storageKey = 'alexander-ibarra-all-works-order-v3';
+      let storedPaths = [];
+      try {
+        const savedOrder = JSON.parse(window.localStorage.getItem(storageKey) || '[]');
+        if (Array.isArray(savedOrder)) storedPaths = savedOrder;
+      } catch (error) {
+        storedPaths = [];
+      }
+
+      const currentSet = new Set(uniquePaths);
+      const existingPaths = storedPaths.filter((path) => currentSet.has(path));
+      const newPaths = uniquePaths.filter((path) => !existingPaths.includes(path));
+      for (let index = newPaths.length - 1; index > 0; index -= 1) {
+        const swapIndex = Math.floor(Math.random() * (index + 1));
+        [newPaths[index], newPaths[swapIndex]] = [newPaths[swapIndex], newPaths[index]];
+      }
+
+      const stableOrder = [...existingPaths, ...newPaths];
+      try {
+        window.localStorage.setItem(storageKey, JSON.stringify(stableOrder));
+      } catch (error) {
+        // The current order still works when storage is unavailable.
+      }
+      return stableOrder;
+    }
+
+    // Combine every medium into one randomized archive for the logo home link.
     function showArchive() {
       const worksByYear = {};
       const flatWorks = [];
       const flatWorkMetadata = {};
+      const digitalArchiveGroups = {};
+      let digitalWorkMetadata = {};
       const sources = [
         ...Object.values(portfolio.art.categories),
         portfolio.video,
@@ -585,39 +960,52 @@
 
       sources.forEach((source) => {
         if (source.works) {
-          flatWorks.push(...source.works);
-          Object.assign(flatWorkMetadata, source.workMetadata || {});
+          const isDigitalSource = source.folder === 'Art/Digital' && source.groups;
+          if (isDigitalSource) {
+            digitalWorkMetadata = source.workMetadata || {};
+            source.groups.forEach((group) => {
+              digitalArchiveGroups[`digital-folder:${group.folder}`] = group;
+            });
+          } else {
+            flatWorks.push(...source.works);
+            Object.assign(flatWorkMetadata, source.workMetadata || {});
+          }
         }
         Object.entries(source.years || {}).forEach(([year, files]) => {
           worksByYear[year] = [...(worksByYear[year] || []), ...files];
+          files.forEach((path) => {
+            if (!flatWorkMetadata[path]) flatWorkMetadata[path] = { date: year, year };
+          });
         });
       });
 
-      const entries = Object.entries(worksByYear).sort(([a], [b]) => Number(b) - Number(a));
-      const total = flatWorks.length + entries.reduce((sum, [, files]) => sum + files.length, 0);
+      const allWorks = [...flatWorks, ...Object.values(worksByYear).flat(), ...Object.keys(digitalArchiveGroups)];
+      const shuffledWorks = getStableArchiveOrder(allWorks);
+      const featuredModels = shuffledWorks.filter((path) => isModel(path));
+      const orderedWorks = [...featuredModels, ...shuffledWorks.filter((path) => !isModel(path))];
+      const total = orderedWorks.length;
       pageTitle.textContent = 'ALL WORKS';
       crumbMedium.textContent = 'ARCHIVE';
-      itemCount.textContent = `${total} ${total === 1 ? 'work' : 'works'}`;
+      itemCount.textContent = `No. ${total}`;
+      contentPanel.classList.remove('is-model-page');
+      pageDescription.hidden = true;
       portfolioView.hidden = false;
       aboutView.hidden = true;
       artSubnav.hidden = true;
       portfolioView.innerHTML = '';
 
-      entries.forEach(([year, files]) => {
+      if (orderedWorks.length) {
         const group = document.createElement('section');
         group.className = 'year-group';
-        group.innerHTML = `<div class="year-heading"><h2>${year}</h2><span>${files.length} ${files.length === 1 ? 'file' : 'files'}</span></div><div class="file-grid"></div>`;
+        group.innerHTML = '<div class="file-grid archive-grid"></div>';
         const grid = group.querySelector('.file-grid');
-        files.forEach((path, index) => grid.appendChild(renderFile(path, index, year)));
-        portfolioView.appendChild(group);
-      });
-
-      if (flatWorks.length) {
-        const group = document.createElement('section');
-        group.className = 'year-group';
-        group.innerHTML = `<div class="year-heading"><h2>Sketch</h2><span>${flatWorks.length} ${flatWorks.length === 1 ? 'file' : 'files'}</span></div><div class="file-grid"></div>`;
-        const grid = group.querySelector('.file-grid');
-        flatWorks.forEach((path, index) => grid.appendChild(renderFile(path, index, flatWorkMetadata[path]?.year || '', flatWorkMetadata[path] || {})));
+        orderedWorks.forEach((path, index) => {
+          if (digitalArchiveGroups[path]) {
+            grid.appendChild(renderDigitalWork(digitalArchiveGroups[path], index, digitalWorkMetadata));
+          } else {
+            grid.appendChild(renderFile(path, index, flatWorkMetadata[path]?.year || '', flatWorkMetadata[path] || {}));
+          }
+        });
         portfolioView.appendChild(group);
       }
     }
@@ -664,6 +1052,14 @@
     }
 
     loadManifest();
+
+    // Let the opening mark complete before revealing the portfolio underneath it.
+    window.setTimeout(() => {
+      const siteLoader = document.querySelector('#site-loader');
+      if (!siteLoader) return;
+      siteLoader.classList.add('is-complete');
+      window.setTimeout(() => siteLoader.remove(), 700);
+    }, 1800);
   </script>
 </body>
 </html>

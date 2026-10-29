@@ -5,221 +5,913 @@
                 "folder":  "Art",
                 "icon":  "0.%20Site_Assets/1_art.png",
                 "categories":  {
-                                   "sketch":  {
-                                                  "label":  "Sketch",
-                                                  "folder":  "Art/Sketch",
-                                                  "icon":  "0.%20Site_Assets/1_1_sketch.png",
-                                                  "works":  [
-                                                                "Art/Sketch/Post-It-Series/Abstracia.jpg",
-                                                                "Art/Sketch/Post-It-Series/Average Red Fruitioloid.jpg",
-                                                                "Art/Sketch/Post-It-Series/Bloom.jpg",
-                                                                "Art/Sketch/Post-It-Series/Crack Desert.jpg",
-                                                                "Art/Sketch/Post-It-Series/Dangerous Pink Fruitimer.jpg",
-                                                                "Art/Sketch/Post-It-Series/Devious Duck.jpg",
-                                                                "Art/Sketch/Post-It-Series/Ecstacy Forest.jpg",
-                                                                "Art/Sketch/Post-It-Series/First and Last.jpg",
-                                                                "Art/Sketch/Post-It-Series/Future Roads.jpg",
-                                                                "Art/Sketch/Post-It-Series/Heavenly Base.jpg",
-                                                                "Art/Sketch/Post-It-Series/High Stakes.jpg",
-                                                                "Art/Sketch/Post-It-Series/IMG_20210829_172223.jpg",
-                                                                "Art/Sketch/Post-It-Series/IMG_20210830_182818.jpg",
-                                                                "Art/Sketch/Post-It-Series/IMG_20221201_122848.jpg",
-                                                                "Art/Sketch/Post-It-Series/Maurice.jpg",
-                                                                "Art/Sketch/Post-It-Series/Mushroom Bog.jpg",
-                                                                "Art/Sketch/Post-It-Series/My Buddy Chanchito.jpg",
-                                                                "Art/Sketch/Post-It-Series/original_36565dc2-52e0-437f-b4ca-defe70c3c7ed_IMG_20210220_140854.jpg",
-                                                                "Art/Sketch/Post-It-Series/Peek Into Abstratia.jpg",
-                                                                "Art/Sketch/Post-It-Series/Ribbon Dragon.jpg",
-                                                                "Art/Sketch/Post-It-Series/Slightly Distressed Purbinoid.jpg",
-                                                                "Art/Sketch/Post-It-Series/Spherical Purple Fruitlets.jpg",
-                                                                "Art/Sketch/Post-It-Series/Stranger.jpg",
-                                                                "Art/Sketch/Post-It-Series/Surface Tension.jpg",
-                                                                "Art/Sketch/Post-It-Series/Throne of Glass.jpg",
-                                                                "Art/Sketch/Post-It-Series/Voyage of the Lunar Brigantine.jpg",
-                                                                "Art/Sketch/Post-It-Series/Weed Mountain.jpg",
-                                                                "Art/Sketch/Post-It-Series/Wide Yellow Fruitinite.jpg"
-                                                            ],
-                                                  "groups":  [
-                                                                 {
-                                                                     "label":  "Post-It-Series",
-                                                                     "folder":  "Art/Sketch/Post-It-Series",
-                                                                     "works":  [
-                                                                                   "Art/Sketch/Post-It-Series/High Stakes.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/Devious Duck.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/IMG_20221201_122848.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/Stranger.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/Maurice.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/Bloom.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/My Buddy Chanchito.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/IMG_20210830_182818.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/IMG_20210829_172223.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/Dangerous Pink Fruitimer.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/Spherical Purple Fruitlets.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/Slightly Distressed Purbinoid.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/Wide Yellow Fruitinite.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/Crack Desert.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/original_36565dc2-52e0-437f-b4ca-defe70c3c7ed_IMG_20210220_140854.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/Abstracia.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/Ecstacy Forest.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/Weed Mountain.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/Voyage of the Lunar Brigantine.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/Mushroom Bog.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/Throne of Glass.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/Ribbon Dragon.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/Future Roads.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/Heavenly Base.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/Peek Into Abstratia.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/First and Last.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/Surface Tension.jpg",
-                                                                                   "Art/Sketch/Post-It-Series/Average Red Fruitioloid.jpg"
-                                                                               ]
-                                                                 }
-                                                             ],
-                                                  "workMetadata":  {
-                                                                       "Art/Sketch/Post-It-Series/Abstracia.jpg":  {
-                                                                                                                       "date":  "2021-02-20T13:59:46",
-                                                                                                                       "year":  "2021"
-                                                                                                                   },
-                                                                       "Art/Sketch/Post-It-Series/Average Red Fruitioloid.jpg":  {
-                                                                                                                                     "date":  "2019-10-07T19:40:00",
-                                                                                                                                     "year":  "2019"
-                                                                                                                                 },
-                                                                       "Art/Sketch/Post-It-Series/Bloom.jpg":  {
-                                                                                                                   "date":  "2021-09-19T15:55:32",
-                                                                                                                   "year":  "2021"
-                                                                                                               },
-                                                                       "Art/Sketch/Post-It-Series/Crack Desert.jpg":  {
-                                                                                                                          "date":  "2021-04-01T18:20:42",
-                                                                                                                          "year":  "2021"
-                                                                                                                      },
-                                                                       "Art/Sketch/Post-It-Series/Dangerous Pink Fruitimer.jpg":  {
-                                                                                                                                      "date":  "2021-05-02T15:17:06",
-                                                                                                                                      "year":  "2021"
-                                                                                                                                  },
-                                                                       "Art/Sketch/Post-It-Series/Devious Duck.jpg":  {
-                                                                                                                          "date":  "2024-07-28T18:02:09",
-                                                                                                                          "year":  "2024"
-                                                                                                                      },
-                                                                       "Art/Sketch/Post-It-Series/Ecstacy Forest.jpg":  {
-                                                                                                                            "date":  "2021-02-16T17:18:54",
-                                                                                                                            "year":  "2021"
-                                                                                                                        },
-                                                                       "Art/Sketch/Post-It-Series/First and Last.jpg":  {
-                                                                                                                            "date":  "2020-11-24T17:52:35",
-                                                                                                                            "year":  "2020"
-                                                                                                                        },
-                                                                       "Art/Sketch/Post-It-Series/Future Roads.jpg":  {
-                                                                                                                          "date":  "2020-12-15T22:50:37",
-                                                                                                                          "year":  "2020"
-                                                                                                                      },
-                                                                       "Art/Sketch/Post-It-Series/Heavenly Base.jpg":  {
-                                                                                                                           "date":  "2020-12-15T22:50:12",
-                                                                                                                           "year":  "2020"
-                                                                                                                       },
-                                                                       "Art/Sketch/Post-It-Series/High Stakes.jpg":  {
-                                                                                                                         "date":  "2024-07-29T18:37:55",
-                                                                                                                         "year":  "2024"
-                                                                                                                     },
-                                                                       "Art/Sketch/Post-It-Series/IMG_20210829_172223.jpg":  {
-                                                                                                                                 "date":  "2021-08-29T17:22:23",
-                                                                                                                                 "year":  "2021"
-                                                                                                                             },
-                                                                       "Art/Sketch/Post-It-Series/IMG_20210830_182818.jpg":  {
-                                                                                                                                 "date":  "2021-08-30T18:28:18",
-                                                                                                                                 "year":  "2021"
-                                                                                                                             },
-                                                                       "Art/Sketch/Post-It-Series/IMG_20221201_122848.jpg":  {
-                                                                                                                                 "date":  "2022-12-01T12:28:49",
-                                                                                                                                 "year":  "2022"
-                                                                                                                             },
-                                                                       "Art/Sketch/Post-It-Series/Maurice.jpg":  {
-                                                                                                                     "date":  "2022-10-05T20:55:19",
-                                                                                                                     "year":  "2022"
-                                                                                                                 },
-                                                                       "Art/Sketch/Post-It-Series/Mushroom Bog.jpg":  {
-                                                                                                                          "date":  "2021-01-29T14:43:20",
-                                                                                                                          "year":  "2021"
-                                                                                                                      },
-                                                                       "Art/Sketch/Post-It-Series/My Buddy Chanchito.jpg":  {
-                                                                                                                                "date":  "2021-08-30T18:28:29",
-                                                                                                                                "year":  "2021"
-                                                                                                                            },
-                                                                       "Art/Sketch/Post-It-Series/original_36565dc2-52e0-437f-b4ca-defe70c3c7ed_IMG_20210220_140854.jpg":  {
-                                                                                                                                                                               "date":  "2021-02-20T14:08:55",
-                                                                                                                                                                               "year":  "2021"
-                                                                                                                                                                           },
-                                                                       "Art/Sketch/Post-It-Series/Peek Into Abstratia.jpg":  {
-                                                                                                                                 "date":  "2020-11-28T10:44:58",
-                                                                                                                                 "year":  "2020"
-                                                                                                                             },
-                                                                       "Art/Sketch/Post-It-Series/Ribbon Dragon.jpg":  {
-                                                                                                                           "date":  "2020-12-24T16:43:16",
-                                                                                                                           "year":  "2020"
-                                                                                                                       },
-                                                                       "Art/Sketch/Post-It-Series/Slightly Distressed Purbinoid.jpg":  {
-                                                                                                                                           "date":  "2021-04-29T18:00:46",
-                                                                                                                                           "year":  "2021"
-                                                                                                                                       },
-                                                                       "Art/Sketch/Post-It-Series/Spherical Purple Fruitlets.jpg":  {
-                                                                                                                                        "date":  "2021-04-30T15:44:20",
-                                                                                                                                        "year":  "2021"
-                                                                                                                                    },
-                                                                       "Art/Sketch/Post-It-Series/Stranger.jpg":  {
-                                                                                                                      "date":  "2022-11-10T13:26:36",
-                                                                                                                      "year":  "2022"
-                                                                                                                  },
-                                                                       "Art/Sketch/Post-It-Series/Surface Tension.jpg":  {
-                                                                                                                             "date":  "2020-11-15T17:08:01",
-                                                                                                                             "year":  "2020"
-                                                                                                                         },
-                                                                       "Art/Sketch/Post-It-Series/Throne of Glass.jpg":  {
-                                                                                                                             "date":  "2021-01-14T10:37:25",
-                                                                                                                             "year":  "2021"
-                                                                                                                         },
-                                                                       "Art/Sketch/Post-It-Series/Voyage of the Lunar Brigantine.jpg":  {
-                                                                                                                                            "date":  "2021-01-31T13:51:22",
-                                                                                                                                            "year":  "2021"
-                                                                                                                                        },
-                                                                       "Art/Sketch/Post-It-Series/Weed Mountain.jpg":  {
-                                                                                                                           "date":  "2021-02-05T18:28:42",
-                                                                                                                           "year":  "2021"
-                                                                                                                       },
-                                                                       "Art/Sketch/Post-It-Series/Wide Yellow Fruitinite.jpg":  {
-                                                                                                                                    "date":  "2021-04-29T16:50:19",
-                                                                                                                                    "year":  "2021"
-                                                                                                                                }
-                                                                   }
-                                              },
+                                   "sketch": {
+                                     "label": "Sketch",
+                                     "folder": "Art/Sketch",
+                                     "icon": "0.%20Site_Assets/1_1_sketch.png",
+                                     "works": [
+                                       "Art/Sketch/50 Series/1. The Controller.jpg",
+                                       "Art/Sketch/50 Series/2. The Mouse.jpg",
+                                       "Art/Sketch/50 Series/3. The Robot.jpg",
+                                       "Art/Sketch/50 Series/4. The Boy.jpg",
+                                       "Art/Sketch/50 Series/5. The Prince.jpg",
+                                       "Art/Sketch/50 Series/6. The Warrior.jpg",
+                                       "Art/Sketch/50 Series/7. The Sword.jpg",
+                                       "Art/Sketch/50 Series/8. The Phantom.jpg",
+                                       "Art/Sketch/50 Series/9. The Gift.jpg",
+                                       "Art/Sketch/50 Series/10. The Owl.jpg",
+                                       "Art/Sketch/50 Series/11. The Tankard.jpg",
+                                       "Art/Sketch/50 Series/12. The Cheese.jpg",
+                                       "Art/Sketch/50 Series/13. The Ink Blottle.jpg",
+                                       "Art/Sketch/50 Series/14. The Bookmark.jpg",
+                                       "Art/Sketch/50 Series/15. The Shade.jpg",
+                                       "Art/Sketch/50 Series/16. The Rat.jpg",
+                                       "Art/Sketch/50 Series/17. The Cat.jpg",
+                                       "Art/Sketch/50 Series/18. The Hands.jpg",
+                                       "Art/Sketch/50 Series/19. The Trickster.jpg",
+                                       "Art/Sketch/50 Series/20. The Knight.jpg",
+                                       "Art/Sketch/50 Series/21. The Correction.jpg",
+                                       "Art/Sketch/50 Series/22. The Phone.jpg",
+                                       "Art/Sketch/50 Series/23. The Pose.jpg",
+                                       "Art/Sketch/50 Series/24. The Fabric.jpg",
+                                       "Art/Sketch/50 Series/25. The Stone.jpg",
+                                       "Art/Sketch/50 Series/26. The King.jpg",
+                                       "Art/Sketch/50 Series/26.5. The Pane.jpg",
+                                       "Art/Sketch/50 Series/27. The Pirate.jpg",
+                                       "Art/Sketch/50 Series/28. The Guy.jpg",
+                                       "Art/Sketch/50 Series/29. The Person.jpg",
+                                       "Art/Sketch/50 Series/30. The Tower.jpg",
+                                       "Art/Sketch/50 Series/31. The Fist.jpg",
+                                       "Art/Sketch/50 Series/32. The Apple.jpg",
+                                       "Art/Sketch/50 Series/33. The Bottle.jpg",
+                                       "Art/Sketch/50 Series/34. The Star.jpg",
+                                       "Art/Sketch/50 Series/35. The Beggar.jpg",
+                                       "Art/Sketch/50 Series/36. The Disc.jpg",
+                                       "Art/Sketch/50 Series/37. The Lamp.jpg",
+                                       "Art/Sketch/50 Series/38. The Scribble.jpg",
+                                       "Art/Sketch/50 Series/39. The Cutter.jpg",
+                                       "Art/Sketch/50 Series/40. The Flower.jpg",
+                                       "Art/Sketch/50 Series/41. The Ice.jpg",
+                                       "Art/Sketch/50 Series/42. The Preschool Picasso.jpg",
+                                       "Art/Sketch/50 Series/43. The Glassware.jpg",
+                                       "Art/Sketch/50 Series/44. The Tool.jpg",
+                                       "Art/Sketch/50 Series/45. The Dog.jpg",
+                                       "Art/Sketch/50 Series/45.5. The Friend.jpg",
+                                       "Art/Sketch/50 Series/46. The Form.jpg",
+                                       "Art/Sketch/50 Series/47. The Figure.jpg",
+                                       "Art/Sketch/50 Series/48. The Fire.jpg",
+                                       "Art/Sketch/50 Series/49. The Point.jpg",
+                                       "Art/Sketch/50 Series/50. The Marble.jpg",
+                                       "Art/Sketch/50 Series/FINAL Art Imitation.jpg",
+                                       "Art/Sketch/Post-It-Series/Abstracia - Inner Nucleus.jpg",
+                                       "Art/Sketch/Post-It-Series/Abstracia - Valley In-Between.jpg",
+                                       "Art/Sketch/Post-It-Series/Average Red Fruitioloid.jpg",
+                                       "Art/Sketch/Post-It-Series/Bloom.jpg",
+                                       "Art/Sketch/Post-It-Series/Crack Desert.jpg",
+                                       "Art/Sketch/Post-It-Series/Dangerous Pink Fruitimer.jpg",
+                                       "Art/Sketch/Post-It-Series/Devious Duck.jpg",
+                                       "Art/Sketch/Post-It-Series/Ecstacy Forest.jpg",
+                                       "Art/Sketch/Post-It-Series/First and Last.jpg",
+                                       "Art/Sketch/Post-It-Series/Future Roads.jpg",
+                                       "Art/Sketch/Post-It-Series/Heavenly Base.jpg",
+                                       "Art/Sketch/Post-It-Series/High Stakes.jpg",
+                                       "Art/Sketch/Post-It-Series/IMG_20210830_182818.jpg",
+                                       "Art/Sketch/Post-It-Series/IMG_20221201_122848.jpg",
+                                       "Art/Sketch/Post-It-Series/Maurice.jpg",
+                                       "Art/Sketch/Post-It-Series/Mushroom Bog.jpg",
+                                       "Art/Sketch/Post-It-Series/My Buddy Chanchito.jpg",
+                                       "Art/Sketch/Post-It-Series/Peek Into Abstratia.jpg",
+                                       "Art/Sketch/Post-It-Series/Ribbon Dragon.jpg",
+                                       "Art/Sketch/Post-It-Series/Slightly Distressed Purbinoid.jpg",
+                                       "Art/Sketch/Post-It-Series/Spherical Purple Fruitlets.jpg",
+                                       "Art/Sketch/Post-It-Series/Stranger.jpg",
+                                       "Art/Sketch/Post-It-Series/Surface Tension.jpg",
+                                       "Art/Sketch/Post-It-Series/Throne of Glass.jpg",
+                                       "Art/Sketch/Post-It-Series/Voyage of the Lunar Brigantine.jpg",
+                                       "Art/Sketch/Post-It-Series/Weed Mountain.jpg",
+                                       "Art/Sketch/Post-It-Series/Wide Yellow Fruitinite.jpg",
+                                       "Art/Sketch/Selected Sketchbook Works/Still Life.jpg"
+                                     ],
+                                     "groups": [
+                                       {
+                                         "label": "50 Series",
+                                         "folder": "Art/Sketch/50 Series",
+                                         "works": [
+                                           "Art/Sketch/50 Series/1. The Controller.jpg",
+                                           "Art/Sketch/50 Series/2. The Mouse.jpg",
+                                           "Art/Sketch/50 Series/3. The Robot.jpg",
+                                           "Art/Sketch/50 Series/4. The Boy.jpg",
+                                           "Art/Sketch/50 Series/5. The Prince.jpg",
+                                           "Art/Sketch/50 Series/6. The Warrior.jpg",
+                                           "Art/Sketch/50 Series/7. The Sword.jpg",
+                                           "Art/Sketch/50 Series/8. The Phantom.jpg",
+                                           "Art/Sketch/50 Series/9. The Gift.jpg",
+                                           "Art/Sketch/50 Series/10. The Owl.jpg",
+                                           "Art/Sketch/50 Series/11. The Tankard.jpg",
+                                           "Art/Sketch/50 Series/12. The Cheese.jpg",
+                                           "Art/Sketch/50 Series/13. The Ink Blottle.jpg",
+                                           "Art/Sketch/50 Series/14. The Bookmark.jpg",
+                                           "Art/Sketch/50 Series/15. The Shade.jpg",
+                                           "Art/Sketch/50 Series/16. The Rat.jpg",
+                                           "Art/Sketch/50 Series/17. The Cat.jpg",
+                                           "Art/Sketch/50 Series/18. The Hands.jpg",
+                                           "Art/Sketch/50 Series/19. The Trickster.jpg",
+                                           "Art/Sketch/50 Series/20. The Knight.jpg",
+                                           "Art/Sketch/50 Series/21. The Correction.jpg",
+                                           "Art/Sketch/50 Series/22. The Phone.jpg",
+                                           "Art/Sketch/50 Series/23. The Pose.jpg",
+                                           "Art/Sketch/50 Series/24. The Fabric.jpg",
+                                           "Art/Sketch/50 Series/25. The Stone.jpg",
+                                           "Art/Sketch/50 Series/26. The King.jpg",
+                                           "Art/Sketch/50 Series/26.5. The Pane.jpg",
+                                           "Art/Sketch/50 Series/27. The Pirate.jpg",
+                                           "Art/Sketch/50 Series/28. The Guy.jpg",
+                                           "Art/Sketch/50 Series/29. The Person.jpg",
+                                           "Art/Sketch/50 Series/30. The Tower.jpg",
+                                           "Art/Sketch/50 Series/31. The Fist.jpg",
+                                           "Art/Sketch/50 Series/32. The Apple.jpg",
+                                           "Art/Sketch/50 Series/33. The Bottle.jpg",
+                                           "Art/Sketch/50 Series/34. The Star.jpg",
+                                           "Art/Sketch/50 Series/35. The Beggar.jpg",
+                                           "Art/Sketch/50 Series/36. The Disc.jpg",
+                                           "Art/Sketch/50 Series/37. The Lamp.jpg",
+                                           "Art/Sketch/50 Series/38. The Scribble.jpg",
+                                           "Art/Sketch/50 Series/39. The Cutter.jpg",
+                                           "Art/Sketch/50 Series/40. The Flower.jpg",
+                                           "Art/Sketch/50 Series/41. The Ice.jpg",
+                                           "Art/Sketch/50 Series/42. The Preschool Picasso.jpg",
+                                           "Art/Sketch/50 Series/43. The Glassware.jpg",
+                                           "Art/Sketch/50 Series/44. The Tool.jpg",
+                                           "Art/Sketch/50 Series/45. The Dog.jpg",
+                                           "Art/Sketch/50 Series/45.5. The Friend.jpg",
+                                           "Art/Sketch/50 Series/46. The Form.jpg",
+                                           "Art/Sketch/50 Series/47. The Figure.jpg",
+                                           "Art/Sketch/50 Series/48. The Fire.jpg",
+                                           "Art/Sketch/50 Series/49. The Point.jpg",
+                                           "Art/Sketch/50 Series/50. The Marble.jpg",
+                                           "Art/Sketch/50 Series/FINAL Art Imitation.jpg"
+                                         ]
+                                       },
+                                       {
+                                         "label": "Post-It-Series",
+                                         "folder": "Art/Sketch/Post-It-Series",
+                                         "works": [
+                                           "Art/Sketch/Post-It-Series/Abstracia - Inner Nucleus.jpg",
+                                           "Art/Sketch/Post-It-Series/Abstracia - Valley In-Between.jpg",
+                                           "Art/Sketch/Post-It-Series/Average Red Fruitioloid.jpg",
+                                           "Art/Sketch/Post-It-Series/Bloom.jpg",
+                                           "Art/Sketch/Post-It-Series/Crack Desert.jpg",
+                                           "Art/Sketch/Post-It-Series/Dangerous Pink Fruitimer.jpg",
+                                           "Art/Sketch/Post-It-Series/Devious Duck.jpg",
+                                           "Art/Sketch/Post-It-Series/Ecstacy Forest.jpg",
+                                           "Art/Sketch/Post-It-Series/First and Last.jpg",
+                                           "Art/Sketch/Post-It-Series/Future Roads.jpg",
+                                           "Art/Sketch/Post-It-Series/Heavenly Base.jpg",
+                                           "Art/Sketch/Post-It-Series/High Stakes.jpg",
+                                           "Art/Sketch/Post-It-Series/IMG_20210830_182818.jpg",
+                                           "Art/Sketch/Post-It-Series/IMG_20221201_122848.jpg",
+                                           "Art/Sketch/Post-It-Series/Maurice.jpg",
+                                           "Art/Sketch/Post-It-Series/Mushroom Bog.jpg",
+                                           "Art/Sketch/Post-It-Series/My Buddy Chanchito.jpg",
+                                           "Art/Sketch/Post-It-Series/Peek Into Abstratia.jpg",
+                                           "Art/Sketch/Post-It-Series/Ribbon Dragon.jpg",
+                                           "Art/Sketch/Post-It-Series/Slightly Distressed Purbinoid.jpg",
+                                           "Art/Sketch/Post-It-Series/Spherical Purple Fruitlets.jpg",
+                                           "Art/Sketch/Post-It-Series/Stranger.jpg",
+                                           "Art/Sketch/Post-It-Series/Surface Tension.jpg",
+                                           "Art/Sketch/Post-It-Series/Throne of Glass.jpg",
+                                           "Art/Sketch/Post-It-Series/Voyage of the Lunar Brigantine.jpg",
+                                           "Art/Sketch/Post-It-Series/Weed Mountain.jpg",
+                                           "Art/Sketch/Post-It-Series/Wide Yellow Fruitinite.jpg"
+                                         ]
+                                       },
+                                       {
+                                         "label": "Selected Sketchbook Works",
+                                         "folder": "Art/Sketch/Selected Sketchbook Works",
+                                         "works": [
+                                           "Art/Sketch/Selected Sketchbook Works/Still Life.jpg"
+                                         ]
+                                       }
+                                     ],
+                                     "workMetadata": {
+                                       "Art/Sketch/50 Series/1. The Controller.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/2. The Mouse.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/3. The Robot.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/4. The Boy.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/5. The Prince.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/6. The Warrior.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/7. The Sword.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/8. The Phantom.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/9. The Gift.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/10. The Owl.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/11. The Tankard.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/12. The Cheese.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/13. The Ink Blottle.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/14. The Bookmark.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/15. The Shade.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/16. The Rat.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/17. The Cat.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/18. The Hands.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/19. The Trickster.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/20. The Knight.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/21. The Correction.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/22. The Phone.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/23. The Pose.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/24. The Fabric.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/25. The Stone.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/26. The King.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/26.5. The Pane.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/27. The Pirate.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/28. The Guy.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/29. The Person.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/30. The Tower.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/31. The Fist.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/32. The Apple.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/33. The Bottle.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/34. The Star.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/35. The Beggar.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/36. The Disc.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/37. The Lamp.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/38. The Scribble.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/39. The Cutter.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/40. The Flower.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/41. The Ice.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/42. The Preschool Picasso.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/43. The Glassware.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/44. The Tool.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/45. The Dog.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/45.5. The Friend.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/46. The Form.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/47. The Figure.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/48. The Fire.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/49. The Point.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/50. The Marble.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/50 Series/FINAL Art Imitation.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/Post-It-Series/Abstracia - Inner Nucleus.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/Post-It-Series/Abstracia - Valley In-Between.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Sketch/Post-It-Series/Average Red Fruitioloid.jpg": {
+                                         "date": "2019-10-07T19:40:00",
+                                         "year": "2019"
+                                       },
+                                       "Art/Sketch/Post-It-Series/Bloom.jpg": {
+                                         "date": "2021-09-19T15:55:32",
+                                         "year": "2021"
+                                       },
+                                       "Art/Sketch/Post-It-Series/Crack Desert.jpg": {
+                                         "date": "2021-04-01T18:20:42",
+                                         "year": "2021"
+                                       },
+                                       "Art/Sketch/Post-It-Series/Dangerous Pink Fruitimer.jpg": {
+                                         "date": "2021-05-02T15:17:06",
+                                         "year": "2021"
+                                       },
+                                       "Art/Sketch/Post-It-Series/Devious Duck.jpg": {
+                                         "date": "2024-07-28T18:02:09",
+                                         "year": "2024"
+                                       },
+                                       "Art/Sketch/Post-It-Series/Ecstacy Forest.jpg": {
+                                         "date": "2021-02-16T17:18:54",
+                                         "year": "2021"
+                                       },
+                                       "Art/Sketch/Post-It-Series/First and Last.jpg": {
+                                         "date": "2020-11-24T17:52:35",
+                                         "year": "2020"
+                                       },
+                                       "Art/Sketch/Post-It-Series/Future Roads.jpg": {
+                                         "date": "2020-12-15T22:50:37",
+                                         "year": "2020"
+                                       },
+                                       "Art/Sketch/Post-It-Series/Heavenly Base.jpg": {
+                                         "date": "2020-12-15T22:50:12",
+                                         "year": "2020"
+                                       },
+                                       "Art/Sketch/Post-It-Series/High Stakes.jpg": {
+                                         "date": "2024-07-29T18:37:55",
+                                         "year": "2024"
+                                       },
+                                       "Art/Sketch/Post-It-Series/IMG_20210830_182818.jpg": {
+                                         "date": "2021-08-30T18:28:18",
+                                         "year": "2021"
+                                       },
+                                       "Art/Sketch/Post-It-Series/IMG_20221201_122848.jpg": {
+                                         "date": "2022-12-01T12:28:49",
+                                         "year": "2022"
+                                       },
+                                       "Art/Sketch/Post-It-Series/Maurice.jpg": {
+                                         "date": "2022-10-05T20:55:19",
+                                         "year": "2022"
+                                       },
+                                       "Art/Sketch/Post-It-Series/Mushroom Bog.jpg": {
+                                         "date": "2021-01-29T14:43:20",
+                                         "year": "2021"
+                                       },
+                                       "Art/Sketch/Post-It-Series/My Buddy Chanchito.jpg": {
+                                         "date": "2021-08-30T18:28:29",
+                                         "year": "2021"
+                                       },
+                                       "Art/Sketch/Post-It-Series/Peek Into Abstratia.jpg": {
+                                         "date": "2020-11-28T10:44:58",
+                                         "year": "2020"
+                                       },
+                                       "Art/Sketch/Post-It-Series/Ribbon Dragon.jpg": {
+                                         "date": "2020-12-24T16:43:16",
+                                         "year": "2020"
+                                       },
+                                       "Art/Sketch/Post-It-Series/Slightly Distressed Purbinoid.jpg": {
+                                         "date": "2021-04-29T18:00:46",
+                                         "year": "2021"
+                                       },
+                                       "Art/Sketch/Post-It-Series/Spherical Purple Fruitlets.jpg": {
+                                         "date": "2021-04-30T15:44:20",
+                                         "year": "2021"
+                                       },
+                                       "Art/Sketch/Post-It-Series/Stranger.jpg": {
+                                         "date": "2022-11-10T13:26:36",
+                                         "year": "2022"
+                                       },
+                                       "Art/Sketch/Post-It-Series/Surface Tension.jpg": {
+                                         "date": "2020-11-15T17:08:01",
+                                         "year": "2020"
+                                       },
+                                       "Art/Sketch/Post-It-Series/Throne of Glass.jpg": {
+                                         "date": "2021-01-14T10:37:25",
+                                         "year": "2021"
+                                       },
+                                       "Art/Sketch/Post-It-Series/Voyage of the Lunar Brigantine.jpg": {
+                                         "date": "2021-01-31T13:51:22",
+                                         "year": "2021"
+                                       },
+                                       "Art/Sketch/Post-It-Series/Weed Mountain.jpg": {
+                                         "date": "2021-02-05T18:28:42",
+                                         "year": "2021"
+                                       },
+                                       "Art/Sketch/Post-It-Series/Wide Yellow Fruitinite.jpg": {
+                                         "date": "2021-04-29T16:50:19",
+                                         "year": "2021"
+                                       },
+                                       "Art/Sketch/Selected Sketchbook Works/Still Life.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       }
+                                     }
+                                   },
                                    "3d":  {
                                               "label":  "3D",
                                               "folder":  "Art/3D",
                                               "icon":  "0.%20Site_Assets/1_2_3d.png",
-                                              "years":  {
-                                                            "2020":  [
-                                                                         "Art/3D/2020/Dent.png"
-                                                                     ]
-                                                        }
+                                              "works":  [
+                                                            "Art/3D/Dent Project/Dent Model Complete.glb"
+                                                        ],
+                                              "workMetadata":  {
+                                                  "Art/3D/Dent Project/Dent Model Complete.glb":  {
+                                                      "thumbnail":  "Art/3D/Dent Project/Dent.png"
+                                                  }
+                                              },
+                                              "gallery":  [
+                                                  "Art/3D/Dent Project/9a5c7b6f-7813-41c5-81c8-9c8c5ce6d3f4_rw_600_ODC7.png",
+                                                  "Art/3D/Dent Project/6dd9df56-98bb-4ecc-9b7e-0c10d67242a6_rw_600_ODC7.png",
+                                                  "Art/3D/Dent Project/c9dfdc83-0014-4cc7-8316-05f0d69bf47e_rw_600_ODC7.PNG",
+                                                  "Art/3D/Dent Project/e2256cd7-1bb7-4bb6-aeb8-d802a82f4f29_rw_1200_ODC7.PNG",
+                                                  "Art/3D/Dent Project/adc0d8ce-5d56-48c2-84d6-6c484cad55ed_rw_1200_ODC7.png",
+                                                  "Art/3D/Dent Project/a3c83ae5-ce4d-424c-90f5-cac8f6cc80e5_rw_1200_ODC7.png",
+                                                  "Art/3D/Dent Project/4fb4e28f-7ed3-49e3-ac99-3c33c73b85e8_rw_1200_ODC7.png",
+                                                  "Art/3D/Dent Project/021a1f18-d1a9-4e63-b146-4abd162f8365_rw_1200_ODC7.png",
+                                                  "Art/3D/Dent Project/1aed8b4e-d882-42a9-b72f-761f23e0fd91_rw_1200_ODC7.png",
+                                                  "Art/3D/Dent Project/ea057fe5-c2ed-4149-acfa-148e5f847671_rw_1200_ODC7.png",
+                                                  "Art/3D/Dent Project/0a06b932-e4ab-4949-ac88-60824cd00339_rw_1200_ODC7.png",
+                                                  "Art/3D/Dent Project/03eaa3e3-7267-4c66-b00a-8a6855d49ea4_rw_1200_ODC7.png",
+                                                  "Art/3D/Dent Project/434ac144-2078-4fa2-9a41-82c2f27559c8_rw_1200_ODC7.png",
+                                                  "Art/3D/Dent Project/28da397d-ce07-42e4-86c3-0fcecf99144a_rw_1200_ODC7.png",
+                                                  "Art/3D/Dent Project/12c7f923-c22f-43d2-a52c-9f102e10e563_rw_1200_ODC7.png",
+                                                  "Art/3D/Dent Project/9bd39dbd-2591-4137-a223-bc24f3ac249b_rw_600_ODC7.png",
+                                                  "Art/3D/Dent Project/18ccd5e3-77d6-4fcf-84ab-e33fa922e1db_rw_600_ODC7.png",
+                                                  "Art/3D/Dent Project/7f9333f3-c449-4850-842c-94cd4a03d878_rw_1200_ODC7.png"
+                                              ],
+                                              "video":  "Art/3D/Dent Project/Hair Physics Demo.mp4"
                                           },
-                                   "digital":  {
-                                                   "label":  "Digital Art",
-                                                   "folder":  "Art/Digital",
-                                                   "icon":  "0.%20Site_Assets/1_3_digital_art.png",
-                                                   "years":  {
-
-                                                             }
-                                               }
-                               }
-            },
-    "video":  {
-                  "label":  "Video",
-                  "folder":  "Video",
-                  "icon":  "0.%20Site_Assets/2_video.png",
-                  "years":  {
-                                "2021":  [
-                                             "Video/2021/First Memory.avi"
+                                   "digital": {
+                                     "label": "Digital Art",
+                                     "folder": "Art/Digital",
+                                     "icon": "0.%20Site_Assets/1_3_digital_art.png",
+                                     "works": [
+                                       "Art/Digital/Babylon Terminal Kit.png",
+                                       "Art/Digital/Polyscape.jpg",
+                                       "Art/Digital/Vertex.jpg",
+                                       "Art/Digital/Composite Image/SP25_DMA001_101_Composit_AlexIbarra 2.jpg",
+                                       "Art/Digital/Composite Image/SP25_DMA001_101_Composit_AlexIbarra.jpg",
+                                       "Art/Digital/Composite Image/SP25_DMA001_101_Composite_Before1_AlexIbarra.jpg",
+                                       "Art/Digital/Composite Image/SP25_DMA001_101_Composite_Before2_AlexIbarra.jpg",
+                                       "Art/Digital/Composite Image/SP25_DMA001_101_Composite_Before3_AlexIbarra.jpg",
+                                       "Art/Digital/Composite Image/SP25_DMA001_101_Composite_Before4_AlexIbarra.jpg",
+                                       "Art/Digital/Disguise Co/Disguse Co Primary.png",
+                                       "Art/Digital/Disguise Co/Disguse Co Secondary.png",
+                                       "Art/Digital/Disguise Co/Disguse Co. Logo Without Font.png",
+                                       "Art/Digital/Disguise Co/Disguse Co. Submark Transparent Hanger.png",
+                                       "Art/Digital/Disguise Co/SP25_DMA001_101_TrifoldBrochure_Mockup_AlexIbarra.jpg",
+                                       "Art/Digital/Flower of the Past/Flower of the Past Green.png",
+                                       "Art/Digital/Icons/Bolt Vector 2.png",
+                                       "Art/Digital/Icons/Boot Vector 2.png",
+                                       "Art/Digital/Icons/Clover Vetor 2.png",
+                                       "Art/Digital/Icons/Drumstick 2.png",
+                                       "Art/Digital/Icons/Eye Vector 2.png",
+                                       "Art/Digital/Icons/Heart Vector 2.png",
+                                       "Art/Digital/Icons/Pickaxe Vector 2.png",
+                                       "Art/Digital/Icons/Rod Vector 2.png",
+                                       "Art/Digital/Icons/Shield Vector 2.png",
+                                       "Art/Digital/Icons/Star Vector 2.png",
+                                       "Art/Digital/Icons/Sword Vector 2.png",
+                                       "Art/Digital/Icons/Water Vector 2.png",
+                                       "Art/Digital/Info Tech Photobooth/Info-Tech Solutions Printout.png",
+                                       "Art/Digital/Info Tech Photobooth/Photobooth Image Promt Questions 1.png",
+                                       "Art/Digital/Info Tech Photobooth/Photobooth Image Promt Questions 2.png",
+                                       "Art/Digital/Info Tech Photobooth/Photobooth Image Promt Questions 3.png",
+                                       "Art/Digital/Info Tech Photobooth/Photobooth Image Promt Questions 5.png",
+                                       "Art/Digital/Info Tech Photobooth/Photobooth Mockup for Info-Tech Solutions with Icon Logo.png",
+                                       "Art/Digital/Rebrand/SP25_DMA002_PackagingReDesign_Label_01_Alexander Ibarra.jpg",
+                                       "Art/Digital/Rebrand/SP25_DMA002_PackagingReDesign_Label_02_Alexander Ibarra.jpg",
+                                       "Art/Digital/Rebrand/SP25_DMA002_PackagingReDesign_Label_03_Alexander Ibarra.jpg",
+                                       "Art/Digital/Rebrand/SP25_DMA002_PackagingReDesign_Original_01_Alexander Ibarra.jpg",
+                                       "Art/Digital/Rebrand/SP25_DMA002_PackagingReDesign_Original_02_Alexander Ibarra.jpg",
+                                       "Art/Digital/Rebrand/SP25_DMA002_PackagingReDesign_Original_03_Alexander Ibarra.jpg",
+                                       "Art/Digital/Rebrand/SP25_DMA002_PackagingReDesign_Redesign_01-Alexander Ibarra.jpg",
+                                       "Art/Digital/Rebrand/SP25_DMA002_PackagingReDesign_Redesign_02-Alexander Ibarra.jpg",
+                                       "Art/Digital/Way finding Signage/SP25_DMA002_Wayfinding Signage_Mockup_1_Alex Ibarra.png",
+                                       "Art/Digital/Way finding Signage/SP25_DMA002_Wayfinding Signage_Mockup_2_Alex Ibarra.png",
+                                       "Art/Digital/Way finding Signage/SP25_DMA002_Wayfinding Signage_Mockup_3_Alex Ibarra.png"
+                                     ],
+                                     "groups": [
+                                       {
+                                         "label": "Selected Digital",
+                                         "folder": "Art/Digital",
+                                         "works": [
+                                           "Art/Digital/Babylon Terminal Kit.png",
+                                           "Art/Digital/Polyscape.jpg",
+                                           "Art/Digital/Vertex.jpg"
                                          ]
-                            }
-              },
+                                       },
+                                       {
+                                         "label": "Composite Image",
+                                         "folder": "Art/Digital/Composite Image",
+                                         "works": [
+                                           "Art/Digital/Composite Image/SP25_DMA001_101_Composit_AlexIbarra 2.jpg",
+                                           "Art/Digital/Composite Image/SP25_DMA001_101_Composit_AlexIbarra.jpg",
+                                           "Art/Digital/Composite Image/SP25_DMA001_101_Composite_Before1_AlexIbarra.jpg",
+                                           "Art/Digital/Composite Image/SP25_DMA001_101_Composite_Before2_AlexIbarra.jpg",
+                                           "Art/Digital/Composite Image/SP25_DMA001_101_Composite_Before3_AlexIbarra.jpg",
+                                           "Art/Digital/Composite Image/SP25_DMA001_101_Composite_Before4_AlexIbarra.jpg"
+                                         ]
+                                       },
+                                       {
+                                         "label": "Disguise Co",
+                                         "folder": "Art/Digital/Disguise Co",
+                                         "works": [
+                                           "Art/Digital/Disguise Co/Disguse Co Primary.png",
+                                           "Art/Digital/Disguise Co/Disguse Co Secondary.png",
+                                           "Art/Digital/Disguise Co/Disguse Co. Logo Without Font.png",
+                                           "Art/Digital/Disguise Co/Disguse Co. Submark Transparent Hanger.png",
+                                           "Art/Digital/Disguise Co/SP25_DMA001_101_TrifoldBrochure_Mockup_AlexIbarra.jpg"
+                                         ]
+                                       },
+                                       {
+                                         "label": "Flower of the Past",
+                                         "folder": "Art/Digital/Flower of the Past",
+                                         "works": [
+                                           "Art/Digital/Flower of the Past/Flower of the Past Green.png"
+                                         ]
+                                       },
+                                       {
+                                         "label": "Icons",
+                                         "folder": "Art/Digital/Icons",
+                                         "works": [
+                                           "Art/Digital/Icons/Bolt Vector 2.png",
+                                           "Art/Digital/Icons/Boot Vector 2.png",
+                                           "Art/Digital/Icons/Clover Vetor 2.png",
+                                           "Art/Digital/Icons/Drumstick 2.png",
+                                           "Art/Digital/Icons/Eye Vector 2.png",
+                                           "Art/Digital/Icons/Heart Vector 2.png",
+                                           "Art/Digital/Icons/Pickaxe Vector 2.png",
+                                           "Art/Digital/Icons/Rod Vector 2.png",
+                                           "Art/Digital/Icons/Shield Vector 2.png",
+                                           "Art/Digital/Icons/Star Vector 2.png",
+                                           "Art/Digital/Icons/Sword Vector 2.png",
+                                           "Art/Digital/Icons/Water Vector 2.png"
+                                         ]
+                                       },
+                                       {
+                                         "label": "Info Tech Photobooth",
+                                         "folder": "Art/Digital/Info Tech Photobooth",
+                                         "works": [
+                                           "Art/Digital/Info Tech Photobooth/Info-Tech Solutions Printout.png",
+                                           "Art/Digital/Info Tech Photobooth/Photobooth Image Promt Questions 1.png",
+                                           "Art/Digital/Info Tech Photobooth/Photobooth Image Promt Questions 2.png",
+                                           "Art/Digital/Info Tech Photobooth/Photobooth Image Promt Questions 3.png",
+                                           "Art/Digital/Info Tech Photobooth/Photobooth Image Promt Questions 5.png",
+                                           "Art/Digital/Info Tech Photobooth/Photobooth Mockup for Info-Tech Solutions with Icon Logo.png"
+                                         ]
+                                       },
+                                       {
+                                         "label": "Rebrand",
+                                         "folder": "Art/Digital/Rebrand",
+                                         "works": [
+                                           "Art/Digital/Rebrand/SP25_DMA002_PackagingReDesign_Label_01_Alexander Ibarra.jpg",
+                                           "Art/Digital/Rebrand/SP25_DMA002_PackagingReDesign_Label_02_Alexander Ibarra.jpg",
+                                           "Art/Digital/Rebrand/SP25_DMA002_PackagingReDesign_Label_03_Alexander Ibarra.jpg",
+                                           "Art/Digital/Rebrand/SP25_DMA002_PackagingReDesign_Original_01_Alexander Ibarra.jpg",
+                                           "Art/Digital/Rebrand/SP25_DMA002_PackagingReDesign_Original_02_Alexander Ibarra.jpg",
+                                           "Art/Digital/Rebrand/SP25_DMA002_PackagingReDesign_Original_03_Alexander Ibarra.jpg",
+                                           "Art/Digital/Rebrand/SP25_DMA002_PackagingReDesign_Redesign_01-Alexander Ibarra.jpg",
+                                           "Art/Digital/Rebrand/SP25_DMA002_PackagingReDesign_Redesign_02-Alexander Ibarra.jpg"
+                                         ]
+                                       },
+                                       {
+                                         "label": "Way finding Signage",
+                                         "folder": "Art/Digital/Way finding Signage",
+                                         "works": [
+                                           "Art/Digital/Way finding Signage/SP25_DMA002_Wayfinding Signage_Mockup_1_Alex Ibarra.png",
+                                           "Art/Digital/Way finding Signage/SP25_DMA002_Wayfinding Signage_Mockup_2_Alex Ibarra.png",
+                                           "Art/Digital/Way finding Signage/SP25_DMA002_Wayfinding Signage_Mockup_3_Alex Ibarra.png"
+                                         ]
+                                       }
+                                     ],
+                                     "workMetadata": {
+                                       "Art/Digital/Babylon Terminal Kit.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Polyscape.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Vertex.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Composite Image/SP25_DMA001_101_Composit_AlexIbarra 2.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Composite Image/SP25_DMA001_101_Composit_AlexIbarra.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Composite Image/SP25_DMA001_101_Composite_Before1_AlexIbarra.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Composite Image/SP25_DMA001_101_Composite_Before2_AlexIbarra.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Composite Image/SP25_DMA001_101_Composite_Before3_AlexIbarra.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Composite Image/SP25_DMA001_101_Composite_Before4_AlexIbarra.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Disguise Co/Disguse Co Primary.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Disguise Co/Disguse Co Secondary.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Disguise Co/Disguse Co. Logo Without Font.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Disguise Co/Disguse Co. Submark Transparent Hanger.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Disguise Co/SP25_DMA001_101_TrifoldBrochure_Mockup_AlexIbarra.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Flower of the Past/Flower of the Past Green.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Icons/Bolt Vector 2.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Icons/Boot Vector 2.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Icons/Clover Vetor 2.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Icons/Drumstick 2.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Icons/Eye Vector 2.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Icons/Heart Vector 2.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Icons/Pickaxe Vector 2.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Icons/Rod Vector 2.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Icons/Shield Vector 2.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Icons/Star Vector 2.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Icons/Sword Vector 2.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Icons/Water Vector 2.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Info Tech Photobooth/Info-Tech Solutions Printout.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Info Tech Photobooth/Photobooth Image Promt Questions 1.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Info Tech Photobooth/Photobooth Image Promt Questions 2.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Info Tech Photobooth/Photobooth Image Promt Questions 3.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Info Tech Photobooth/Photobooth Image Promt Questions 5.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Info Tech Photobooth/Photobooth Mockup for Info-Tech Solutions with Icon Logo.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Rebrand/SP25_DMA002_PackagingReDesign_Label_01_Alexander Ibarra.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Rebrand/SP25_DMA002_PackagingReDesign_Label_02_Alexander Ibarra.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Rebrand/SP25_DMA002_PackagingReDesign_Label_03_Alexander Ibarra.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Rebrand/SP25_DMA002_PackagingReDesign_Original_01_Alexander Ibarra.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Rebrand/SP25_DMA002_PackagingReDesign_Original_02_Alexander Ibarra.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Rebrand/SP25_DMA002_PackagingReDesign_Original_03_Alexander Ibarra.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Rebrand/SP25_DMA002_PackagingReDesign_Redesign_01-Alexander Ibarra.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Rebrand/SP25_DMA002_PackagingReDesign_Redesign_02-Alexander Ibarra.jpg": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Way finding Signage/SP25_DMA002_Wayfinding Signage_Mockup_1_Alex Ibarra.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Way finding Signage/SP25_DMA002_Wayfinding Signage_Mockup_2_Alex Ibarra.png": {
+                                         "date": "",
+                                         "year": ""
+                                       },
+                                       "Art/Digital/Way finding Signage/SP25_DMA002_Wayfinding Signage_Mockup_3_Alex Ibarra.png": {
+                                         "date": "",
+                                         "year": ""
+                                       }
+                                     }
+                                   }
+                }
+            },
+    "video": {
+      "label": "Video",
+      "folder": "Video",
+      "icon": "0.%20Site_Assets/2_video.png",
+      "works": [
+        "Video/Pyrrho Interview.mp4",
+        "Video/Gemology 113 - Mematic Capabilities and Applications.mp4",
+        "Video/Always On Low Res.mp4",
+        "Video/Presence by Alex Ibarra.mp4"
+      ],
+      "workMetadata": {
+        "Video/Always On Low Res.mp4": {
+          "title": "Always On Low Res",
+          "year": "2026",
+          "date": "2026-03-27T00:13:29.000000Z"
+        },
+        "Video/Gemology 113 - Mematic Capabilities and Applications.mp4": {
+          "title": "Gemology 113 - Mematic Capabilities and Applications",
+          "year": "2026",
+          "date": "2026-04-17T01:01:57.000000Z"
+        },
+        "Video/Presence by Alex Ibarra.mp4": {
+          "title": "Presence by Alex Ibarra",
+          "year": "2026",
+          "date": "2026-02-11T01:31:15.000000Z"
+        },
+        "Video/Pyrrho Interview.mp4": {
+          "title": "Pyrrho Interview",
+          "year": "2026",
+          "date": "2026-05-01T01:39:23.000000Z"
+        }
+      }
+    },
     "music":  {
                   "label":  "Music",
                   "folder":  "Music",
@@ -498,12 +1190,158 @@
                                                                            }
                                    }
               },
-    "photography":  {
-                        "label":  "Photography",
-                        "folder":  "Art/Photography",
-                        "icon":  "0.%20Site_Assets/4_photography.png",
-                        "years":  {
-
-                                  }
-                    }
+    "photography": {
+      "label": "Photography",
+      "folder": "Photography",
+      "icon": "0.%20Site_Assets/4_photography.png",
+      "works": [
+        "Photography/Sands of Elysium.JPG",
+        "Photography/Focus Ball.JPG",
+        "Photography/Withered Leylines.JPG",
+        "Photography/Warm Welcome.JPG",
+        "Photography/Ye ol' Wildlife.JPG",
+        "Photography/World Unseen.JPG",
+        "Photography/Blue Roses.JPG",
+        "Photography/Draught.JPG",
+        "Photography/Materlioloids.JPG",
+        "Photography/Cliff of the Brave.jpg",
+        "Photography/Demin Dude.jpg",
+        "Photography/Gilded Sky.JPG",
+        "Photography/Inconspicuous Neighbors of Suburbia.jpg",
+        "Photography/Melancholy.jpg",
+        "Photography/Mirco Jungle.JPG",
+        "Photography/Pink Lemonade.JPG",
+        "Photography/Prowler.jpg",
+        "Photography/Random Gas Station sky.jpg",
+        "Photography/Shadow of Doubt.jpg",
+        "Photography/Sky that Stared Back.jpg",
+        "Photography/The Bog_ner.jpg",
+        "Photography/The Cleanup Crew.jpg",
+        "Photography/The Copy of the Sunset Never to be seen again.jpg",
+        "Photography/The Melancholy.jpg",
+        "Photography/The Memories.jpg",
+        "Photography/The Painted Sky.jpg",
+        "Photography/The Shape of Glass.JPG",
+        "Photography/The Unmoving.JPG",
+        "Photography/The World Beyond.jpg"
+      ],
+      "workMetadata": {
+        "Photography/Focus Ball.JPG": {
+          "date": "2019-09-19T19:13:14",
+          "year": "2019"
+        },
+        "Photography/Draught.JPG": {
+          "date": "2018-12-02T16:30:14",
+          "year": "2018"
+        },
+        "Photography/Blue Roses.JPG": {
+          "date": "2019-06-15T05:47:36",
+          "year": "2019"
+        },
+        "Photography/Materlioloids.JPG": {
+          "date": "2018-09-09T10:31:28",
+          "year": "2018"
+        },
+        "Photography/Sands of Elysium.JPG": {
+          "date": "2021-10-30T20:44:24",
+          "year": "2021"
+        },
+        "Photography/Warm Welcome.JPG": {
+          "date": "2019-06-17T07:37:08",
+          "year": "2019"
+        },
+        "Photography/Withered Leylines.JPG": {
+          "date": "2019-09-19T18:55:48",
+          "year": "2019"
+        },
+        "Photography/Ye ol' Wildlife.JPG": {
+          "date": "2019-06-17T07:32:30",
+          "year": "2019"
+        },
+        "Photography/World Unseen.JPG": {
+          "date": "2019-06-17T05:50:32",
+          "year": "2019"
+        },
+        "Photography/Melancholy.jpg": {
+          "date": "",
+          "year": ""
+        },
+        "Photography/The World Beyond.jpg": {
+          "date": "",
+          "year": ""
+        },
+        "Photography/Cliff of the Brave.jpg": {
+          "date": "",
+          "year": ""
+        },
+        "Photography/The Bog_ner.jpg": {
+          "date": "",
+          "year": ""
+        },
+        "Photography/The Copy of the Sunset Never to be seen again.jpg": {
+          "date": "",
+          "year": ""
+        },
+        "Photography/Inconspicuous Neighbors of Suburbia.jpg": {
+          "date": "",
+          "year": ""
+        },
+        "Photography/The Melancholy.jpg": {
+          "date": "",
+          "year": ""
+        },
+        "Photography/The Memories.jpg": {
+          "date": "",
+          "year": ""
+        },
+        "Photography/The Painted Sky.jpg": {
+          "date": "",
+          "year": ""
+        },
+        "Photography/Prowler.jpg": {
+          "date": "",
+          "year": ""
+        },
+        "Photography/Random Gas Station sky.jpg": {
+          "date": "",
+          "year": ""
+        },
+        "Photography/Shadow of Doubt.jpg": {
+          "date": "",
+          "year": ""
+        },
+        "Photography/The Shape of Glass.JPG": {
+          "date": "",
+          "year": ""
+        },
+        "Photography/Sky that Stared Back.jpg": {
+          "date": "",
+          "year": ""
+        },
+        "Photography/The Unmoving.JPG": {
+          "date": "",
+          "year": ""
+        },
+        "Photography/Demin Dude.jpg": {
+          "date": "",
+          "year": ""
+        },
+        "Photography/Gilded Sky.JPG": {
+          "date": "",
+          "year": ""
+        },
+        "Photography/The Cleanup Crew.jpg": {
+          "date": "",
+          "year": ""
+        },
+        "Photography/Pink Lemonade.JPG": {
+          "date": "",
+          "year": ""
+        },
+        "Photography/Mirco Jungle.JPG": {
+          "date": "",
+          "year": ""
+        }
+      }
+    }
 }

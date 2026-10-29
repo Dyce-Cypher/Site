@@ -83,6 +83,54 @@ function readRootFiles(folder) {
     .map((entry) => browserPath(path.join(folder, entry.name)));
 }
 
+// Find a nearby image to use as the poster for each 3D model.
+function readModelMetadata(files) {
+  return Object.fromEntries(files.map((browserFile) => {
+    const absoluteFile = path.join(root, ...browserFile.split('/'));
+    const folder = path.dirname(absoluteFile);
+    const poster = fs.readdirSync(folder, { withFileTypes: true })
+      .filter((entry) => entry.isFile() && ['.jpg', '.jpeg', '.png', '.webp'].includes(path.extname(entry.name).toLowerCase()))
+      .sort((a, b) => compareNames(a.name, b.name))[0];
+
+    return [browserFile, {
+      thumbnail: poster ? browserPath(path.join(path.dirname(browserFile), poster.name)) : ''
+    }];
+  }));
+}
+
+// Preserve the project-page order for Dent's presentation images.
+function readDentGallery(folder) {
+  const order = [
+    '9a5c7b6f-7813-41c5-81c8-9c8c5ce6d3f4',
+    '6dd9df56-98bb-4ecc-9b7e-0c10d67242a6',
+    'c9dfdc83-0014-4cc7-8316-05f0d69bf47e',
+    'e2256cd7-1bb7-4bb6-aeb8-d802a82f4f29',
+    'adc0d8ce-5d56-48c2-84d6-6c484cad55ed',
+    'a3c83ae5-ce4d-424c-90f5-cac8f6cc80e5',
+    '4fb4e28f-7ed3-49e3-ac99-3c33c73b85e8',
+    '021a1f18-d1a9-4e63-b146-4abd162f8365',
+    '1aed8b4e-d882-42a9-b72f-761f23e0fd91',
+    'ea057fe5-c2ed-4149-acfa-148e5f847671',
+    '0a06b932-e4ab-4949-ac88-60824cd00339',
+    '03eaa3e3-7267-4c66-b00a-8a6855d49ea4',
+    '434ac144-2078-4fa2-9a41-82c2f27559c8',
+    '28da397d-ce07-42e4-86c3-0fcecf99144a',
+    '12c7f923-c22f-43d2-a52c-9f102e10e563',
+    '9bd39dbd-2591-4137-a223-bc24f3ac249b',
+    '18ccd5e3-77d6-4fcf-84ab-e33fa922e1db',
+    '7f9333f3-c449-4850-842c-94cd4a03d878'
+  ];
+  const absoluteFolder = path.join(root, ...folder.split('/'));
+  if (!fs.existsSync(absoluteFolder)) return [];
+  const files = fs.readdirSync(absoluteFolder, { withFileTypes: true })
+    .filter((entry) => entry.isFile() && /\.(png|jpe?g|webp)$/i.test(entry.name));
+  return order.map((id) => {
+    const match = files.find((entry) => entry.name.startsWith(`${id}_rw_1200`))
+      || files.find((entry) => entry.name.startsWith(`${id}_rw_600`));
+    return match ? browserPath(path.join(folder, match.name)) : null;
+  }).filter(Boolean);
+}
+
 // Read embedded audio title/year tags and the extracted cover image for each track.
 function readMediaMetadata(files) {
   return Object.fromEntries(files.map((browserFile) => {
@@ -91,7 +139,7 @@ function readMediaMetadata(files) {
     let tags = {};
     try {
       const probe = execFileSync(process.platform === 'win32' ? 'ffprobe.exe' : 'ffprobe', [
-        '-v', 'quiet', '-show_entries', 'format_tags', '-of', 'json', '--', absoluteFile
+        '-v', 'quiet', '-show_entries', 'format_tags=title,date,year,creation_time', '-of', 'json', '--', absoluteFile
       ], { encoding: 'utf8', shell: true });
       tags = JSON.parse(probe).format?.tags || {};
     } catch (error) {
@@ -99,7 +147,8 @@ function readMediaMetadata(files) {
     }
 
     const title = tags.title || fallbackTitle;
-    const yearMatch = String(tags.date || tags.year || '').match(/(?:19|20)\d{2}/);
+    const mediaDate = tags.date || tags.year || tags.creation_time || '';
+    const yearMatch = String(mediaDate).match(/(?:19|20)\d{2}/);
     const thumbnailName = `${fallbackTitle}.jpg`;
     const thumbnailFile = path.join(root, 'Site_Assets', 'Music', thumbnailName);
     const thumbnail = fs.existsSync(thumbnailFile)
@@ -109,7 +158,7 @@ function readMediaMetadata(files) {
     return [browserFile, {
       title,
       year: yearMatch ? yearMatch[0] : '',
-      date: tags.date || tags.year || '',
+      date: mediaDate,
       thumbnail
     }];
   }));
@@ -143,7 +192,7 @@ function readWorkMetadata(files) {
 }
 
 // Preserve Sketch's folder groupings while keeping the full flat list available.
-function readGroups(folder) {
+function readGroups(folder, rootLabel = 'Selected Sketch') {
   const absoluteFolder = path.join(root, ...folder.split('/'));
   if (!fs.existsSync(absoluteFolder)) return [];
 
@@ -155,7 +204,7 @@ function readGroups(folder) {
     .sort((a, b) => compareNames(a.name, b.name))
     .map((entry) => browserPath(path.join(folder, entry.name)));
 
-  if (rootFiles.length) groups.push({ label: 'Selected Sketch', folder, works: rootFiles });
+  if (rootFiles.length) groups.push({ label: rootLabel, folder, works: rootFiles });
 
   entries
     .filter((entry) => entry.isDirectory())
@@ -199,14 +248,49 @@ const manifest = {
           }));
           return { works, groups, workMetadata };
         })()
-        : { years: readYears(category.folder) })
+        : category.key === 'digital'
+          ? (() => {
+            const works = readFiles(category.folder)
+              .filter((file) => ['jpg', 'jpeg', 'png', 'gif', 'webp', 'avif'].includes(path.extname(file).slice(1).toLowerCase()));
+            const workMetadata = readWorkMetadata(works);
+            const groups = readGroups(category.folder, 'Selected Digital').map((group) => ({
+              ...group,
+              works: group.works.filter((file) => ['jpg', 'jpeg', 'png', 'gif', 'webp', 'avif'].includes(path.extname(file).slice(1).toLowerCase()))
+            })).filter((group) => group.works.length);
+            return { works, groups, workMetadata };
+          })()
+        : category.key === '3d'
+          ? (() => {
+            const works = readFiles(category.folder)
+              .filter((file) => ['glb', 'gltf'].includes(path.extname(file).slice(1).toLowerCase()));
+            const video = readFiles(category.folder).find((file) => path.basename(file).toLowerCase() === 'hair physics demo.mp4');
+            return { works, workMetadata: readModelMetadata(works), gallery: readDentGallery(category.folder), video };
+          })()
+          : { years: readYears(category.folder) })
     }]))
   },
   video: {
     label: 'Video',
     folder: 'Video',
     icon: '0.%20Site_Assets/2_video.png',
-    years: readYears('Video')
+    ...(() => {
+      const works = readFiles('Video')
+        .filter((file) => ['mp4', 'webm', 'mov', 'avi'].includes(path.extname(file).slice(1).toLowerCase()));
+      const workMetadata = Object.fromEntries(works.map((file) => {
+        const metadata = readMediaMetadata([file])[file] || {};
+        const folderYear = file.split('/').find((part) => /^\d{4}$/.test(part)) || '';
+        return [file, {
+          ...metadata,
+          year: metadata.year || folderYear,
+          date: metadata.date || folderYear
+        }];
+      }));
+      const sortedWorks = [...works].sort((a, b) => {
+        const dateOrder = (workMetadata[b]?.date || '').localeCompare(workMetadata[a]?.date || '');
+        return dateOrder || compareNames(a, b);
+      });
+      return { works: sortedWorks, workMetadata };
+    })()
   },
   music: {
     label: 'Music',
@@ -225,9 +309,18 @@ const manifest = {
   },
   photography: {
     label: 'Photography',
-    folder: 'Art/Photography',
+    folder: 'Photography',
     icon: '0.%20Site_Assets/4_photography.png',
-    years: readYears('Art/Photography')
+    ...(() => {
+      const works = readFiles('Photography')
+        .filter((file) => ['jpg', 'jpeg', 'png', 'webp', 'avif'].includes(path.extname(file).slice(1).toLowerCase()));
+      const workMetadata = readWorkMetadata(works);
+      const sortedWorks = [...works].sort((a, b) => {
+        const dateOrder = (workMetadata[b]?.date || '').localeCompare(workMetadata[a]?.date || '');
+        return dateOrder || compareNames(a, b);
+      });
+      return { works: sortedWorks, workMetadata };
+    })()
   }
 };
 
