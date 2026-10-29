@@ -1044,7 +1044,7 @@
         portfolio = await response.json();
         artCategories = portfolio.art.categories;
         const initial = location.hash.slice(1);
-        navigate(initial === 'about' || initial === 'archive' || portfolio[initial] ? initial : 'art');
+        navigate(initial === 'about' || initial === 'archive' || portfolio[initial] ? initial : 'archive');
       } catch (error) {
         console.error(error);
         showManifestError();
