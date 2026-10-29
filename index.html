@@ -111,7 +111,10 @@
     </section>
   </main>
 
-  <!-- In-page viewer used when a recognized image file is clicked. -->
+  <!-- ================================================================
+       PAGE: ART / IMAGE VIEWER
+       Shared by Art, All Works, Photography, and Digital Art previews.
+       ================================================================ -->
   <dialog id="image-viewer" class="image-viewer">
     <button id="image-viewer-close" class="image-viewer-close" type="button" aria-label="Close image viewer">×</button>
     <div class="image-viewer-frame">
@@ -121,6 +124,10 @@
     </div>
   </dialog>
 
+  <!-- ================================================================
+       PAGE: MUSIC / VINYL PLAYER
+       Overlay and transport controls used when a music work is played.
+       ================================================================ -->
   <div id="music-overlay" class="music-overlay">
     <div class="music-vinyl" aria-hidden="true">
       <div class="music-vinyl-label"><img id="music-artwork" src="" alt="" /></div>
@@ -146,6 +153,20 @@
   </div>
 
   <script>
+    // SIDEBAR DIRECTORY ORDER
+    // 00 Shared shell + navigation
+    // 01 All Works
+    // 02 Art: Sketch / 3D / Digital Art
+    // 03 Video
+    // 04 Music
+    // 05 Photography
+    // 06 About
+
+    // ================================================================
+    // SHARED SITE / NAVIGATION
+    // Manifest loading, navigation state, identity controls, and shared
+    // DOM references live here. Page-specific sections follow below.
+    // ================================================================
     // The generated manifest is loaded from the folders on disk before rendering.
     let portfolio = null;
 
@@ -256,28 +277,21 @@
     }
 
     // Clicking or keyboard-activating the artist name starts the alias shuffle.
-    identityName.addEventListener('click', (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      spinIdentityAlias();
-    });
-    identityName.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter' || event.key === ' ') {
+    function bindAliasTrigger(element) {
+      element.addEventListener('click', (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        spinIdentityAlias();
+      });
+      element.addEventListener('keydown', (event) => {
+        if (event.key !== 'Enter' && event.key !== ' ') return;
         event.preventDefault();
         spinIdentityAlias();
-      }
-    });
-    identityAlias.addEventListener('click', (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      spinIdentityAlias();
-    });
-    identityAlias.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter' || event.key === ' ') {
-        event.preventDefault();
-        spinIdentityAlias();
-      }
-    });
+      });
+    }
+
+    bindAliasTrigger(identityName);
+    bindAliasTrigger(identityAlias);
 
     // Convert folder paths into browser-safe URLs and derive file metadata.
     const fileUrl = (path) => path.split('/').map(encodeURIComponent).join('/');
@@ -288,6 +302,12 @@
     const isModel = (path) => ['glb', 'gltf'].includes(extension(path));
     const isAudio = (path) => ['mp3', 'wav', 'ogg', 'm4a', 'flac'].includes(extension(path));
     const isVideo = (path) => ['mp4', 'webm', 'mov', 'avi'].includes(extension(path));
+
+    // ================================================================
+    // PAGE: MUSIC / VINYL PLAYER
+    // Audio state, vinyl overlay behavior, tonearm placement, and transport
+    // controls are grouped here so Music-specific behavior is easy to find.
+    // ================================================================
 
     // Format audio duration in a compact minutes-and-seconds display.
     function formatDuration(seconds) {
@@ -350,6 +370,11 @@
     window.addEventListener('resize', positionTonearm);
     positionTonearm();
 
+    // ================================================================
+    // SHARED ARTWORK PREVIEW / HOVER BACKGROUND
+    // Used by Art, All Works, Digital Art, Video, Music, and Photography.
+    // ================================================================
+
     // Show the current artwork behind the page while its thumbnail is hovered or focused.
     function showHoverBackground(path) {
       hoverBackground.style.backgroundImage = `url("${fileUrl(path)}")`;
@@ -391,6 +416,11 @@
       }
     }
 
+    // ================================================================
+    // 05 PHOTOGRAPHY: DEVELOPING IMAGE VIEWER
+    // The same viewer is shared with image-based pages.
+    // ================================================================
+
     // Open an image in the page and use its dominant color for the frame border.
     function openImageViewer(path, name, thumbnail) {
       const isPhotographyWork = /^Photography\//i.test(path);
@@ -415,6 +445,10 @@
       imageViewerImage.src = fileUrl(path);
       imageViewer.showModal();
     }
+
+    // ================================================================
+    // PAGE: DIGITAL ART / IMAGE GALLERY
+    // ================================================================
 
     // Show every image belonging to a Digital Art project in one scrollable viewer.
     function openDigitalViewer(paths, label) {
@@ -521,6 +555,12 @@
       closeImageViewer();
     });
 
+    // ================================================================
+    // 00 SHARED: WORK CARD RENDERING
+    // Cards generated here are used by All Works, Art, Video, Music, and
+    // Photography. Page-specific renderers follow in sidebar order.
+    // ================================================================
+
     // Art categories are populated from the generated manifest after it loads.
     let artCategories = {};
 
@@ -548,6 +588,7 @@
         previewLink.addEventListener('mouseleave', hideHoverBackground);
         previewLink.addEventListener('focus', () => showHoverBackground(path));
         previewLink.addEventListener('blur', hideHoverBackground);
+      // 04 MUSIC: audio card and vinyl-player handoff.
       } else if (isAudio(path)) {
         // Audio metadata is loaded without downloading the full track up front.
         const audioDuration = document.createElement('div');
@@ -601,6 +642,7 @@
         audio.addEventListener('durationchange', updateMusicControls);
         audio.addEventListener('volumechange', updateMusicControls);
         card.appendChild(audioDuration);
+      // 03 VIDEO: inline preview and playback controls.
       } else if (isVideo(path)) {
         card.classList.add('video-card');
         const videoType = extension(path) === 'mov' ? 'video/quicktime' : extension(path) === 'avi' ? 'video/x-msvideo' : `video/${extension(path)}`;
@@ -683,6 +725,10 @@
       return card;
     }
 
+    // ================================================================
+    // 02 ART: 3D / DENT
+    // ================================================================
+
     // Render Dent project images in the same presentation-led layout as the source page.
     function renderProjectImage(path) {
       const link = document.createElement('a');
@@ -733,6 +779,10 @@
 
       return gallery;
     }
+
+    // ================================================================
+    // 02 ART: DIGITAL ART
+    // ================================================================
 
     // Represent each Digital Art folder with one thumbnail that cycles through its images.
     function renderDigitalWork(groupData, index, workMetadata = {}) {
@@ -796,6 +846,9 @@
       return card;
     }
 
+    // ================================================================
+    // 04 MUSIC: VINYL PLAYER — EVENT HANDLERS
+    // ================================================================
     musicPause.addEventListener('click', (event) => {
       event.stopPropagation();
       keepMusicOverlayOpen = false;
@@ -828,6 +881,11 @@
       updateMusicControls();
     });
 
+    // ================================================================
+    // 01–05 DIRECTORY PAGES: ALL WORKS, ART, VIDEO, MUSIC, PHOTOGRAPHY
+    // Medium/category rendering and page-specific layouts.
+    // ================================================================
+
     // Render one medium/category. Sketch preserves its folder groups within one view.
     function showMedium(key, category = activeArtCategory) {
       const medium = key === 'art' ? artCategories[category] : portfolio[key];
@@ -854,6 +912,7 @@
         return;
       }
 
+      // 02 ART: Sketch and Digital Art folder groups.
       if (medium.groups) {
         const isDigital = key === 'art' && category === 'digital';
         if (isDigital) {
@@ -876,6 +935,7 @@
         return;
       }
 
+      // 03 VIDEO, 04 MUSIC, and 05 PHOTOGRAPHY flat work lists.
       if (medium.works) {
         const grid = document.createElement('div');
         grid.className = 'file-grid';
@@ -900,6 +960,10 @@
       });
     }
 
+    // ================================================================
+    // 06 ABOUT
+    // ================================================================
+
     // Replace the archive with the dedicated About content.
     function showAbout() {
       pageTitle.textContent = 'ABOUT';
@@ -914,6 +978,11 @@
       void aboutImage.offsetWidth;
       aboutImage.classList.add('is-entering');
     }
+
+    // ================================================================
+    // 01 ALL WORKS / ARCHIVE
+    // Stable ordering and the combined cross-medium archive renderer.
+    // ================================================================
 
     // Keep the All Works shuffle stable across refreshes while incorporating file changes.
     function getStableArchiveOrder(paths) {
@@ -1009,6 +1078,10 @@
         portfolioView.appendChild(group);
       }
     }
+
+    // ================================================================
+    // SHARED NAVIGATION / BOOTSTRAP
+    // ================================================================
 
     // Keep the active button state and URL hash synchronized with the current view.
     function navigate(key) {

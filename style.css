@@ -1,11 +1,16 @@
-/* Global design tokens: colors, spacing, and the sidebar width. */
+/* ================================================================
+   SHARED / GLOBAL DESIGN TOKENS
+   Sidebar order: Shared → All Works → Art → Video → Music → Photography → About
+   ================================================================ */
 :root {
-  --paper: #f4f1e9;
+  --page-bg: ##fceed9;
+  --sidebar-bg: rgba(250, 249, 245, .88);
   --paper-deep: #e8e3d8;
   --ink: #242522;
   --muted: #87877f;
   --line: #c8c5bb;
   --gold: #b89a5d;
+  --mono: 'Courier New', monospace;
   --page-gutter: clamp(18px, 2.4vw, 64px);
   --sidebar: clamp(248px, 18vw, 380px);
 }
@@ -17,7 +22,7 @@
 [hidden] { display: none !important; }
 
 /* The outer page background sits behind the slightly transparent portfolio shell. */
-html { min-width: 320px; background: #ddd9cf; }
+html { min-width: 320px; background: #e8e6df; }
 
 /* Set the paper-like page background and default typography. */
 body {
@@ -27,11 +32,14 @@ body {
   padding: var(--page-gutter);
   color: var(--ink);
   background:
-    radial-gradient(circle at 12% 20%, rgba(255,255,255,.42), transparent 32rem),
-    linear-gradient(115deg, #e4e1d8, #cfcbc1 55%, #e6e2d9);
+    radial-gradient(circle at 12% 20%, rgba(255,255,255,.62), transparent 32rem),
+    linear-gradient(115deg, #f4f2ec, var(--page-bg) 55%, #f7f5ef);
   font-family: Georgia, 'Times New Roman', serif;
 }
 
+/* ================================================================
+   SHARED: LOADER, HOVER BACKGROUND, AND MUSIC MODE FOUNDATION
+   ================================================================ */
 /* Full-screen opening mark: the centered logo fades to black before the loading background fades away. */
 .site-loader { position: fixed; inset: 0; z-index: 20; display: grid; place-items: center; overflow: hidden; background: #000; opacity: 1; visibility: visible; transition: opacity .65s ease, visibility .65s ease; }
 .site-loader.is-complete { opacity: 0; visibility: hidden; pointer-events: none; }
@@ -56,6 +64,10 @@ body {
 
 .hover-background.is-visible { opacity: .3; }
 
+/* ================================================================
+   PAGE: MUSIC / VINYL PLAYER
+   All vinyl overlay, tonearm, playback, progress, and volume controls.
+   ================================================================ */
 /* Music mode softens the archive while the active track's record turns on the edge. */
 .window-shell { transition: filter .35s ease; }
 body.is-music-playing .window-shell { filter: blur(5px); }
@@ -87,6 +99,10 @@ body.is-music-playing .music-controls { opacity: 1; visibility: visible; pointer
 .music-headshell:focus-visible { outline: 2px solid transparent; outline-offset: 4px; }
 @keyframes vinylSpin { to { transform: translateY(-50%) rotate(360deg); } }
 
+/* ================================================================
+   SHARED: ARTWORK IMAGE VIEWER
+   Used by Art, All Works, Digital Art, Photography, and Music previews.
+   ================================================================ */
 /* In-page image viewer and its dominant-color border. */
 .image-viewer { 
   width: fit-content;
@@ -100,20 +116,17 @@ body.is-music-playing .music-controls { opacity: 1; visibility: visible; pointer
 }
 
 .image-viewer::backdrop { background: rgba(36, 37, 34, .48); backdrop-filter: blur(8px); }
-.image-viewer-frame { position: relative; display: inline-block; max-width: 90vw; max-height: 90vh; border: 0; background: transparent; }
-.image-viewer-frame { animation: viewerFrameFade .28s ease both; }
+.image-viewer-frame { position: relative; display: inline-block; max-width: 90vw; max-height: 90vh; border: 0; background: transparent; animation: viewerFrameFade .28s ease both; }
 .image-viewer-frame > img { display: block; width: auto; height: auto; max-width: 90vw; max-height: 90vh; object-fit: contain; opacity: 0; transition: opacity .36s ease; }
 .image-viewer-frame > img.is-loaded { opacity: 1; }
 .image-viewer.is-digital-gallery { width: min(92vw, 1200px); max-width: 92vw; max-height: 90vh; overflow: hidden; }
 .image-viewer.is-digital-gallery::backdrop { background: rgba(8, 9, 8, .82); backdrop-filter: blur(10px); }
 .image-viewer.is-digital-gallery .image-viewer-frame { width: 100%; max-width: none; max-height: none; }
 .image-viewer-gallery { position: relative; width: 100%; height: min(84vh, 760px); max-width: 100%; overflow: hidden; background: transparent; }
-.image-viewer-gallery[hidden] { display: none; }
 .image-viewer-gallery img { position: absolute; display: block; max-width: none; object-fit: contain; background: transparent; cursor: pointer; opacity: .82; transition: left .45s ease, top .45s ease, width .45s ease, height .45s ease, transform .45s ease, opacity .25s ease, filter .25s ease; }
 .image-viewer-gallery img.is-surrounding:hover { z-index: 2; opacity: 1; filter: brightness(1.12); }
 .image-viewer-gallery img.is-focused { z-index: 3; opacity: 1; cursor: zoom-out; }
-.image-viewer.is-digitizing .image-viewer-gallery img { animation: digitalizeImage .72s cubic-bezier(.2, .8, .2, 1) both; animation-delay: calc(var(--digital-delay, 0ms) + 70ms); }
-.image-viewer.is-digitizing .image-viewer-gallery img { image-rendering: pixelated; }
+.image-viewer.is-digitizing .image-viewer-gallery img { animation: digitalizeImage .72s cubic-bezier(.2, .8, .2, 1) both; animation-delay: calc(var(--digital-delay, 0ms) + 70ms); image-rendering: pixelated; }
 .image-viewer-developing { display: none; position: absolute; inset: 0; z-index: 2; pointer-events: none; background: rgba(255, 255, 255, .96); }
 .image-viewer.is-photography.is-developing .image-viewer-developing { display: block; animation: photographyDevelopWash 1s linear both; }
 .image-viewer.is-photography.is-developing .image-viewer-frame > img { animation: photographyDevelopImage 1s ease-out both; }
@@ -151,6 +164,9 @@ body.is-music-playing .music-controls { opacity: 1; visibility: visible; pointer
 button, a { color: inherit; }
 button { font: inherit; }
 
+/* ================================================================
+   SHARED: SITE SHELL AND SIDEBAR
+   ================================================================ */
 /* The foreground shell holds the fixed sidebar and flexible content area. */
 .window-shell {
   position: relative;
@@ -182,7 +198,7 @@ button { font: inherit; }
   flex-direction: column;
   padding: clamp(14px, 3vh, 34px) clamp(24px, 2.2vw, 48px) clamp(14px, 2.6vh, 32px);
   border-right: 1px solid var(--line);
-  background: rgba(231, 228, 218, .62);
+  background: var(--sidebar-bg);
 }
 
 /* Artist mark and name at the top of the sidebar. */
@@ -274,8 +290,11 @@ button { font: inherit; }
 .nav-arrow { margin-left: auto; color: var(--gold); font-size: 26px; line-height: 1; }
 .sidebar-rule { flex: 0 0 1px; width: 100%; min-height: 1px; height: 1px; margin: clamp(12px, 2vh, 22px) 0 clamp(8px, 1.2vh, 13px); background: var(--line); }
 .about-link { margin-top: 1px; }
-.sidebar-note { margin: auto 7px 0; color: var(--muted); font-size: 12px; line-height: 1.55; }
 
+/* ================================================================
+   01 ALL WORKS / ARCHIVE
+   Archive headings, year groups, thumbnails, and shared work cards.
+   ================================================================ */
 /* Right-hand archive area, headings, year groups, and file cards. */
 .content-panel {
   width: 100%;
@@ -290,8 +309,7 @@ h1, h2, p { margin-top: 0; }
 h1 { margin-bottom: 0; font-size: clamp(35px, 4vw, 86px); font-weight: 700; letter-spacing: -.04em; text-transform: capitalize; }
 .header-meta { margin: 0 0 1px; color: var(--muted); font-family: 'Courier New', monospace; font-size: 11px; }
 .page-description { max-width: 640px; margin: clamp(22px, 2vw, 34px) 0 0; color: #55554e; white-space: pre-line; font-size: 16px; line-height: 1.6; }
-.content-panel.is-model-page .content-header { display: block; }
-.content-panel.is-model-page .content-header { text-align: center; }
+.content-panel.is-model-page .content-header { display: block; text-align: center; }
 .content-panel.is-model-page .content-header > div { display: block; text-align: center; }
 .content-panel.is-model-page .header-meta { margin-top: 18px; text-align: center; }
 .content-panel.is-model-page .page-description { margin-right: auto; margin-left: auto; text-align: center; }
@@ -300,6 +318,7 @@ h1 { margin-bottom: 0; font-size: clamp(35px, 4vw, 86px); font-weight: 700; lett
 .content-panel.is-model-page .file-card { width: 100%; }
 .content-panel.is-model-page .model-preview { height: min(70vh, 760px); aspect-ratio: auto; }
 .dent-project-gallery { display: grid; gap: clamp(38px, 5vw, 76px); }
+/* 02 ART: 3D / DENT */
 .dent-gallery-section h2, .dent-model-section h2 { margin: 0 0 14px; font-size: 13px; font-weight: 400; letter-spacing: .08em; text-transform: uppercase; }
 .dent-gallery-grid { display: grid; gap: 2px; }
 .dent-project-image { display: block; overflow: hidden; background: #3b3b3b; }
@@ -309,15 +328,11 @@ h1 { margin-bottom: 0; font-size: clamp(35px, 4vw, 86px); font-weight: 700; lett
 .dent-face-shapes .dent-gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); justify-content: center; column-gap: 2px; }
 .dent-face-shapes .dent-project-image { aspect-ratio: 1 / 1; }
 .dent-face-shapes .dent-project-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
-.dent-gallery-features { margin-top: 0; }
-.dent-face-shapes + .dent-gallery-features { margin-top: calc(-1 * clamp(38px, 5vw, 76px)); }
-.dent-gallery-features .dent-gallery-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); justify-content: center; column-gap: 2px; }
-.dent-gallery-features .dent-project-image { aspect-ratio: 1 / 1; }
-.dent-gallery-features .dent-project-image img { display: block; width: 100%; height: 100%; object-fit: cover; }
 .dent-in-action .dent-gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .dent-project-video { display: block; width: 100%; max-height: 720px; background: #111; }
 .dent-model-section { padding-top: 4px; }
 .dent-model-section .file-grid { grid-template-columns: minmax(0, 1fr); }
+/* 02 ART: SKETCH / DIGITAL ART */
 .portfolio-view { padding-top: clamp(34px, 3vw, 64px); }
 .year-group + .year-group { margin-top: clamp(48px, 4vw, 88px); }
 .sketch-group + .sketch-group { margin-top: clamp(34px, 3vw, 64px); padding-top: clamp(34px, 3vw, 64px); border-top: 1px solid var(--line); }
@@ -325,8 +340,13 @@ h1 { margin-bottom: 0; font-size: clamp(35px, 4vw, 86px); font-weight: 700; lett
 .year-heading h2 { margin: 0; font-size: clamp(25px, 1.8vw, 42px); font-weight: 400; letter-spacing: -.02em; }
 .year-heading span { color: var(--muted); font-family: 'Courier New', monospace; font-size: 10px; }
 .file-grid { display: grid; grid-template-columns: repeat(auto-fill, 280px); justify-content: center; row-gap: clamp(18px, 1.5vw, 36px); column-gap: clamp(18px, 1.5vw, 36px); }
-.file-grid.archive-grid { grid-template-columns: repeat(6, minmax(0, 1fr)); }
+.file-grid.archive-grid {
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  /* Keep rows visually closer together than the wider column rhythm. */
+  row-gap: clamp(10px, 1vw, 24px);
+}
 .file-grid.digital-grid { grid-template-columns: repeat(auto-fill, 280px); column-gap: clamp(24px, 2vw, 44px); row-gap: clamp(24px, 2vw, 44px); }
+/* 03 VIDEO */
 .file-grid.video-grid { width: min(100%, 1160px); margin-inline: auto; grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .file-card { min-width: 0; animation: rise .45s both; animation-delay: var(--delay); }
 .video-card { grid-column: span 2; width: 100%; justify-self: stretch; }
@@ -369,18 +389,21 @@ h1 { margin-bottom: 0; font-size: clamp(35px, 4vw, 86px); font-weight: 700; lett
 .file-card footer > span:last-child { display: none; }
 .file-open { display: inline-block; margin-top: 8px; color: var(--muted); font-family: 'Courier New', monospace; font-size: 10px; text-decoration: none; }
 .file-open:hover { color: var(--ink); }
+/* 04 MUSIC */
 audio, .audio-duration { display: none; }
 .audio-placeholder { position: relative; }
 .audio-thumbnail { width: 100%; height: 100%; object-fit: cover; }
 .audio-play { position: absolute; inset: 0; display: grid; place-items: center; width: 100%; height: 100%; border: 0; background: rgba(244, 241, 233, .08); cursor: pointer; color: var(--gold); font-size: 72px; line-height: 1; opacity: 0; text-shadow: 0 2px 8px rgba(36, 37, 34, .4); transform: scale(.92); transition: opacity .2s ease, transform .2s ease, background .2s ease; }
 .audio-play:hover, .audio-play:focus-visible { background: rgba(244, 241, 233, .18); }
 .file-card:hover .audio-play, .audio-play:focus-visible { opacity: 1; transform: scale(1); outline: none; }
-.audio-duration { display: none; }
 .empty-state { display: grid; place-items: center; min-height: 280px; padding: 40px; border: 1px dashed var(--line); text-align: center; }
 .empty-icon { color: var(--gold); font-size: 42px; }
 .empty-state p { margin: 18px 0 7px; font-size: 22px; }
 .empty-state small { color: var(--muted); font-family: 'Courier New', monospace; font-size: 11px; }
 
+/* ================================================================
+   PAGE: ABOUT
+   ================================================================ */
 /* About page layout and typography. */
 .about-view { --about-height: min(calc(70vh - 20px), 880px); display: grid; grid-template-columns: minmax(420px, 1.4fr) 1fr; align-items: start; gap: clamp(28px, 5vw, 68px); padding-top: 38px; }
 .about-image-wrap { position: relative; align-self: start; border: 1px solid var(--line); background: var(--paper-deep); }
@@ -391,12 +414,14 @@ audio, .audio-duration { display: none; }
 .about-copy h2 { max-width: 540px; margin-bottom: 0; font-size: clamp(26px, 2.2vw, 46px); font-weight: 400; line-height: 1; letter-spacing: -.04em; }
 .about-copy p { margin-bottom: 0; color: #55554e; font-size: clamp(15px, calc(.72rem + .2vw + .1vh), 20px); line-height: 1.5; }
 .about-copy .lead { color: var(--ink); font-size: clamp(18px, calc(.88rem + .24vw + .12vh), 24px); line-height: 1.4; }
-.about-signoff { margin-top: 32px; font-style: italic; }
 
 /* Small entrance animation used as file cards are inserted. */
 @keyframes rise { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes aboutImageFadeIn { from { opacity: 0; } to { opacity: 1; } }
 
+/* ================================================================
+   SHARED: RESPONSIVE LAYOUTS
+   ================================================================ */
 /* Keep at least three thumbnails visible per row before the layout stacks. */
 @media (max-width: 1100px) {
   .file-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
@@ -415,7 +440,6 @@ audio, .audio-duration { display: none; }
   .nav-item { justify-content: center; padding: 7px 4px; font-size: 14px; }
   .nav-item img { width: 24px; height: 24px; }
   .nav-arrow, .sidebar-rule, .about-link { display: none; }
-  .sidebar-note { display: none; }
   .content-panel { padding: 28px 18px 40px; }
   .content-header { padding-bottom: 18px; }
   .file-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
